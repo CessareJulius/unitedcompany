@@ -5,10 +5,11 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Inventario extends Model {
-    private $table = "inventario";
+    protected $table = "inventario";
 
-    private $primaryKey = "id";
+    protected $primaryKey = "id";
 
+    public $timestamps = false;
     protected $fillable = [
         'idFarmacos',
         'precio_compra',

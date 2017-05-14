@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Inventario;
+use App\Farmacos;
 class InventarioController extends Controller
 {
     /**
@@ -32,9 +33,10 @@ class InventarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create() {
+
+        $farmacos = Farmacos::orderBy('nombre')->get();
+        return view('inventario.create',["farmacos"=>$farmacos]);
     }
 
     /**
@@ -43,9 +45,38 @@ class InventarioController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request) {
+     
+        $this->validate($request,[
+            'cantidad'=>'int',
+            'precio_venta'=>'numeric',
+            'precio_compra'=>'numeric'
+            ]
+        );
+
+        $inventario = Inventario::where('id','=',$request->get('farmaco'))->first();
+
+        
+        $inventario->idFarmacos = $request->get('farmaco');
+        if (count($inventario)>0) {
+            $cantidad = $inventario->cantidad;
+            $inventario->update([
+                "cantidad" =>$cantidad+$request->get('cantidad'),
+                "precio_compra"=>$request->get('precio_compra'),
+                "precio_venta"=>$request->get('precio_venta'),
+            ]);
+        }else {
+            $inventario = new Inventario;
+            $inventario->cantidad = $request->get('cantidad');
+            
+            $inventario->precio_compra = $request->get('precio_compra');
+            $inventario->precio_venta = $request->get('precio_venta');
+            $inventario->save();
+        }
+    
+        
+        return redirect('inventario');
+
     }
 
     /**
@@ -65,9 +96,18 @@ class InventarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id) {
+        
+    
+            $inventario = DB::table('inventario as i')
+            ->join('Farmacos as f','i.id','=','f.id')
+            ->select('f.nombre','f.presentacion','f.codigo','i.cantidad','i.precio_venta','i.precio_compra','i.id')
+            ->where('i.id','=',$id)
+            ->get()->first();
+            
+        
+            return view('inventario.edit',["inventario"=>$inventario]);
+        
     }
 
     /**
@@ -77,9 +117,23 @@ class InventarioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id){
+        
+        $this->validate($request,[
+            'cantidad'=>'int',
+            'precio_venta'=>'numeric',
+            'precio_compra'=>'numeric'
+            ]
+        );
+
+        $inventario = Inventario::findOrFail($id);
+        $inventario->cantidad = $request->get('cantidad');
+        $inventario->precio_compra = $request->get('precio_compra');
+        $inventario->precio_venta = $request->get('precio_venta');
+
+        $inventario->update();
+        return redirect('inventario');
+
     }
 
     /**
@@ -90,6 +144,8 @@ class InventarioController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $inventario = Inventario::findOrFail($id);
+        $inventario->delete();
+        return redirect('inventario');
     }
 }

@@ -56,5 +56,7 @@
         </tbody>
 
     </table>
+
+    <div class="col-sm-12">{{$farmacos->render()}}</div>
     @endif
 @endsection

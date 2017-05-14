@@ -19,3 +19,7 @@ Route::get('/', function () {
     //return view('inventario.index');
     //dd(Farmacos::findOrFail(1));
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
