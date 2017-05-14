@@ -14,12 +14,19 @@
 
 Route::resource('/farmacos',"FarmacosController");
 Route::resource('/inventario',"InventarioController");
+Route::resource('/users',"UsersController");
 Route::get('/', function () {
     return view('welcome');
     //return view('inventario.index');
     //dd(Farmacos::findOrFail(1));
 });
 
+
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+

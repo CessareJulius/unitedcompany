@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use App\Inventario;
 use App\Farmacos;
+use Auth;
 class InventarioController extends Controller
 {
     /**
@@ -15,17 +16,22 @@ class InventarioController extends Controller
      */
     public function index(Request $request) {
 
-        if ($request) {
-            $query=trim($request->get('buscar'));
-            $inventario = DB::table('inventario as i')
-            ->join('Farmacos as f','i.id','=','f.id')
-            ->select('f.nombre','f.presentacion','f.codigo','i.cantidad','i.precio_venta','i.precio_compra','i.id')
-            ->where('f.nombre','LIKE','%'.$query.'%')
-            ->orderBy('f.id','asc')
-            ->paginate(7);
-        
-            return view('inventario.index',["inventario"=>$inventario,"buscar"=>$query]);
-        }
+       if (Auth::check()) {
+
+            if ($request) {
+                $query=trim($request->get('buscar'));
+                $inventario = DB::table('inventario as i')
+                ->join('Farmacos as f','i.id','=','f.id')
+                ->select('f.nombre','f.presentacion','f.codigo','i.cantidad','i.precio_venta','i.precio_compra','i.id')
+                ->where('f.nombre','LIKE','%'.$query.'%')
+                ->orderBy('f.id','asc')
+                ->paginate(7);
+            
+                return view('inventario.index',["inventario"=>$inventario,"buscar"=>$query]);
+            }
+       }else {
+           return redirect('login?next=inventario');
+       }
     }
 
     /**
