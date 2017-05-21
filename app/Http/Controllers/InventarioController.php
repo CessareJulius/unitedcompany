@@ -21,7 +21,7 @@ class InventarioController extends Controller
             if ($request) {
                 $query=trim($request->get('buscar'));
                 $inventario = DB::table('inventario as i')
-                ->join('Farmacos as f','i.id','=','f.id')
+                ->join('farmacos as f','i.id','=','f.id')
                 ->select('f.nombre','f.presentacion','f.codigo','i.cantidad','i.precio_venta','i.precio_compra','i.id')
                 ->where('f.nombre','LIKE','%'.$query.'%')
                 ->orderBy('f.id','asc')
@@ -106,12 +106,12 @@ class InventarioController extends Controller
         
     
             $inventario = DB::table('inventario as i')
-            ->join('Farmacos as f','i.id','=','f.id')
+            ->join('farmacos as f','i.id','=','f.id')
             ->select('f.nombre','f.presentacion','f.codigo','i.cantidad','i.precio_venta','i.precio_compra','i.id')
             ->where('i.id','=',$id)
             ->get()->first();
             
-        
+            
             return view('inventario.edit',["inventario"=>$inventario]);
         
     }

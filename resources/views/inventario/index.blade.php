@@ -24,7 +24,7 @@
     <h3>No se encontraron artículos para {{$buscar}}</h3>
     @else
     @if(strlen($buscar)>0) <h3>Resultados de la búsqueda de: {{$buscar}}</h3>@endif
-    <h1>Lista de Fármacos <a href="{{action('InventarioController@create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Agregar</a></h1>
+    <h1>Inventario de Fármacos <a href="{{action('InventarioController@create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Agregar</a></h1>
 
     <table class="table table-bordered table-condensed table-striped table-hover">
         <thead>

@@ -17,8 +17,7 @@ Route::resource('/inventario',"InventarioController");
 Route::resource('/users',"UsersController");
 Route::get('/', function () {
     return view('welcome');
-    //return view('inventario.index');
-    //dd(Farmacos::findOrFail(1));
+  
 });
 
 

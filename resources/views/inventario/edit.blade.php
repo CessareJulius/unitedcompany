@@ -3,8 +3,8 @@
 @section('contenido')
     
     <div>
-        <div class="col-sm-6 col-lg-6 col-md-6 col-xs-12">
-            <h3>Editar fármaco del inventario</h3>
+        <div class="col-sm-12 col-lg-12 col-md-12 col-xs-12">
+            <h3>Editar fármaco al inventario</h3>
             @if(count($errors->all())>0)
                 <div class="alert alert-danger">
                     <ul>
@@ -16,49 +16,34 @@
             @endif
 
         {!! Form::open(['method'=>'PATCH','url'=>['inventario',$inventario->id]]) !!}
-        {{Form::token()}}
-                
-                <div class="form-group">
-                    <div class="input-group">
-                        <label for="nombre">Nombre</label><input type="text" value="{{$inventario->nombre}}" class="form-control" placeholder="Nombre" name="nombre" disabled>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <div class="input-group">
-                        <label for="codigo">Código</label><input type="text" value="{{$inventario->codigo}}" class="form-control" placeholder="Código" name="codigo" disabled>
+        
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label for="farmaco">Código</label>                        
+                        <select name="farmaco" id="" class="selectpicker showtick showmenuarrow" data-live-search="true" data-width="100%" disabled>
+                            
+                                <option value="{{$inventario->id}}" selected>[{{$inventario->codigo}}] {{$inventario->nombre}} {{$inventario->presentacion}}</option>
+                            
+
+                        </select>
+                        
                     </div>
                 </div>
             
-                <div class="form-group">
-                    <div class="input-group">
-                        <label for="presentacion">Presentación</label><input type="text" value="{{$inventario->presentacion}}" class="form-control" placeholder="Presentacion" name="presentacion" disabled>
-                    </div>
-                </div>
 
-                
                 <div class="form-group">
-                    <div class="input-group">
-                        <label for="presentacion">Presentación</label><input type="text" value="{{$inventario->presentacion}}" class="form-control" placeholder="Presentacion" name="presentacion" disabled>
-                    </div>
+                    <label for="cantidad">Cantidad</label><input type="number" value="{{$inventario->cantidad}}" class="form-control" placeholder="Cantidad" name="cantidad">
+                    
                 </div>
 
                 <div class="form-group">
-                    <div class="input-group">
-                        <label for="cantidad">Cantidad</label><input type="number" value="{{$inventario->cantidad}}" class="form-control" placeholder="Cantidad" name="cantidad">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="input-group">
-                        <label for="precio_venta">Precio Venta</label><input type="number" value="{{$inventario->precio_venta}}" class="form-control" placeholder="Precio de venta" name="precio_venta">
-                    </div>
+                    <label for="precio_venta">Precio Venta</label><input type="number" value="{{$inventario->precio_venta}}" class="form-control" placeholder="Precio de venta" name="precio_venta">
+                    
                 </div>  
 
                 <div class="form-group">
-                    <div class="input-group">
-                        <label for="precio-compra">Precio Compra</label><input type="number" value="{{$inventario->precio_compra}}" class="form-control" placeholder="Precio de venta" name="precio_compra">
-                    </div>
+                    <label for="precio-compra">Precio Compra</label><input type="number" value="{{$inventario->precio_venta}}" class="form-control" placeholder="Precio de venta" name="precio_compra">
+                    
                 </div>  
 
                 
@@ -73,5 +58,15 @@
         </div>
     </div>
 
+
+    @push('scripts')
+        <script src="{{asset('js/bootstrap-select.min.js')}}"></script>
+        <script>
+        $('.selectpicker').selectpicker({
+            style: 'btn-info',
+            size: 4
+        });
+</script>
+    @endpush
     
 @endsection

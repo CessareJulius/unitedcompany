@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use CanResetPassword;
+use DB;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -18,7 +19,7 @@ class User extends Authenticatable
      */
     public $timestamps = false;
     protected $fillable = [
-        'name', 'email', 'password',
+        'name','user','email', 'password',
     ];
 
     /**
@@ -29,4 +30,16 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Función que permite mostrar el rol del usuario
+     *
+     * @param User_id $id
+     * @return array 
+     */
+    static public function getRole($id) {
+           $roles = DB::table('role_user as r')->join('roles as ro','ro.id','=','r.role_id')
+           ->where('user_id','=',$id)->first();
+           return $roles;
+    }
 }
