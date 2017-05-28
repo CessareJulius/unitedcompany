@@ -15,6 +15,7 @@
 Route::resource('/farmacos',"FarmacosController");
 Route::resource('/inventario',"InventarioController");
 Route::resource('/users',"UsersController");
+Route::resource('/ingreso',"IngresoController");
 Route::get('/', function () {
     return view('welcome');
   
