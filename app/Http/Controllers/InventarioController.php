@@ -10,13 +10,19 @@ use Auth;
 class InventarioController extends Controller
 {
     /**
+     * Constructor
+     */
+    public function __construct() {
+        $this->middleware('auth');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
 
-       if (Auth::check()) {
+    //    if (Auth::check()) {
 
             if ($request) {
                 $query=trim($request->get('buscar'));
@@ -29,9 +35,9 @@ class InventarioController extends Controller
             
                 return view('inventario.index',["inventario"=>$inventario,"buscar"=>$query]);
             }
-       }else {
-           return redirect('login?next=inventario');
-       }
+    //    }else {
+    //        return redirect('login');
+    //    }
     }
 
     /**

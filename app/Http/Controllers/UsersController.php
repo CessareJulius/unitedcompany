@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
+use DB;
 class UsersController extends Controller
 {
     /**
@@ -85,8 +86,12 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
+    public function edit($id) {
+        $usuario = User::findOrFail($id);
+        $roles = Role::all();
+        $rol = User::getRole($id);
+        
+        return view("users.edit",["usuario"=>$usuario,"roles"=>$roles,"rol"=>$rol]);
         
     }
 
@@ -97,9 +102,29 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id) {
+         $this->validate($request, [
+            'name' => 'nullable|string|max:255',
+            'password' => 'nullable|string|min:6|confirmed',
+        ]);
+        
+        $user = User::find($id);
+        if($request->get('name')) { 
+            $user->name = $request->get('name');
+        }
+        if($request->get('email')) { 
+            $user->email = $request->get('email');
+        }
+        
+        if($request->get('password')) { 
+            $user->password = $request->get('password');
+        }
+        $user->update();
+
+        DB::table('role_user')->where('user_id','=',$id)->delete();
+        $rol = Role::find($request->get('tipo'));
+        $user->attachRole($rol);
+        return redirect('users');
     }
 
     /**
@@ -108,8 +133,9 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id) {
+        $user = User::findOrFail($id);
+        $user->delete();
+        return redirect('users');
     }
 }
