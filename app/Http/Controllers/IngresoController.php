@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Carbon\Carbon;
+use App\Farmacos;
 class IngresoController extends Controller
 {
     /**
@@ -33,9 +34,11 @@ class IngresoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create() {
+        $farmacos = Farmacos::all();
+        return view('ingreso.create',['farmacos'=>$farmacos]);
+
+
     }
 
     /**
@@ -44,9 +47,14 @@ class IngresoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(Request $request){
+        
+        //die($request->get('idfarmaco')[0]);
+        for ($i=1;$i<=count($request->get('idfarmaco'));$i++) {
+            dd($request->get('idfarmaco')[0]);
+            
+        }
+        
     }
 
     /**

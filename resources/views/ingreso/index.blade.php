@@ -42,7 +42,7 @@
                     <td>{{$fila->fecha_hora}}</td>
                     
                     <td>
-                        <a class="btn btn-primary" href="{{action('IngresoController@edit',['id'=>$fila->id])}}">Editar</a>
+                        <a class="btn btn-primary" href="{{action('IngresoController@show',['id'=>$fila->id])}}">Ver</a>
                         <a class="btn btn-danger" onclick="$('#modal-delete-{{$fila->id}}').modal('show')">Eliminar</a>
                     </td>
 
