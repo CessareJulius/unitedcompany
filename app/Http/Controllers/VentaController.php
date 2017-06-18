@@ -3,25 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
 use DB;
 use Carbon\Carbon;
 use App\Farmacos;
-use App\Ingreso;
 use App\Inventario;
-use App\DetalleIngreso;
+use App\Venta;
+use App\DetalleVenta;
 use PDF;
 use Auth;
-use Redirect;
-class IngresoController extends Controller
+class VentaController extends Controller
 {
-
-     public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
-
     /**
      * Display a listing of the resource.
      *
@@ -31,9 +22,10 @@ class IngresoController extends Controller
         if (!Auth::user()->hasRole(['empleado','root','admin'])) {
             return redirect('/');
         }
-         if ($request) {
+        if ($request) {
             $query=trim($request->get('buscar'));
-            $ingresos = DB::table('ingreso')
+            $ventas = DB::table('venta')
+            
             ->where('nro_factura','LIKE','%'.$query.'%')
             ->orderBy('id','asc')
             ->get();
@@ -41,16 +33,15 @@ class IngresoController extends Controller
         
             $cantidad = [];
             
-            foreach($ingresos as $in) {
-                $can = DB::table('detalle_ingreso')->select('count(id) as cantidad')->where('idingreso','=',$in->id)->count();
-                $cantidad[$in->id] = $can;
+            foreach($ventas as $ven) {
+                $can = DB::table('detalle_venta')->select('count(id) as cantidad')->where('idventa','=',$ven->id)->count();
+                $cantidad[$ven->id] = $can;
             }
         
-            return view('ingreso.index',["ingresos"=>$ingresos,"buscar"=>$query,"cantidad"=>$cantidad]);
+            return view('venta.index',["ventas"=>$ventas,"buscar"=>$query,"cantidad"=>$cantidad]);
         }
-    }
 
-    
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -58,8 +49,11 @@ class IngresoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        $farmacos = Farmacos::all();
-        return view('ingreso.create',['farmacos'=>$farmacos]);
+        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+            return redirect('/');
+        }
+        $farmacos = DB::table('inventario')->join('farmacos','inventario.idFarmacos','=','farmacos.id')->get();
+        return view('venta.create',['farmacos'=>$farmacos]);
 
 
     }
@@ -76,43 +70,34 @@ class IngresoController extends Controller
         }
         $this->validate($request,[
             'nro_factura'=>'int|required|min:5',
+            //'idfarmaco'=>'required',
             
         ]);
-    
-        $ingreso = new Ingreso();
-        $ingreso->nro_factura = $request->get('nro_factura');
-        $ingreso->fecha_hora = Carbon::now();
-        $ingreso->save();
+        
+        $venta = new Venta();
+        $venta->nro_factura = $request->get('nro_factura');
+        $venta->fecha_hora = Carbon::now();
+        $venta->nombrecliente = $request->get('nombrecliente');
+        $venta->cedulacliente = $request->get('cedulacliente');
+        $venta->save();
         $total = 0;
         for ($i=0;$i<count($request->get('idfarmaco'));$i++) {
             
             
             $farmaco = $request->get('idfarmaco')[$i];
-            $detalle = new DetalleIngreso();
+            $detalle = new DetalleVenta();
             $detalle->idfarmaco = $request->get('idfarmaco')[$i];
-            
-            $detalle->cantidad = $request->get('cantidad')[$i];
-            $detalle->precio_compra = $request->get('precio_compra')[$i];
             $detalle->precio_venta = $request->get('precio_venta')[$i];
-            
-            $detalle->idingreso = $ingreso->id;
+            $detalle->cantidad = $request->get('cantidad')[$i];
+          
+            $detalle->idventa = $venta->id;
             $detalle->save();
 
-            $farm = Inventario::where('idFarmacos','=',$detalle->idfarmaco)->first();
             
-            if (!$farm) {
-            
-                
-                $farm = new Inventario;
-                $farm->idFarmacos = $detalle->idfarmaco;
-                $farm->cantidad = $detalle->cantidad;
-                $farm->precio_compra = $detalle->precio_compra;
-                $farm->precio_venta = $detalle->precio_venta;
-                $farm->save();
-            }
+        
         }
 
-        return redirect('ingreso');
+        return redirect('venta');
         
     }
 
@@ -126,44 +111,45 @@ class IngresoController extends Controller
         if (!Auth::user()->hasRole(['empleado','root','admin'])) {
             return redirect('/');
         }
-        $ingreso = Ingreso::findOrFail($id);
+        $venta = Venta::findOrFail($id);
         
-        $detalleingreso = DB::table('detalle_ingreso as di')->join('farmacos as f','f.id','=','di.idfarmaco')
-        ->select('f.nombre','di.cantidad','di.precio_compra','di.precio_venta','f.id')
-        ->where('di.idingreso','=',$id)
-        ->paginate(50);
+        $detalleventa = DB::table('detalle_venta as dv')->join('farmacos as f','f.id','=','dv.idfarmaco')
+        ->select('f.nombre','dv.cantidad','f.id','dv.precio_venta')
+        ->where('dv.idventa','=',$id)
+        ->get();
         $total=0;
-        foreach($detalleingreso as $de) {
-            $total+= $de->precio_compra * $de->cantidad;
+        foreach($detalleventa as $de) {
+            $total+= $de->precio_venta * $de->cantidad;
         }
 
 
-        return view('ingreso.show',["ingreso"=>$ingreso,"detalleingreso"=>$detalleingreso,"total"=>$total]);
+        return view('venta.show',["venta"=>$venta,"detalleventa"=>$detalleventa,"total"=>$total]);
     }
-    public function pdfDetalleIngreso($id) {
+    public function pdfDetalleVenta($id) {
         if (!Auth::user()->hasRole(['empleado','root','admin'])) {
             return redirect('/');
         }
-        $ingreso = Ingreso::findOrFail($id);
+    
+        $venta = Venta::findOrFail($id);
         
-        $detalleingreso = DB::table('detalle_ingreso as di')->join('farmacos as f','f.id','=','di.idfarmaco')
-        ->select('f.nombre','di.cantidad','di.precio_compra','di.precio_venta','f.id')
-        ->where('di.idingreso','=',$id)
-        ->paginate(99);
+        $detalleventa = DB::table('detalle_venta as dv')->join('farmacos as f','f.id','=','dv.idfarmaco')
+        ->select('f.nombre','dv.cantidad','f.id','dv.precio_venta')
+        ->where('dv.idventa','=',$id)
+        ->get();
         $total=0;
-        
-        foreach($detalleingreso as $de) {
-            $total+= $de->precio_compra * $de->cantidad;
+        foreach($detalleventa as $de) {
+            $total+= $de->precio_venta * $de->cantidad;
         }
+
       
-        $data = ["ingreso"=>$ingreso,"detalleingreso"=>$detalleingreso,"total"=>$total];
+        $data = ["venta"=>$venta,"detalleventa"=>$detalleventa,"total"=>$total];
         
-        $view = \View::make('ingreso.pdfdetalleingreso', compact('ingreso','detalleingreso','total'))->render();
+        $view = \View::make('venta.pdfdetalleventa', compact('venta','detalleventa','total'))->render();
     
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         $pdf->setpaper('a4', 'landscape');
-        return $pdf->download('Ingreso-'.$id.'pdf');
+        return $pdf->download('Venta-'.$id.'pdf');
        
         
     }
@@ -203,8 +189,9 @@ class IngresoController extends Controller
             return redirect('/');
         }
         Ingreso::findOrFail($id)->delete();
-        DetalleIngreso::where('idingreso','=',$id)->delete();
         
-        return redirect('ingreso');
+        DetalleIngreso::where('idventa','=',$id)->delete();
+        
+        return redirect('venta');
     }
 }

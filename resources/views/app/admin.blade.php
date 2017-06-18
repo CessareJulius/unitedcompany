@@ -49,7 +49,7 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   
-                  <span class="hidden-xs"><i class="fa fa-user"></i> Randy Gil</span>
+                  <span class="hidden-xs"><i class="fa fa-user"></i> {{Auth::user()->name}}</span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
@@ -108,19 +108,19 @@
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="compras/ingreso"><i class="fa fa-circle-o"></i> Ingresos</a></li>
-                <li><a href="compras/proveedor"><i class="fa fa-circle-o"></i> Proveedores</a></li>
+                <li><a href="ingreso"><i class="fa fa-circle-o"></i> Ingresos</a></li>
+                
               </ul>
             </li>
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-shopping-cart"></i>
-                <span>Salidas</span>
+                <span>Ventas</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="ventas/venta"><i class="fa fa-circle-o"></i> Ventas</a></li>
-                <li><a href="ventas/cliente"><i class="fa fa-circle-o"></i> Clientes</a></li>
+                <li><a href="venta"><i class="fa fa-circle-o"></i> Ventas</a></li>
+                <!--li><a href="ventas/cliente"><i class="fa fa-circle-o"></i> Clientes</a></li-->
               </ul>
             </li>
                        
@@ -212,6 +212,6 @@
     
     @stack('scripts')
 
-    @endstack
+    
   </body>
 </html>

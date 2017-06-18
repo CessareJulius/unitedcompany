@@ -7,6 +7,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Zizaco\Entrust\Traits\EntrustUserTrait;
 use CanResetPassword;
 use DB;
+use Auth;
+use Redirect;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -38,8 +40,18 @@ class User extends Authenticatable
      * @return array 
      */
     static public function getRole($id) {
-           $roles = DB::table('role_user as r')->join('roles as ro','ro.id','=','r.role_id')
-           ->where('user_id','=',$id)->first();
-           return $roles;
+        $roles = DB::table('role_user as r')->join('roles as ro','ro.id','=','r.role_id')
+        ->where('user_id','=',$id)->first();
+        return $roles;
+    }
+    static public function access($roles) {
+        
+        if (Auth::user()->hasRole($roles)) {
+            
+            return true;
+        }
+        return false;
+        
+
     }
 }

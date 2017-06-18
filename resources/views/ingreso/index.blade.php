@@ -31,6 +31,7 @@
             <th>ID</th>
             <th>Número de Factura</th>
             <th>Fecha y Hora</th>
+            <th>Fármacos</th>
             <th>Acciones</th>
         </thead>
         <tbody>
@@ -40,6 +41,7 @@
                     <td>{{$fila->id}}</td>
                     <td>{{$fila->nro_factura}}</td>
                     <td>{{$fila->fecha_hora}}</td>
+                    <td>{{$cantidad[$fila->id]}}</td>
                     
                     <td>
                         <a class="btn btn-primary" href="{{action('IngresoController@show',['id'=>$fila->id])}}">Ver</a>

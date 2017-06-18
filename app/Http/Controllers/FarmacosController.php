@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Farmacos;
+use Auth;
 class FarmacosController extends Controller
 {
     /**
@@ -14,6 +15,9 @@ class FarmacosController extends Controller
      
 
     public function index(Request $request) {
+        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+            return redirect('/');
+        }
         if ($request) {
             $query=trim($request->get('buscar'));
             $farmacos=Farmacos::where('nombre','LIKE','%'.$query.'%')
@@ -32,6 +36,9 @@ class FarmacosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
+        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+            return redirect('/');
+        }
         return view('farmacos.create');
     }
 
@@ -43,6 +50,9 @@ class FarmacosController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+            return redirect('/');
+        }
         $this->validate($request,[
             'nombre'=>'max:35|required',
             'codigo'=>'unique:farmacos|required',
@@ -83,6 +93,9 @@ class FarmacosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
+        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+            return redirect('/');
+        }
         $farmaco=Farmacos::findOrFail($id);
         
         return view('farmacos.edit',["farmaco"=>$farmaco]);
@@ -98,6 +111,9 @@ class FarmacosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
+        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+            return redirect('/');
+        }
         $this->validate($request,[
             'nombre'=>'max:35|required',
             'codigo'=>'unique:farmacos|required',
@@ -124,6 +140,9 @@ class FarmacosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
+        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+            return redirect('/');
+        }
         $farmacos=Farmacos::findOrFail($id);
         $farmacos->delete();
         return redirect('farmacos');

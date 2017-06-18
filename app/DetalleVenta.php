@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Farmacos extends Model
+class DetalleVenta extends Model
 {
-    protected $table = "farmacos";
+    protected $table = "detalle_venta";
 
     protected $primaryKey='id';
 
@@ -14,11 +14,11 @@ class Farmacos extends Model
 
 
     protected $fillable = [
-        "nombre",
+
+        "codigo",
         "cantidad",
-        "presentacion",
-        "precio_compra",
-        "precio_venta"
+        "idventa",
+        "idfarmaco"
     ];
 
     protected $guarded = [];

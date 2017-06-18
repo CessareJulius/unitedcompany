@@ -136,9 +136,12 @@ return [
     */
 
     'providers' => [
+        
+	    LaravelFCM\FCMServiceProvider::class,
         Collective\Html\HtmlServiceProvider::class,
         Zizaco\Entrust\EntrustServiceProvider::class,
-
+        Barryvdh\DomPDF\ServiceProvider::class,
+        Barryvdh\Snappy\ServiceProvider::class,
         /*
          * Laravel Framework Service Providers...
          */
@@ -195,6 +198,11 @@ return [
     */
 
     'aliases' => [
+        'FCM'      => LaravelFCM\Facades\FCM::class,
+	    'FCMGroup' => LaravelFCM\Facades\FCMGroup::class, // Optional
+        'PDF2' => Barryvdh\DomPDF\Facade::class,
+        'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 
         'Form' => Collective\Html\FormFacade::class,

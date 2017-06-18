@@ -28,6 +28,7 @@
 
     <table class="table table-bordered table-condensed table-striped table-hover">
         <thead>
+            <th>ID</th>
             <th>Nombre</th>
             <th>Código</th>
             <th>Presentación</th>
@@ -40,6 +41,7 @@
             @foreach($inventario as $fila) 
 
                 <tr>
+                    <td>{{$fila->id}}</td>
                     <td>{{$fila->nombre}}</td>
                     <td>{{$fila->codigo}}</td>
                     <td>{{$fila->presentacion}}</td>

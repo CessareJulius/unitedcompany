@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Role;
 use DB;
+use Auth;
 class UsersController extends Controller
 {
     /**
@@ -16,6 +17,9 @@ class UsersController extends Controller
 
     
     public function index(Request $request) {
+        if (!Auth::user()->hasRole(['root','admin'])) {
+            return redirect('/');
+        }
         if ($request) {
             $query=trim($request->get('buscar'));
             $users=User::where('user','LIKE','%'.$query.'%')
@@ -40,6 +44,9 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
+         if (!Auth::user()->hasRole(['root','admin'])) {
+            return redirect('/');
+        }
         $roles = Role::all();
         return view('users.create',["roles"=>$roles]);
 
@@ -52,11 +59,15 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
+         if (!Auth::user()->hasRole(['root','admin'])) {
+            return redirect('/');
+        }
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'user' => 'required|string|max:20|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'tipo' => 'required'
         ]);
          $user = User::create([
             'name' => $request->get('name'),
@@ -87,9 +98,15 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
+         if (!Auth::user()->hasRole(['root','admin'])) {
+            return redirect('/');
+        }
         $usuario = User::findOrFail($id);
         $roles = Role::all();
         $rol = User::getRole($id);
+        if (!$rol) {
+            $rol->display_name = 'Sin Rol';
+        }
         
         return view("users.edit",["usuario"=>$usuario,"roles"=>$roles,"rol"=>$rol]);
         
@@ -103,6 +120,9 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
+         if (!Auth::user()->hasRole(['root','admin'])) {
+            return redirect('/');
+        }
          $this->validate($request, [
             'name' => 'nullable|string|max:255',
             'password' => 'nullable|string|min:6|confirmed',
@@ -134,6 +154,9 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
+         if (!Auth::user()->hasRole(['root','admin'])) {
+            return redirect('/');
+        }
         $user = User::findOrFail($id);
         $user->delete();
         return redirect('users');

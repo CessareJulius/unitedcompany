@@ -21,8 +21,11 @@ class InventarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-
-    //    if (Auth::check()) {
+        
+    
+        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+            return redirect('/');
+        }
 
             if ($request) {
                 $query=trim($request->get('buscar'));
@@ -35,9 +38,7 @@ class InventarioController extends Controller
             
                 return view('inventario.index',["inventario"=>$inventario,"buscar"=>$query]);
             }
-    //    }else {
-    //        return redirect('login');
-    //    }
+   
     }
 
     /**
@@ -46,7 +47,9 @@ class InventarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-
+        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+            return redirect('/');
+        }
         $farmacos = Farmacos::orderBy('nombre')->get();
         return view('inventario.create',["farmacos"=>$farmacos]);
     }
@@ -58,7 +61,9 @@ class InventarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-     
+        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+            return redirect('/');
+        }
         $this->validate($request,[
             'cantidad'=>'int',
             'precio_venta'=>'numeric',
@@ -109,16 +114,18 @@ class InventarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
+        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+            return redirect('/');
+        }
+
+        $inventario = DB::table('inventario as i')
+        ->join('farmacos as f','i.id','=','f.id')
+        ->select('f.nombre','f.presentacion','f.codigo','i.cantidad','i.precio_venta','i.precio_compra','i.id')
+        ->where('i.id','=',$id)
+        ->get()->first();
         
-    
-            $inventario = DB::table('inventario as i')
-            ->join('farmacos as f','i.id','=','f.id')
-            ->select('f.nombre','f.presentacion','f.codigo','i.cantidad','i.precio_venta','i.precio_compra','i.id')
-            ->where('i.id','=',$id)
-            ->get()->first();
-            
-            
-            return view('inventario.edit',["inventario"=>$inventario]);
+        
+        return view('inventario.edit',["inventario"=>$inventario]);
         
     }
 
@@ -130,7 +137,10 @@ class InventarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id){
-        
+
+        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+            return redirect('/');
+        }        
         $this->validate($request,[
             'cantidad'=>'int',
             'precio_venta'=>'numeric',
@@ -156,6 +166,10 @@ class InventarioController extends Controller
      */
     public function destroy($id)
     {
+
+        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+            return redirect('/');
+        }
         $inventario = Inventario::findOrFail($id);
         $inventario->delete();
         return redirect('inventario');
