@@ -11,6 +11,7 @@ use App\Venta;
 use App\DetalleVenta;
 use PDF;
 use Auth;
+use App\Http\Controllers\FCMController;
 class VentaController extends Controller
 {
     /**
@@ -18,6 +19,9 @@ class VentaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct() {
+        $this->middleware('auth');
+    }
     public function index(Request $request) {
         if (!Auth::user()->hasRole(['empleado','root','admin'])) {
             return redirect('/');
@@ -70,7 +74,7 @@ class VentaController extends Controller
         }
         $this->validate($request,[
             'nro_factura'=>'int|required|min:5',
-            //'idfarmaco'=>'required',
+            
             
         ]);
         
@@ -93,9 +97,18 @@ class VentaController extends Controller
             $detalle->idventa = $venta->id;
             $detalle->save();
 
+            $far = DB::table('inventario as i')->join('farmacos as f','f.id','=','i.idFarmacos')->where('idFarmacos','=',$request->get('idfarmaco')[$i])->first();
+            
+            if ($far->cantidad<1) {
+                FCMController::notification('Medicamento Agotado',"El medicamento '$far->nombre' se ha agotado");
+            }elseif ($far->cantidad<10) {
+                FCMController::notification('Medicamento Casi Agotado',"El medicamento '$far->nombre' casi se agota");
+            }
             
         
         }
+
+
 
         return redirect('venta');
         
