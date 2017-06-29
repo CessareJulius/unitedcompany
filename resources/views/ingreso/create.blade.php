@@ -22,7 +22,7 @@
                 <div class="col-sm-12">
                     <div class="form-group">
                         <label for="Número de factura">
-                            Nro de Factura: <input type="number" class="form-control" placeholder="Ej: 347232" name="nro_factura" value="{{old('nro_factura')}}" required>
+                            Nro de Factura: <input type="number" class="form-control" placeholder="Ej: 347232" name="nro_factura" value="{{$nro_factura}}" disabled>
                         </label>
                         
                     </div>
@@ -142,45 +142,51 @@
             precio_venta=$("#pidprecio_venta").val();
 
             if(idfarmaco!="" && cantidad!="" && cantidad >0 && precio_compra!="" && precio_venta!="") {
-                subtotal[cont]=(cantidad*precio_compra);
-                total=total+subtotal[cont];
-                
-                //var fila='<tr><td><button type="button" class="btn btn-danger" onclick="eliminar('+cont+')"></button></td><td><input type="hidden" name="idfarmaco[]" value="'+idfarmaco+'">'+farmaco+'</td><td><input type="number" name="cantidad[]" value="'+cantidad+'">'+cantidad+'</td><td><input type="number" name="precio_compra[]" value"'+precio_compra+'">'+precio_compra+'</td><td><input type="number" name="precio_venta[]" value="'+precio_venta+'">'+precio_venta+'</td></tr>';
-                //ES6:
-                var fila=`<tr id="fila${cont}">
-                <td>
-                    <button type="button" class="btn btn-danger" onclick="eliminar('${cont}')">X</button>
-                </td>
-                <td>
-                    <input class="form-control" type="hidden" name="idfarmaco[]" value="${idfarmaco}"><b>${farmaco}</b>
-                </td>
-                <td>
-                    <input class="form-control" type="number" name="cantidad[]" value="${cantidad}">
-                </td>
-                <td>
-                    <input class="form-control" type="number" name="precio_compra[]" value="${precio_compra}">
-                </td>
-                
-                <td>
-                    <input class="form-control" type="number" name="precio_venta[]" value="${precio_venta}">
-                </td>
-                
-                <td>
-                   <b>${subtotal[cont]}</b>
-                </td>
-                </tr>`;
-                $("#total").html(`Total: ${total} Bsf.`);
-                $("#tingreso").append(fila);
-                evaluar();
-                limpiar();
-                $("#pidfarmaco").focus();
+                if (precio_compra<precio_venta) {
+                    alert('El precio de compra no puede ser menor al precio de venta');
+                }else {
 
+
+                    
+                    subtotal[cont]=(cantidad*precio_compra);
+                    total=total+subtotal[cont];
+                    
+                    //var fila='<tr><td><button type="button" class="btn btn-danger" onclick="eliminar('+cont+')"></button></td><td><input type="hidden" name="idfarmaco[]" value="'+idfarmaco+'">'+farmaco+'</td><td><input type="number" name="cantidad[]" value="'+cantidad+'">'+cantidad+'</td><td><input type="number" name="precio_compra[]" value"'+precio_compra+'">'+precio_compra+'</td><td><input type="number" name="precio_venta[]" value="'+precio_venta+'">'+precio_venta+'</td></tr>';
+                    //ES6:
+                    var fila=`<tr id="fila${cont}">
+                    <td>
+                        <button type="button" class="btn btn-danger" onclick="eliminar('${cont}')">X</button>
+                    </td>
+                    <td>
+                        <input class="form-control" type="hidden" name="idfarmaco[]" value="${idfarmaco}"><b>${farmaco}</b>
+                    </td>
+                    <td>
+                        <input class="form-control" type="number" name="cantidad[]" value="${cantidad}">
+                    </td>
+                    <td>
+                        <input class="form-control" type="number" name="precio_compra[]" value="${precio_compra}">
+                    </td>
+                    
+                    <td>
+                        <input class="form-control" type="number" name="precio_venta[]" value="${precio_venta}">
+                    </td>
+                    
+                    <td>
+                    <b>${subtotal[cont]}</b>
+                    </td>
+                    </tr>`;
+                    $("#total").html(`Total: ${total} Bsf.`);
+                    $("#tingreso").append(fila);
+                    evaluar();
+                    limpiar();
+                    $("#pidfarmaco").focus();
+                }
             }
 
             
         }
 
-
+        //Bootstrap-select
         $('#pidfarmaco').selectpicker({
             style: 'btn-info',
             size: 4

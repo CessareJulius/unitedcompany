@@ -16,4 +16,7 @@ class Inventario extends Model {
         'precio_venta',
         'cantidad'
     ];
+     public function farmaco() {
+       return $this->hasMany('App\Farmacos', 'id','idFarmacos');
+   }
 }

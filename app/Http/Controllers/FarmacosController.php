@@ -17,13 +17,15 @@ class FarmacosController extends Controller
         $this->middleware('auth');
     }
     public function index(Request $request) {
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        
+        if (!Auth::user()->hasRole(['encargado-ingreso','root','gerente'])) {
             return redirect('/');
         }
         if ($request) {
             $query=trim($request->get('buscar'));
             $farmacos=Farmacos::where('nombre','LIKE','%'.$query.'%')
             ->orderBy('nombre','asc')
+            ->where('estado','=','Activo')
             ->paginate(7);
     
             return view('farmacos.index',["farmacos"=>$farmacos,"buscar"=>$query]);
@@ -38,7 +40,7 @@ class FarmacosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        if (!Auth::user()->hasRole(['encargado-ingreso','root','gerente'])) {
             return redirect('/');
         }
         return view('farmacos.create');
@@ -52,7 +54,7 @@ class FarmacosController extends Controller
      */
     public function store(Request $request)
     {
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        if (!Auth::user()->hasRole(['encargado-ingreso','root','gerente'])) {
             return redirect('/');
         }
         $this->validate($request,[
@@ -95,7 +97,7 @@ class FarmacosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        if (!Auth::user()->hasRole(['encargado-ingreso','root','gerente'])) {
             return redirect('/');
         }
         $farmaco=Farmacos::findOrFail($id);
@@ -113,7 +115,7 @@ class FarmacosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        if (!Auth::user()->hasRole(['encargado-ingreso','root','gerente'])) {
             return redirect('/');
         }
         $this->validate($request,[
@@ -128,6 +130,7 @@ class FarmacosController extends Controller
         $farmaco->nombre=$nombre;
         $farmaco->codigo=$codigo;
         $farmaco->presentacion=$presentacion;
+        $farmaco->estado = 'Activo';
         $farmaco->update();
 
 
@@ -142,11 +145,15 @@ class FarmacosController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        if (!Auth::user()->hasRole(['encargado-ingreso','root','gerente'])) {
             return redirect('/');
         }
         $farmacos=Farmacos::findOrFail($id);
-        $farmacos->delete();
+        $farmacos->estado = 'Inactivo';
+        $farmacos->update();
+        
+
+
         return redirect('farmacos');
     }
 }

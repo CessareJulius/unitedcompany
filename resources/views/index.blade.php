@@ -11,39 +11,51 @@
 
                 <div class="panel-heading"><h3>Menú de opciones</h3></div>           
                 <div class="panel-body">
-                    <div class="col-sm-2 col-xs-12">
-                        <div class="menu-item">
-                            <div class="menu-item-content">
-                                <a href="{{route('venta.index')}}">
-                                    <span class="menu-item-icon"><span class="fa fa-shopping-cart"></span></span>
-                                    <h5>Ventas</h5>
-                                </a> 
+                        <div class="text-center">
+                        <div class="col-sm-2 col-xs-12">
+                            <div class="menu-item">
+                                <div class="menu-item-content">
+                                    <a href="{{route('venta.index')}}">
+                                        <span class="menu-item-icon"><span class="fa fa-shopping-cart"></span></span>
+                                        <h5>Ventas</h5>
+                                    </a> 
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div class="col-sm-2">
-                        <div class="menu-item">
-                            <div class="menu-item-content">
-                                <a href="{{route('ingreso.index')}}">
-                                    <span class="menu-item-icon"><span class="fa fa-th"></span></span>
-                                    <h5>Ingresos</h5>
-                                </a> 
+                        <div class="col-sm-2">
+                            <div class="menu-item">
+                                <div class="menu-item-content">
+                                    <a href="{{route('ingreso.index')}}">
+                                        <span class="menu-item-icon"><span class="fa fa-th"></span></span>
+                                        <h5>Ingresos</h5>
+                                    </a> 
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    
-                    <div class="col-sm-2">
-                        <div class="menu-item">
-                            <div class="menu-item-content">
-                                <a href="{{route('venta.index')}}">
-                                    <span class="menu-item-icon"><span class="fa fa-th"></span></span>
-                                    <h5>Inventario</h5>
-                                </a> 
+                        
+                        <div class="col-sm-2">
+                            <div class="menu-item">
+                                <div class="menu-item-content">
+                                    <a href="{{route('inventario.index')}}">
+                                        <span class="menu-item-icon"><span class="fa fa-sign-in"></span></span>
+                                        <h5>Inventario</h5>
+                                    </a> 
+                                </div>
                             </div>
                         </div>
-                    </div>
 
+                        <div class="col-sm-2">
+                            <div class="menu-item">
+                                <div class="menu-item-content">
+                                    <a href="{{route('users.index')}}">
+                                        <span class="menu-item-icon"><span class="fa fa-user"></span></span>
+                                        <h5>Usuarios</h5>
+                                    </a> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div> 
             </div>
         </div>

@@ -27,7 +27,7 @@
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="index2.html" class="logo">
+        <a href="{{route('index')}}" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
           <span class="logo-mini"><b>P</b>F</span>
           <!-- logo for regular state and mobile devices -->
@@ -96,8 +96,8 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="inventario"><i class="fa fa-circle-o"></i> Inventario</a></li>
-                <li><a href="farmacos"><i class="fa fa-circle-o"></i> Fármacos</a></li>
+                <li><a href="{{route('inventario.index')}}"><i class="fa fa-circle-o"></i> Inventario</a></li>
+                <li><a href="{{route('farmacos.index')}}"><i class="fa fa-circle-o"></i> Fármacos</a></li>
               </ul>
             </li>
             
@@ -108,7 +108,7 @@
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="ingreso"><i class="fa fa-circle-o"></i> Ingresos</a></li>
+                <li><a href="{{route('ingreso.index')}}"><i class="fa fa-circle-o"></i> Ingresos</a></li>
                 
               </ul>
             </li>
@@ -119,7 +119,7 @@
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="venta"><i class="fa fa-circle-o"></i> Ventas</a></li>
+                <li><a href="{{route('venta.index')}}"><i class="fa fa-circle-o"></i> Ventas</a></li>
                 <!--li><a href="ventas/cliente"><i class="fa fa-circle-o"></i> Clientes</a></li-->
               </ul>
             </li>
@@ -130,7 +130,7 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="users"><i class="fa fa-circle-o"></i> Usuarios</a></li>
+                <li><a href="{{route('users.index')}}"><i class="fa fa-circle-o"></i> Usuarios</a></li>
                 
               </ul>
             </li>

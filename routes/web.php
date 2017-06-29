@@ -10,9 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/inventario/pdfInventarioGral','InventarioController@pdfInventarioGral');
+Route::get('/ingreso/pdfDetalleIngreso/{id}','IngresoController@pdfDetalleIngreso');
+Route::get('/ingreso/pdfDetalleVenta/{id}','VentaController@pdfDetalleVenta');
+
 
 
 Route::resource('/farmacos',"FarmacosController");
+
 Route::resource('/inventario',"InventarioController");
 Route::resource('/users',"UsersController");
 Route::resource('/ingreso',"IngresoController");
@@ -23,9 +28,6 @@ Route::get('/', function () {
   
 });
 
-Route::get('/ingreso/pdfDetalleIngreso/{id}','IngresoController@pdfDetalleIngreso');
-Route::get('/ingreso/pdfDetalleVenta/{id}','VentaController@pdfDetalleVenta');
-
 
 
 
@@ -33,7 +35,7 @@ Route::get('/ingreso/pdfDetalleVenta/{id}','VentaController@pdfDetalleVenta');
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::get('/home', 'indexController@index')->name('home');
-Route::get('/', 'indexController@index');
+Route::get('/', 'indexController@index')->name('index');
 
 
 

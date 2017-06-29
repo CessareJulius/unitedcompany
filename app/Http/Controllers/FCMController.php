@@ -9,9 +9,11 @@ use LaravelFCM\Message\PayloadDataBuilder;
 use LaravelFCM\Message\PayloadNotificationBuilder;
 use FCM;
 use LaravelFCM\Message\Topics;
+//Firebase Cloud Messaging
 class FCMController extends Controller
 {
    static function notification($title,$body) {
+       
         $notificationBuilder = new PayloadNotificationBuilder($title);
         $notificationBuilder->setBody($body)
                             ->setSound('default')

@@ -28,7 +28,9 @@ class IngresoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(Request $request) {
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+
+        
+        if (!Auth::user()->hasRole(['encargado-ingreso','root','gerente'])) {
             return redirect('/');
         }
          if ($request) {
@@ -43,6 +45,7 @@ class IngresoController extends Controller
             
             foreach($ingresos as $in) {
                 $can = DB::table('detalle_ingreso')->select('count(id) as cantidad')->where('idingreso','=',$in->id)->count();
+                
                 $cantidad[$in->id] = $can;
             }
         
@@ -58,8 +61,16 @@ class IngresoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
+        $nro=Ingreso::orderBy('nro_factura')->limit(1)->first();
+        if (!$nro) {
+            $nro_factura=10000;
+        }else {
+            $nro_factura=$nro->nro_factura;
+        }
+        
+
         $farmacos = Farmacos::all();
-        return view('ingreso.create',['farmacos'=>$farmacos]);
+        return view('ingreso.create',['farmacos'=>$farmacos,'nro_factura'=>$nro_factura]);
 
 
     }
@@ -71,11 +82,11 @@ class IngresoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        if (!Auth::user()->hasRole(['encargado-ingreso','root','gerente'])) {
             return redirect('/');
         }
         $this->validate($request,[
-            'nro_factura'=>'int|required|min:5',
+            'nro_factura'=>'int|required|min:5|unique:ingreso',
             
         ]);
     
@@ -123,7 +134,7 @@ class IngresoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){ 
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        if (!Auth::user()->hasRole(['encargado-ingreso','root','gerente'])) {
             return redirect('/');
         }
         $ingreso = Ingreso::findOrFail($id);
@@ -141,7 +152,7 @@ class IngresoController extends Controller
         return view('ingreso.show',["ingreso"=>$ingreso,"detalleingreso"=>$detalleingreso,"total"=>$total]);
     }
     public function pdfDetalleIngreso($id) {
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        if (!Auth::user()->hasRole(['encargado-ingreso','root','gerente'])) {
             return redirect('/');
         }
         $ingreso = Ingreso::findOrFail($id);
@@ -165,7 +176,6 @@ class IngresoController extends Controller
         $pdf->setpaper('a4', 'landscape');
         return $pdf->download('Ingreso-'.$id.'pdf');
        
-        
     }
 
    
@@ -199,7 +209,7 @@ class IngresoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        if (!Auth::user()->hasRole(['encargado-ingreso','root','gerente'])) {
             return redirect('/');
         }
         Ingreso::findOrFail($id)->delete();

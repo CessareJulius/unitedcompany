@@ -19,7 +19,7 @@ class UsersController extends Controller
     }
     
     public function index(Request $request) {
-        if (!Auth::user()->hasRole(['root','admin'])) {
+        if (!Auth::user()->hasRole(['root','gerente'])) {
             return redirect('/');
         }
         if ($request) {
@@ -46,10 +46,20 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-         if (!Auth::user()->hasRole(['root','admin'])) {
+         if (!Auth::user()->hasRole(['root','gerente'])) {
             return redirect('/');
         }
-        $roles = Role::all();
+        
+            if (Auth::user()->hasRole(['gerente','root'])) {
+                $roles[3] = Role::find(3);
+                $roles[4] = Role::find(4);
+             }
+
+             if (Auth::user()->hasRole(['root'])) {
+                $roles[3] = Role::find(1);
+                $roles[4] = Role::find(2);
+             }
+            
         return view('users.create',["roles"=>$roles]);
 
     }
@@ -61,7 +71,7 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-         if (!Auth::user()->hasRole(['root','admin'])) {
+         if (!Auth::user()->hasRole(['root','gerente'])) {
             return redirect('/');
         }
         $this->validate($request, [
@@ -100,12 +110,30 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-         if (!Auth::user()->hasRole(['root','admin'])) {
+        
+        if (!Auth::user()->hasRole(['root','gerente'])) {
             return redirect('/');
         }
+        
+        
         $usuario = User::findOrFail($id);
-        $roles = Role::all();
         $rol = User::getRole($id);
+        $idrolactual = User::getRole(Auth::user()->id)->role_id;
+
+        if ($idrolactual>=$rol->role_id) {
+               return redirect('users');
+        }
+        $roles = [];
+        if (Auth::user()->hasRole(['gerente','root'])) {
+            $roles[3] = Role::find(3);
+            $roles[4] = Role::find(4);
+            }
+
+            if (Auth::user()->hasRole(['root'])) {
+            $roles[3] = Role::find(1);
+            $roles[4] = Role::find(2);
+            }
+        
         if (!$rol) {
             $rol->display_name = 'Sin Rol';
         }
@@ -122,7 +150,7 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-         if (!Auth::user()->hasRole(['root','admin'])) {
+         if (!Auth::user()->hasRole(['root','gerente'])) {
             return redirect('/');
         }
          $this->validate($request, [
@@ -156,7 +184,7 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-         if (!Auth::user()->hasRole(['root','admin'])) {
+         if (!Auth::user()->hasRole(['root','gerente'])) {
             return redirect('/');
         }
         $user = User::findOrFail($id);

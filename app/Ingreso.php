@@ -12,6 +12,9 @@ class Ingreso extends Model
 
     public $timestamps=false;
 
+   public function detalle() {
+       return $this->hasMany('App\DetalleIngreso', 'idingreso', 'id');
+   }
 
     protected $fillable = [
       "nro_factura",

@@ -23,7 +23,7 @@ class VentaController extends Controller
         $this->middleware('auth');
     }
     public function index(Request $request) {
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        if (!Auth::user()->hasRole(['vendedor','root','gerente'])) {
             return redirect('/');
         }
         if ($request) {
@@ -53,7 +53,7 @@ class VentaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        if (!Auth::user()->hasRole(['vendedor','root','gerente'])) {
             return redirect('/');
         }
         $farmacos = DB::table('inventario')->join('farmacos','inventario.idFarmacos','=','farmacos.id')->get();
@@ -69,11 +69,11 @@ class VentaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request){
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        if (!Auth::user()->hasRole(['vendedor','root','gerente'])) {
             return redirect('/');
         }
         $this->validate($request,[
-            'nro_factura'=>'int|required|min:5',
+            'nro_factura'=>'int|required|min:5|unique:venta',
             
             
         ]);
@@ -121,7 +121,7 @@ class VentaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){ 
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        if (!Auth::user()->hasRole(['vendedor','root','gerente'])) {
             return redirect('/');
         }
         $venta = Venta::findOrFail($id);
@@ -139,7 +139,7 @@ class VentaController extends Controller
         return view('venta.show',["venta"=>$venta,"detalleventa"=>$detalleventa,"total"=>$total]);
     }
     public function pdfDetalleVenta($id) {
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        if (!Auth::user()->hasRole(['vendedor','root','gerente'])) {
             return redirect('/');
         }
     
@@ -198,7 +198,7 @@ class VentaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        if (!Auth::user()->hasRole(['vendedor','root','gerente'])) {
             return redirect('/');
         }
         Ingreso::findOrFail($id)->delete();

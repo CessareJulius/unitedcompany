@@ -7,6 +7,7 @@ use DB;
 use App\Inventario;
 use App\Farmacos;
 use Auth;
+use PDF;
 class InventarioController extends Controller
 {
     /**
@@ -23,19 +24,19 @@ class InventarioController extends Controller
     public function index(Request $request) {
         
     
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        if (!Auth::user()->hasRole(['encargado-ingreso','root','gerente'])) {
             return redirect('/');
         }
 
             if ($request) {
                 $query=trim($request->get('buscar'));
                 $inventario = DB::table('inventario as i')
-                ->join('farmacos as f','i.id','=','f.id')
-                ->select('f.nombre','f.presentacion','f.codigo','i.cantidad','i.precio_venta','i.precio_compra','i.id')
+                ->join('farmacos as f','f.id','=','i.idFarmacos')
+                ->select('i.idFarmacos','f.nombre','f.presentacion','f.codigo','i.cantidad','i.precio_venta','i.precio_compra','i.id')
                 ->where('f.nombre','LIKE','%'.$query.'%')
                 ->orderBy('f.id','asc')
                 ->paginate(7);
-            
+                
                 return view('inventario.index',["inventario"=>$inventario,"buscar"=>$query]);
             }
    
@@ -47,7 +48,7 @@ class InventarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        if (!Auth::user()->hasRole(['encargado-ingreso','root','gerente'])) {
             return redirect('/');
         }
         $farmacos = Farmacos::orderBy('nombre')->get();
@@ -61,7 +62,7 @@ class InventarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        if (!Auth::user()->hasRole(['encargado-ingreso','root','gerente'])) {
             return redirect('/');
         }
         $this->validate($request,[
@@ -114,7 +115,7 @@ class InventarioController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id) {
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        if (!Auth::user()->hasRole(['encargado-ingreso','root','gerente'])) {
             return redirect('/');
         }
 
@@ -138,7 +139,7 @@ class InventarioController extends Controller
      */
     public function update(Request $request, $id){
 
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        if (!Auth::user()->hasRole(['encargado-ingreso','root','gerente'])) {
             return redirect('/');
         }        
         $this->validate($request,[
@@ -167,11 +168,35 @@ class InventarioController extends Controller
     public function destroy($id)
     {
 
-        if (!Auth::user()->hasRole(['empleado','root','admin'])) {
+        if (!Auth::user()->hasRole(['empleado','root','gerente'])) {
             return redirect('/');
         }
         $inventario = Inventario::findOrFail($id);
         $inventario->delete();
         return redirect('inventario');
+    }
+
+    
+    public function pdfInventarioGral() {
+        
+         if (!Auth::user()->hasRole(['encargado-ingreso','root','gerente'])) {
+            return redirect('/');
+         }
+             $inventario = DB::table('inventario as i')
+                ->join('farmacos as f','f.id','=','i.idFarmacos')
+                ->select('i.idFarmacos','f.nombre','f.presentacion','f.codigo','i.cantidad','i.precio_venta','i.precio_compra','i.id')
+                ->orderBy('i.id','desc')
+                ->paginate(7);
+                    
+            
+            
+            $view = \View::make('inventario.pdfinventariogral', compact('inventario'))->render();
+        
+            $pdf = \App::make('dompdf.wrapper');
+            $pdf->loadHTML($view);
+            $pdf->setpaper('a4', 'landscape');
+            return $pdf->download('InventarioGeneral.pdf');
+        
+        
     }
 }

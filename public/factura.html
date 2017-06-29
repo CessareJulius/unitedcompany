@@ -1,0 +1,211 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>A simple, clean, and responsive HTML invoice template</title>
+    
+    <style>
+        body {
+            max-width:800px;
+        }
+    .invoice-box{
+        
+        margin:auto;
+        padding:30px;
+        border:1px solid #eee;
+        
+        font-size:16px;
+        line-height:24px;
+        font-family:'Helvetica Neue', 'Helvetica', Helvetica, Arial, sans-serif;
+        color:#555;
+    }
+    
+    .invoice-box table{
+        width:100%;
+        line-height:inherit;
+        text-align:left;
+    }
+    
+    .invoice-box table td{
+        padding:5px;
+        vertical-align:top;
+        
+    }
+    
+    .invoice-box table tr td:nth-child(2){
+        
+        text-align: center;
+    }
+    
+    .invoice-box table tr.top table td{
+        padding-bottom:20px;
+    }
+    
+    .invoice-box table tr.top table td.title{
+        font-size:45px;
+        line-height:45px;
+        color:#333;
+    }
+    
+    .invoice-box table tr.information table td{
+        padding-bottom:20px;
+    }
+    
+    .invoice-box table tr.heading td{
+        background:#eee;
+        border-bottom:1px solid #ddd;
+        font-weight:bold;
+    }
+    
+    .invoice-box table tr.details td{
+        padding-bottom:20px;
+    }
+    
+    .invoice-box table tr.item td{
+        border-bottom:1px solid #eee;
+    }
+    
+    .invoice-box table tr.item.last td{
+        border-bottom:none;
+    }
+    
+    
+    
+    @media only screen and (max-width: 600px) {
+        .invoice-box table tr.top table td{
+            width:100%;
+            display:block;
+            text-align:center;
+        }
+        
+        .invoice-box table tr.information table td{
+            width:100%;
+            display:block;
+            text-align:center;
+        }
+    }
+    </style>
+</head>
+
+<body>
+    <div class="invoice-box">
+        <table cellpadding="0" cellspacing="0">
+            <tr class="top">
+                <td colspan="4">
+                    <table>
+                        <tr>
+                            <td class="title">
+                                <img src="img/logo.png" width="100px; height: 100px" alt="">
+                            </td>
+                            
+                            <td style="text-align: right">
+                                Centro Comercial Los Aviadores<br>
+                                Palo Negro, Edo. Aragua<br>
+                                Rif: J-12938192
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            
+            <tr class="information ">
+                <td colspan="4">
+                    <table>
+                        <tr>
+                            <td>
+                                <b>Factura N°:</b> 12312553
+                                <span style="float: right"><b>Fecha: </b> 20/06/2017</span>
+
+                                
+                                
+                                
+                            </td>
+                        </tr>
+                        <tr class="factura-cliente">
+                             
+                            <td>
+                                <b>Nombre y Apellido: </b> <span style="float: right;">Esteban de Jesús</span><br>
+                                <b>Cédula: <span style="float: right;">1892813</span></b>
+                                
+                            </td>
+                            
+                            
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+          
+          
+            
+            <tr class="heading">
+                <td>
+                    Cantidad
+                </td>
+                
+                <td>
+                    Descripción
+                </td>
+                
+                 <td>
+                    Precio
+                </td>
+                
+                <td>
+                    TOTAL
+                </td>
+                
+            </tr>
+            
+           
+            
+            
+            <tr class="item last">
+                <td>
+                    10
+                </td>
+                <td>
+                    Benzetazil 200mg
+                </td>
+                
+                <td>
+                    250Bsf.
+                </td>
+                 <td>
+                     2500Bsf.
+                 </td>
+            </tr>
+            
+                 
+            <tr class="total" >
+                <td></td>
+                <td></td>
+                <td><b>Sub-Total:</b></td>
+                
+                <td>
+                    <span style="float: right;">2500Bsf.</span>
+                </td>
+            </tr>
+                 
+            <tr class="total" >
+                <td></td>
+                <td></td>
+                <td><b>IVA 12%:</b> </td>
+                
+                <td>
+                     <span style="float: right;">300Bsf.</span>
+                </td>
+            </tr>
+            <tr class="total" >
+                <td></td>
+                <td></td>
+                <td><b>TOTAL:</b> </td>
+                
+                <td>
+                   <span style="float: right;">2800Bsf.</span>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+</body>
+</html>

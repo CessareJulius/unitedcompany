@@ -12,7 +12,9 @@ class DetalleIngreso extends Model
 
     public $timestamps=false;
 
-
+    function ingreso() {
+        return $this->belongsTo('App\Ingreso', 'id', 'idingreso');
+    }
     protected $fillable = [
 
         "codigo",
