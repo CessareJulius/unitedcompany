@@ -142,9 +142,7 @@
             precio_venta=$("#pidprecio_venta").val();
 
             if(idfarmaco!="" && cantidad!="" && cantidad >0 && precio_compra!="" && precio_venta!="") {
-                if (precio_compra<precio_venta) {
-                    alert('El precio de compra no puede ser menor al precio de venta');
-                }else {
+              
 
 
                     
@@ -180,7 +178,7 @@
                     evaluar();
                     limpiar();
                     $("#pidfarmaco").focus();
-                }
+                
             }
 
             

@@ -62,7 +62,8 @@ class IngresoController extends Controller
      */
     public function create() {
         $nro=Ingreso::orderBy('nro_factura')->limit(1)->first();
-        if (!$nro) {
+        
+        if (!$nro->nro_factura) {
             $nro_factura=10000;
         }else {
             $nro_factura=$nro->nro_factura;
@@ -85,13 +86,16 @@ class IngresoController extends Controller
         if (!Auth::user()->hasRole(['encargado-ingreso','root','gerente'])) {
             return redirect('/');
         }
-        $this->validate($request,[
-            'nro_factura'=>'int|required|min:5|unique:ingreso',
-            
-        ]);
-    
+        
+        $nro=Ingreso::orderBy('nro_factura')->limit(1)->first();
+        
+         if (!$nro->nro_factura) {
+            $nro_factura=10000;
+        }else {
+            $nro_factura=$nro->nro_factura;
+        }
         $ingreso = new Ingreso();
-        $ingreso->nro_factura = $request->get('nro_factura');
+        $ingreso->nro_factura = $nro_factura+1;
         $ingreso->fecha_hora = Carbon::now();
         $ingreso->save();
         $total = 0;
@@ -151,7 +155,7 @@ class IngresoController extends Controller
 
         return view('ingreso.show',["ingreso"=>$ingreso,"detalleingreso"=>$detalleingreso,"total"=>$total]);
     }
-    public function pdfDetalleIngreso($id) {
+    public function pdfDetalleIngreso($id,$download = null) {
         if (!Auth::user()->hasRole(['encargado-ingreso','root','gerente'])) {
             return redirect('/');
         }
@@ -174,7 +178,11 @@ class IngresoController extends Controller
         $pdf = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view);
         $pdf->setpaper('a4', 'landscape');
-        return $pdf->download('Ingreso-'.$id.'pdf');
+        if (!$download) { 
+            return $pdf->stream('Ingreso-'.$id.'pdf');
+        }else {
+            return $pdf->download('Ingreso-'.$id.'pdf');
+        }
        
     }
 

@@ -49,11 +49,30 @@
                     </tbody>
 
                     <tfoot>
-                        <th></th>
-                        <th></th>
-                        <th></th>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th style="text-align: right">SUBTOTAL: </th>
                     
-                        <th id="total">{{$total}} Bsf.</th>
+                            <th id="total">{{ number_format($total, 2, '.', '')}} Bsf.</th>
+                        </tr>
+
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th style="text-align: right">IVA 12%:</th>
+                    
+                            <th id="total">{{ number_format($total*0.12, 2, '.', '')}} Bsf.</th>
+                        </tr>
+
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th style="text-align: right">TOTAL</th>
+                    
+                            <th id="total">{{ number_format($total*0.12+$total, 2, '.', '')}} Bsf.</th>
+                        </tr>
+                        
                         
 
                     </tfoot>
