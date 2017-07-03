@@ -26,6 +26,7 @@ class VentaController extends Controller
         if (!Auth::user()->hasRole(['vendedor','root','gerente'])) {
             return redirect('/');
         }
+
         if ($request) {
             $query=trim($request->get('buscar'));
             $ventas = DB::table('venta')
@@ -53,11 +54,19 @@ class VentaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
+          
+        $nro=Venta::orderBy('nro_factura')->limit(1)->first();
+        
+        if (!isset($nro)) {
+            $nro_factura=10000;
+        }else {
+            $nro_factura=$nro->nro_factura;
+        }
         if (!Auth::user()->hasRole(['vendedor','root','gerente'])) {
             return redirect('/');
         }
         $farmacos = DB::table('inventario')->join('farmacos','inventario.idFarmacos','=','farmacos.id')->get();
-        return view('venta.create',['farmacos'=>$farmacos]);
+        return view('venta.create',['farmacos'=>$farmacos,"nro_factura"=>$nro_factura+1]);
 
 
     }
@@ -72,14 +81,22 @@ class VentaController extends Controller
         if (!Auth::user()->hasRole(['vendedor','root','gerente'])) {
             return redirect('/');
         }
+       
         $this->validate($request,[
-            'nro_factura'=>'int|required|min:5|unique:venta',
-            
-            
+            'cedulacliente'=>'int|min:1|max:99999999|required',
+            'nombrecliente'=>'required'
         ]);
+
+        $nro=Venta::orderBy('nro_factura')->limit(1)->first();
+                
         
+        if (!isset($nro)) {
+            $nro_factura=10000;
+        }else {
+            $nro_factura=$nro->nro_factura;
+        }
         $venta = new Venta();
-        $venta->nro_factura = $request->get('nro_factura');
+        $venta->nro_factura = $nro_factura+1;
         $venta->fecha_hora = Carbon::now();
         $venta->nombrecliente = $request->get('nombrecliente');
         $venta->cedulacliente = $request->get('cedulacliente');

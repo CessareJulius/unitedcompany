@@ -70,7 +70,9 @@
     }
     
     
-
+    .factura-cliente {
+        border: 1px solid black;
+    }
     </style>
 </head>
 
@@ -157,25 +159,8 @@
                                 <td>{{$de->precio_venta*$de->cantidad}}</td>
                             </tr>
                         @endforeach
-            <tr class="item last">
-                <td>
-                
-                </td>
-                <td>
-                
-                </td>
-                
-                <td>
-                    
-                
-                </td>
-                 <td>
-                     
-                     
-                 </td>
-            </tr>
+  
             
-                 
             <tr class="total" >
                 <td></td>
                 <td></td>

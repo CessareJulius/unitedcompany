@@ -11,7 +11,7 @@
             <label for="fecha">Fecha de ingreso: <b>{{$ingreso->fecha_hora}}</b> </label>
                 <div class="pull-right">
                     <div class="form-group">
-                        <a href="{{action('IngresoController@pdfDetalleIngreso',['id'=>$ingreso->id] )}}" class="btn btn-primary"><span class="fa fa-list"></span> Generar PDF</a>
+                        <a target="_blank" href="{{action('IngresoController@pdfDetalleIngreso',['id'=>$ingreso->id] )}}" class="btn btn-primary"><span class="fa fa-list"></span> Ver Reporte PDF</a>
                     </div>
                 </div>
                 <table class="table table-bordered table-condensed table-striped" id="tingreso">   

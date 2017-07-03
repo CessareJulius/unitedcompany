@@ -63,7 +63,7 @@ class IngresoController extends Controller
     public function create() {
         $nro=Ingreso::orderBy('nro_factura')->limit(1)->first();
         
-        if (!$nro->nro_factura) {
+        if (!isset($nro)) {
             $nro_factura=10000;
         }else {
             $nro_factura=$nro->nro_factura;
@@ -71,7 +71,7 @@ class IngresoController extends Controller
         
 
         $farmacos = Farmacos::all();
-        return view('ingreso.create',['farmacos'=>$farmacos,'nro_factura'=>$nro_factura]);
+        return view('ingreso.create',['farmacos'=>$farmacos,'nro_factura'=>$nro_factura+1]);
 
 
     }
@@ -89,7 +89,7 @@ class IngresoController extends Controller
         
         $nro=Ingreso::orderBy('nro_factura')->limit(1)->first();
         
-         if (!$nro->nro_factura) {
+        if (!isset($nro)) {
             $nro_factura=10000;
         }else {
             $nro_factura=$nro->nro_factura;

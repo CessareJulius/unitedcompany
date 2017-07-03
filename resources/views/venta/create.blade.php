@@ -22,7 +22,7 @@
                     <div class="col-sm-12">
                         <div class="form-group">
                             <label for="Número de factura">
-                                Nro de Factura: <input type="number" class="form-control" placeholder="Ej: 347232" name="nro_factura" value="{{old('nro_factura')}}" required>
+                                Nro de Factura: <input type="number" class="form-control" placeholder="Ej: 347232" name="nro_factura" value="{{$nro_factura}}" disabled>
                             </label>
                             
                         </div>
