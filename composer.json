@@ -7,6 +7,7 @@
     "require": {
         "php": ">=5.6.4",
         "barryvdh/laravel-dompdf": "^0.8.0",
+        "barryvdh/laravel-ide-helper": "v2.4.0",
         "barryvdh/laravel-snappy": "^0.3.3",
         "brozot/laravel-fcm": "^1.2",
         "h4cc/wkhtmltopdf-i386": "0.12.x",
@@ -47,6 +48,9 @@
         ],
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
+            "php artisan optimize",
+            "php artisan clear-compiled",
+            "php artisan ide-helper:generate",
             "php artisan optimize"
         ]
     },

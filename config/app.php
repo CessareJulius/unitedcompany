@@ -142,6 +142,7 @@ return [
         Zizaco\Entrust\EntrustServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
         Barryvdh\Snappy\ServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
         /*
          * Laravel Framework Service Providers...
          */

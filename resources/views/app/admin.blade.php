@@ -27,11 +27,11 @@
       <header class="main-header">
 
         <!-- Logo -->
-        <a href="{{route('index')}}" class="logo">
+        <a href="{{route('admin.index')}}" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>P</b>F</span>
+          <span class="logo-mini"><b>O</b>V</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>Prov-Farm</b></span>
+          <span class="logo-lg"><b>OfVir</b></span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -92,41 +92,43 @@
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-laptop"></i>
-                <span>Almacén</span>
+                <span>Clientes</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{route('inventario.index')}}"><i class="fa fa-circle-o"></i> Inventario</a></li>
-                <li><a href="{{route('farmacos.index')}}"><i class="fa fa-circle-o"></i> Fármacos</a></li>
+                <li><a href="{{route('clientes.index')}}"><i class="fa fa-circle-o"></i> Lista</a></li>
+                
               </ul>
             </li>
             
             <li class="treeview">
               <a href="#">
                 <i class="fa fa-th"></i>
-                <span>Ingresos</span>
+                <span>Contratos</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{route('ingreso.index')}}"><i class="fa fa-circle-o"></i> Ingresos</a></li>
+                <li><a href=""><i class="fa fa-circle-o"></i> Lista</a></li>
+                <li><a href=""><i class="fa fa-circle-o"></i> Reservas</a></li>
+                
                 
               </ul>
             </li>
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-shopping-cart"></i>
-                <span>Ventas</span>
+                <i class="fa fa-building-o"></i>
+                <span>Espacios</span>
                  <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{route('venta.index')}}"><i class="fa fa-circle-o"></i> Ventas</a></li>
+                <li><a href="{{route('espacios.index')}}"><i class="fa fa-circle-o"></i> Lista</a></li>
                 <!--li><a href="ventas/cliente"><i class="fa fa-circle-o"></i> Clientes</a></li-->
               </ul>
             </li>
                        
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-folder"></i> <span>Acceso</span>
+                <i class="fa fa-folder"></i> <span>Usuarios</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -167,7 +169,7 @@
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Sistema de Farmacia</h3>
+                  <h3 class="box-title">Oficina Virtual</h3>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     

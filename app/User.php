@@ -42,6 +42,7 @@ class User extends Authenticatable
     static public function getRole($id) {
         $roles = DB::table('role_user as r')->join('roles as ro','ro.id','=','r.role_id')
         ->where('user_id','=',$id)->first();
+        
         return $roles;
     }
     static public function access($roles) {

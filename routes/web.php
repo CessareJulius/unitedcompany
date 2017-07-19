@@ -10,19 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/inventario/pdfInventarioGral','InventarioController@pdfInventarioGral');
-Route::get('/ingreso/pdfDetalleIngreso/{id}','IngresoController@pdfDetalleIngreso');
-Route::get('/ingreso/pdfDetalleVenta/{id}','VentaController@pdfDetalleVenta');
 
 
 
-Route::resource('/farmacos',"FarmacosController");
+Route::resource('/admin/users',"UsersController");
+Route::resource('/admin/espacios',"espacioController");
+Route::resource('/admin/clientes',"clienteController");
+Route::post('/contrato','indexController@contrato');
 
-Route::resource('/inventario',"InventarioController");
-Route::resource('/users',"UsersController");
-Route::resource('/ingreso',"IngresoController");
-Route::resource('/venta',"VentaController");
-Route::get('/notification',"FCMController@notification");
+Route::resource('/admin',"adminController");
+
+
 Route::get('/', function () {
     return view('welcome');
   
