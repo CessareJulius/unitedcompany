@@ -25,6 +25,8 @@
 
     <table class="table table-bordered table-condensed table-striped table-hover">
         <thead>
+            <th>ID</th>
+            <th>Usuario</th>
             <th>Nombres</th>
             <th>Apellidos</th>
             <th>Documento</th>
@@ -37,14 +39,16 @@
         <tbody>
             @foreach($clientes as $fila) 
 
-                <tr>
-                    <td>{{$fila->nombres}}</td>
-                    <td>{{$fila->apellidos}}</td>
-                    <td>{{$fila->doc.' '.$fila->num_doc}}</td>
-                    <td>{{$fila->direccion}}</td>    
-                    <td>{{$fila->user->email}}</td>    
+                    <tr>
+                    <td>{{$fila->id}}</td>
+                    <td>{{$fila->user}}</td>
+                    <td>{{$fila->name}}</td>
+                    <td>{{$fila->lastname}}</td>
+                    <td>{{$fila->dni}}</td>
+                    <td>{{$fila->address}}</td>    
+                    <td>{{$fila->email}}</td>    
 
-                    <td>{{$fila->telefono}}</td>     
+                    <td>{{$fila->phone}}</td>     
                     
                     <td>
                         <a class="btn btn-primary" href="{{action('clienteController@edit',['id'=>$fila->id])}}">Editar</a>

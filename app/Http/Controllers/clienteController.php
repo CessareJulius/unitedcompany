@@ -17,9 +17,16 @@ class clienteController extends Controller
     public function index(Request $request)
     {
       $buscar = $request->get('buscar');
-      $clientes = Cliente::where('nombres','LIKE','%'.$buscar.'%')
-            ->orderBy('nombres','asc')
-            ->paginate(7);
+      //$clientes = Cliente::where('nombres','LIKE','%'.$buscar.'%') ->orderBy('nombres','asc') ->paginate(7);
+      //$clientes =  User::where('');
+    //   $clientes = User::with(['roles' => function($query) {
+    //        $query->where('id', 3);
+    //      }])->paginate(7);
+    //    $clientes = User::with('roles')->get();
+    //    dd($clientes);
+    
+     $clientes = Role::where('name','cliente')->first()->users()->paginate(7);
+    //$clientes = Role::with('users')->where('name', 'cliente')->paginate(7);
       return view('admin.clientes.index',["clientes"=>$clientes,"buscar"=>$buscar]);
     }
 
@@ -152,10 +159,10 @@ class clienteController extends Controller
      */
     public function destroy($id)
     {
-        $cliente = Cliente::findOrFail($id);
-        $user = User::findOrFail($cliente->id_user);
+        
+        $user = User::findOrFail($id);
         $user->delete();
-        $cliente->delete();
+        
         return redirect('admin/clientes'); 
      }
 }

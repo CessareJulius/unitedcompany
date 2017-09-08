@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>OfVir - Oficina Virtual - Administración</title>
+    <title>UnitedCompany - Administración</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -29,9 +29,9 @@
         <!-- Logo -->
         <a href="{{route('admin.index')}}" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>O</b>V</span>
+          <span class="logo-mini"><b>U</b>C</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>OfVir</b></span>
+          <span class="logo-lg"><b>UnitedCompany</b></span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -101,7 +101,7 @@
               </ul>
             </li>
             
-            <li class="treeview">
+            <!--li class="treeview">
               <a href="#">
                 <i class="fa fa-th"></i>
                 <span>Contratos</span>
@@ -122,7 +122,7 @@
               </a>
               <ul class="treeview-menu">
                 <li><a href="{{route('espacios.index')}}"><i class="fa fa-circle-o"></i> Lista</a></li>
-                <!--li><a href="ventas/cliente"><i class="fa fa-circle-o"></i> Clientes</a></li-->
+                <li><a href="ventas/cliente"><i class="fa fa-circle-o"></i> Clientes</a></li>
               </ul>
             </li>
                        
@@ -147,7 +147,7 @@
                 <i class="fa fa-info-circle"></i> <span>Acerca De...</span>
                 <small class="label pull-right bg-yellow">IT</small>
               </a>
-            </li>
+            </li-->
                         
           </ul>
         </section>

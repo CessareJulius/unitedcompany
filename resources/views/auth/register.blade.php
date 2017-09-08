@@ -110,7 +110,7 @@
                             <label for="address" class="col-md-4 control-label">Dirección</label>
 
                             <div class="col-md-6">
-                                <textarea class="form-control" name="address" id="address" cols="30" rows="5"></textarea> 
+                                <textarea class="form-control" name="address" id="address" cols="30" rows="5">{{old('address')}}</textarea> 
                                 @if ($errors->has('address'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('address') }}</strong>
@@ -125,7 +125,7 @@
 
 
                             <div class="col-md-2">
-                                <input id="phone_code" type="number" class="form-control" name="phone_code" placeholder="EJ. 0414" required>
+                                <input id="phone_code" type="number" class="form-control" name="phone_code" placeholder="EJ. 0414" value="{{old('phone_code')}}" required>
 
                                 @if ($errors->has('phone_code'))
                                     <span class="help-block">
@@ -135,7 +135,7 @@
                             </div>
 
                             <div class="col-md-4">
-                                 <input id="phone" type="number" class="form-control" name="phone" required>
+                                 <input id="phone" type="number" class="form-control" name="phone" value="{{old('phone')}}" required>
                             
                                 @if ($errors->has('phone'))
                                     <span class="help-block">
