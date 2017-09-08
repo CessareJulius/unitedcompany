@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>UnitedCompany | Login</title>
+    <title>UnitedCompany | Registro</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.5 -->
@@ -29,10 +29,11 @@
         <a href=""><b>UnitedCompany</b></a>
       </div><!-- /.login-logo -->
       <div class="login-box-body">
-        <p class="login-box-msg">Ingrese sus datos de Acceso</p>
+        <p class="login-box-msg">Ingrese sus datos para el registro</p>
         <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
+                        
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
                             <label for="name" class="col-md-4 control-label">Nombre</label>
 
@@ -89,22 +90,51 @@
                             </div>
                         </div>
 
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Contraseña</label>
+                       
+
+
+                        <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }}">
+                            <label for="address" class="col-md-4 control-label">Dirección</label>
 
                             <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
+                                <textarea class="form-control" name="address" id="address" cols="30" rows="5"></textarea> 
+                                @if ($errors->has('address'))
                                     <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong>{{ $errors->first('address') }}</strong>
                                     </span>
                                 @endif
                             </div>
                         </div>
 
+
+                        <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }}">
+                            <label for="phone" class="col-md-4 control-label">Teléfono</label>
+
+
+                            <div class="col-md-2">
+                                <input id="phone_code" type="number" class="form-control" name="phone_code" placeholder="EJ. 0414" required>
+
+                                @if ($errors->has('phone_code'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('phone_code') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+
+                            <div class="col-md-4">
+                                 <input id="phone" type="number" class="form-control" name="phone" required>
+                            
+                                @if ($errors->has('phone'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('phone') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
                         <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Teléfono</label>
+                            <label for="password" class="col-md-4 control-label">Contraseña</label>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control" name="password" required>
@@ -122,21 +152,21 @@
 
                             <div class="col-md-6">
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                
                             </div>
+                            
                         </div>
-
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    Register
+                                    Registrar
                                 </button>
                             </div>
                         </div>
                     </form>
 
         
-        <a href="#">Olvidé mi password</a><br>
-        
+      
 
       </div><!-- /.login-box-body -->
     </div><!-- /.login-box -->
