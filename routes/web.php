@@ -15,7 +15,11 @@
 
 Route::resource('/admin/users',"UsersController");
 Route::resource('/admin/espacios',"espacioController");
+Route::resource('/admin/reservas',"reservaController");
+
+
 Route::resource('/admin/clientes',"clienteController");
+Route::resource('/clientarea',"clientareaController");
 Route::post('/contrato','indexController@contrato');
 
 Route::resource('/admin',"adminController");

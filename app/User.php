@@ -9,6 +9,7 @@ use CanResetPassword;
 use DB;
 use Auth;
 use Redirect;
+use App\Role;
 class User extends Authenticatable
 {
     use Notifiable;
@@ -21,9 +22,9 @@ class User extends Authenticatable
      */
     public $timestamps = false;
     protected $fillable = [
-        'name','user','email', 'password',
+        'name','lastname','user','email', 'password','address','phone'
     ];
-
+    
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -32,6 +33,11 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function rol()
+    {
+        return $this->hasMany('Role')->first();
+    }
 
     /**
      * Función que permite mostrar el rol del usuario
@@ -52,7 +58,6 @@ class User extends Authenticatable
             return true;
         }
         return false;
-        
-
+    
     }
 }

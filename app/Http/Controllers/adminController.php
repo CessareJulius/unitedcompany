@@ -22,9 +22,14 @@ class adminController extends Controller
      */
     public function index()
     {
-        if (!Auth::user()->hasRole(['root','admin'])) {
-            return redirect('/');
-        }
+
+        
+    if (Auth::user()->hasRole(['cliente'])) {
+        return redirect('/clientarea');
+    }
+     if (!Auth::user()->hasRole(['root','admin'])) {
+        return redirect('/');
+     }
 
         return view('admin.index');
 

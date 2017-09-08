@@ -22,8 +22,12 @@ class indexController extends Controller
     {
         
         return view('index');
+        funcion();
     } 
 
+    public function funcion() {
+
+    }
     public function contrato(ContratoFormRequest $request) {
         
          \Mail::send('email.contrato',
