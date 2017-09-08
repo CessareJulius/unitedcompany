@@ -19,6 +19,7 @@ class AlterUsersTable extends Migration
             
             $table->string('phone');
             $table->string('address');
+            $table->string('dni');
         });
     }
 

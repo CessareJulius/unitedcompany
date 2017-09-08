@@ -62,6 +62,19 @@
                             </div>
                         </div>
 
+                        <div class="form-group{{ $errors->has('dni') ? ' has-error' : '' }}">
+                            <label for="dni" class="col-md-4 control-label">DNI</label>
+
+                            <div class="col-md-6">
+                                <input id="dni" type="number" class="form-control" max="99999999" name="dni" value="{{ old('dni') }}" required autofocus>
+
+                                @if ($errors->has('dni'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('dni') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
                         <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
                             <label for="email" class="col-md-4 control-label">E-Mail</label>
 

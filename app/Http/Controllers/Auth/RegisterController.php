@@ -55,6 +55,7 @@ class RegisterController extends Controller
             'user' => 'required|string|max:20|unique:users',
             'phone' => 'required|numeric',
             'phone_code' => 'required|numeric',
+            'dni' => 'required|numeric|max:9',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
@@ -75,6 +76,7 @@ class RegisterController extends Controller
             'phone'=> $data['phone_code'].''.$data['phone'],
             'user' => $data['user'],
             'address' => $data['address'],
+            'dni' => $data['dni'],
             'password' => bcrypt($data['password'])
             
         ]);
