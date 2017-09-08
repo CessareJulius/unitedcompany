@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\User;
 use App\Role;
+use Carbon\Carbon;
 class clienteController extends Controller
 {
     /**
@@ -51,27 +52,35 @@ class clienteController extends Controller
         if (!Auth::user()->hasRole(['root','gerente'])) {
             return redirect('/');
         }
+        
         $this->validate($request, [
             'nombres' => 'required|string|max:255',
             'apellidos' => 'required|string|max:255',
-            'num_doc' => 'required|string|max:30',
-            'doc' =>  'required',
-            'telefono'=>'required',
+            'dni' => 'required|numeric|max:999999999',
+            'birthday'=>'date',
+            'telefono'=>'required|numeric',
             'direccion' =>  'required|string|max:255',
             'user' => 'required|string|max:20|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
            
         ]);
+        
          $user = User::create([
             'name' => $request->get('nombres'),
+            'lastname'=> $request->get('apellidos'),
             'email' =>  $request->get('email'),
             'user' =>  $request->get('user'),
+            'address'=> $request->get('direccion'),
+            'birthday'=> $request->get('birthday'),
+            'phone'=> $request->get('telefono'),
+            'dni'=> $request->get('dni'),
             'password' => bcrypt($request->get('password')) 
         ]);
-        $rol = Role::find(3);
+        $rol = Role::find(1);
         $user->attachRole($rol);
         
+        /*
         $cliente = new Cliente();
         $cliente->nombres = $request->get('nombres');
         $cliente->apellidos = $request->get('apellidos');
@@ -80,7 +89,7 @@ class clienteController extends Controller
         $cliente->direccion = $request->get('direccion');
         $cliente->id_user = $user->id;
         $cliente->save();
-        
+        */
         return redirect('admin/clientes');
     }
 
@@ -103,7 +112,9 @@ class clienteController extends Controller
      */
     public function edit($id)
     {
-        $cliente = Cliente::findOrFail($id);
+        //$cliente = User::findOrFail($id);
+        $cliente = Role::where('name','cliente')->first()->users()->where('id',$id)->first();
+        
         return view('admin.clientes.edit',["cliente"=>$cliente]);
     }
 

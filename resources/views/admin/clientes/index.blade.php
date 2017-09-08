@@ -29,7 +29,9 @@
             <th>Usuario</th>
             <th>Nombres</th>
             <th>Apellidos</th>
+            
             <th>DNI</th>
+            <th>Fecha Nac</th>
             <th>Direccion</th>
             <th>Correo</th>
             <th>Telefono</th>
@@ -45,6 +47,7 @@
                     <td>{{$fila->name}}</td>
                     <td>{{$fila->lastname}}</td>
                     <td>{{$fila->dni}}</td>
+                    <td>{{$fila->birthday}}</td>
                     <td>{{$fila->address}}</td>    
                     <td>{{$fila->email}}</td>    
 

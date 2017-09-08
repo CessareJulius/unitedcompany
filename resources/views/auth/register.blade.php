@@ -208,7 +208,7 @@
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <!-- iCheck -->
     <script src="{{asset('js/icheck.min.js')}}"></script>
-
+    <link rel="stylesheet" href="{{asset('js/bootstrap-datepicker3.min.css')}}">
     <script src="{{asset('front/js/bootstrap-datepicker.js')}}"></script>
     <script>
       $(function () {
