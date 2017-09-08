@@ -54,12 +54,12 @@ class clienteController extends Controller
         }
         
         $this->validate($request, [
-            'nombres' => 'required|string|max:255',
-            'apellidos' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
             'dni' => 'required|numeric|max:999999999',
             'birthday'=>'date',
-            'telefono'=>'required|numeric',
-            'direccion' =>  'required|string|max:255',
+            'phone'=>'required|numeric',
+            'address' =>  'required|string|max:255',
             'user' => 'required|string|max:20|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
@@ -114,7 +114,7 @@ class clienteController extends Controller
     {
         //$cliente = User::findOrFail($id);
         $cliente = Role::where('name','cliente')->first()->users()->where('id',$id)->first();
-        
+   
         return view('admin.clientes.edit',["cliente"=>$cliente]);
     }
 
@@ -130,28 +130,26 @@ class clienteController extends Controller
         if (!Auth::user()->hasRole(['root','admin'])) {
             return redirect('/');
          }
-
+         
 
          $this->validate($request, [
             'name' => 'nullable|string|max:255',
             'password' => 'nullable|string|min:6|confirmed',
+            'lastname' => 'string|max:255',
+            'dni' => 'numeric|max:999999999',
+            'birthday'=>'date',
+            'phone'=>'numeric',
+            'address' =>  'string|max:255',
+            
+            
+            
         ]);
-        $cliente = Cliente::findOrFail($id);
-        $user = User::find($cliente->id_user);
-
-
-        $cliente->nombres = $request->get('nombres');
-        if ( $request->get('email')) {
-            $user->email = $request->get('email');   
-        }    
-        if ( $request->get('password')) {
-            $user->password = $request->get('password');
-        }
-        $user->update();
-
-        $col = ['nombres','apellidos','doc','num_doc','direccion'];
+        $cliente = User::findOrFail($id);
+       
+        $col = ['user','email','password','name','lastname','dni','birthday','phone','address'];       
         foreach($col as $c) {
             if ($request->get($c)) {
+                
                 $cliente->$c = $request->get($c);
             }
         }
