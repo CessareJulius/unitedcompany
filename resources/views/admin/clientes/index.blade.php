@@ -29,7 +29,7 @@
             <th>Usuario</th>
             <th>Nombres</th>
             <th>Apellidos</th>
-            <th>Documento</th>
+            <th>DNI</th>
             <th>Direccion</th>
             <th>Correo</th>
             <th>Telefono</th>

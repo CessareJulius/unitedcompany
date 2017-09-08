@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>OfVir - Oficina Virtual a tu Servicio </title>
+    <title>UnitedCompany </title>
 
     <!-- Bootstrap Core CSS -->
     <link href="{{asset('front/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">

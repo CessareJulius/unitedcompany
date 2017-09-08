@@ -1,0 +1,17 @@
+
+body,.login-page, .register-page { 
+    background-color: black;
+    background-image: url('../img/header-bg.jpg');
+    background-size: cover;
+}
+.login-logo a {
+    color: white;
+}
+.login-box,.login-box-body {
+    opacity: .90;
+    background-color: black;
+    color: white;
+}
+label {
+    color: white;
+}

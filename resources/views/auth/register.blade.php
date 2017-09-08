@@ -13,8 +13,11 @@
    
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('css/AdminLTE.min.css')}}">
+    <link rel="stylesheet" href="{{asset('front/css/blue.css')}}">
+    
     <!-- iCheck -->
-    <link rel="stylesheet" href="{{asset('blue.css')}}">
+    
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -71,6 +74,21 @@
                                 @if ($errors->has('dni'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('dni') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+
+                        <div class="form-group{{ $errors->has('birthday') ? ' has-error' : '' }}">
+                            <label for="birthday" class="col-md-4 control-label">Fecha de Nacimiento</label>
+
+                            <div class="col-md-6">
+                                <input id="birthday" type="date" class="form-control" value="{{ old('birthday') }}" required autofocus>
+
+                                @if ($errors->has('birthday'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('birthday') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -190,6 +208,8 @@
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <!-- iCheck -->
     <script src="{{asset('js/icheck.min.js')}}"></script>
+
+    <script src="{{asset('front/js/bootstrap-datepicker.js')}}"></script>
     <script>
       $(function () {
         $('input').iCheck({
@@ -198,6 +218,10 @@
           increaseArea: '20%' // optional
         });
       });
+
+      if ( $('[type="date"]').prop('type') != 'date' ) {
+            $('[type="date"]').datepicker();
+        }
     </script>
   </body>
 </html>
