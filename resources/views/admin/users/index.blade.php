@@ -5,7 +5,7 @@
 
     <div class="container">
         <div class="row">
-            {!! Form::open(['url'=>'/users','method'=>'GET','autocomplete'=>'off','role'=>'search']); !!}
+            {!! Form::open(['url'=>'/admin/users','method'=>'GET','autocomplete'=>'off','role'=>'search']); !!}
                     <div class="col-sm-11">
                         <div class="form-group">
                             <div class="input-group">
@@ -41,7 +41,7 @@
                     <td>{{$fila->name}}</td>
                     <td>{{$fila->user}}</td>
                     <td>{{$fila->email}}</td>     
-                    <td>@if(isset($roles[$fila->id])) {{$roles[$fila->id]->display_name}} @else Sin Rol @endif</td>               
+                    <td>{{$fila->roles->first()->display_name}}</td>               
                     <td>
                         <a class="btn btn-primary" href="{{action('UsersController@edit',['id'=>$fila->id])}}">Editar</a>
                         <a class="btn btn-danger" onclick="$('#modal-delete-{{$fila->id}}').modal('show')">Eliminar</a>

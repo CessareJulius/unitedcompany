@@ -58,9 +58,9 @@ class RegisterController extends Controller
             'dni' => 'required|numeric|max:99999999',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'birthday'=>'date',
         ]);
-    }
-
+    }  
     /**
      * Create a new user instance after a valid registration.
      *
@@ -76,6 +76,7 @@ class RegisterController extends Controller
             'phone'=> $data['phone_code'].''.$data['phone'],
             'user' => $data['user'],
             'address' => $data['address'],
+            'birthday'=> $data['birthday'],
             'dni' => $data['dni'],
             'password' => bcrypt($data['password'])
             

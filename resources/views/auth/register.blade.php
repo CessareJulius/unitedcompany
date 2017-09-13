@@ -84,7 +84,7 @@
                             <label for="birthday" class="col-md-4 control-label">Fecha de Nacimiento</label>
 
                             <div class="col-md-6">
-                                <input id="birthday" type="date" class="form-control" value="{{ old('birthday') }}" required autofocus>
+                                <input id="birthday" type="date" class="form-control" value="{{ old('birthday') }}" name="birthday" required autofocus>
 
                                 @if ($errors->has('birthday'))
                                     <span class="help-block">

@@ -7,6 +7,7 @@ use App\User;
 use App\Role;
 use DB;
 use Auth;
+
 class UsersController extends Controller
 {
     /**
@@ -26,11 +27,13 @@ class UsersController extends Controller
         }
         if ($request) {
             $query=trim($request->get('buscar'));
-            $users=User::where('user','LIKE','%'.$query.'%')
+            /*$users=User::where('user','LIKE','%'.$query.'%')
             ->orderBy('user','asc')
-            ->paginate(7);
-            
-            $roles = [];
+            ->paginate(7)->with('roles'=>function($req) {
+            });
+            */
+            $users = Role::where('name','!=','cliente')->first()->users()->orderBy('fecha_registro','asc')->paginate(7);
+           /* $roles = [];
             $i = 0;
             foreach($users as $us) {
                 $rol = User::getRole($us->id);
@@ -42,12 +45,13 @@ class UsersController extends Controller
                 }
                 $i++;
 
-            }
+            }*/
+            
             
             
 
 
-            return view('admin.users.index',["users"=>$users,"buscar"=>$query,"roles"=>$roles]);
+            return view('admin.users.index',["users"=>$users,"buscar"=>$query]);
         }
     }
 
@@ -60,15 +64,15 @@ class UsersController extends Controller
          if (!Auth::user()->hasRole(['root','admin'])) {
             return redirect('/');
         }
-        
-            if (Auth::user()->hasRole(['gerente','root'])) {
+            /*if (Auth::user()->hasRole(['root'])) {
                 $roles[3] = Role::find(3);
                 $roles[4] = Role::find(4);
              }
+            */
 
              if (Auth::user()->hasRole(['root'])) {
                 $roles[3] = Role::find(1);
-                $roles[4] = Role::find(2);
+                $roles[4] = Role::find(3);
              }
             
         return view('admin.users.create',["roles"=>$roles]);
@@ -96,7 +100,8 @@ class UsersController extends Controller
             'name' => $request->get('name'),
             'email' =>  $request->get('email'),
             'user' =>  $request->get('user'),
-            'password' => bcrypt($request->get('password')) 
+            'password' => bcrypt($request->get('password')),
+            'fecha_registro'=> DB::raw('CURRENT_TIMESTAMP')
         ]);
         $rol = Role::find($request->get('tipo'));
         $user->attachRole($rol);

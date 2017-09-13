@@ -8,6 +8,7 @@ use Auth;
 use App\User;
 use App\Role;
 use Carbon\Carbon;
+use DB;
 class clienteController extends Controller
 {
     /**
@@ -26,7 +27,7 @@ class clienteController extends Controller
     //    $clientes = User::with('roles')->get();
     //    dd($clientes);
     
-     $clientes = Role::where('name','cliente')->first()->users()->paginate(7);
+     $clientes = Role::where('name','cliente')->first()->users()->orderBy('fecha_registro','asc')->paginate(7);
     //$clientes = Role::with('users')->where('name', 'cliente')->paginate(7);
       return view('admin.clientes.index',["clientes"=>$clientes,"buscar"=>$buscar]);
     }
@@ -54,12 +55,12 @@ class clienteController extends Controller
         }
         
         $this->validate($request, [
-            'name' => 'required|string|max:255',
-            'lastname' => 'required|string|max:255',
+            'nombres' => 'required|string|max:255',
+            'apellidos' => 'required|string|max:255',
             'dni' => 'required|numeric|max:999999999',
             'birthday'=>'date',
-            'phone'=>'required|numeric',
-            'address' =>  'required|string|max:255',
+            'telefono'=>'required|numeric',
+            'direccion' =>  'required|string|max:255',
             'user' => 'required|string|max:20|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
@@ -75,21 +76,13 @@ class clienteController extends Controller
             'birthday'=> $request->get('birthday'),
             'phone'=> $request->get('telefono'),
             'dni'=> $request->get('dni'),
-            'password' => bcrypt($request->get('password')) 
+            'password' => bcrypt($request->get('password')),
+            'fecha_registro'=> DB::raw('CURRENT_TIMESTAMP')
         ]);
         $rol = Role::find(1);
         $user->attachRole($rol);
         
-        /*
-        $cliente = new Cliente();
-        $cliente->nombres = $request->get('nombres');
-        $cliente->apellidos = $request->get('apellidos');
-        $cliente->doc = $request->get('doc');
-        $cliente->num_doc = $request->get('num_doc');
-        $cliente->direccion = $request->get('direccion');
-        $cliente->id_user = $user->id;
-        $cliente->save();
-        */
+        
         return redirect('admin/clientes');
     }
 

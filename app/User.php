@@ -12,6 +12,7 @@ use Redirect;
 use App\Role;
 class User extends Authenticatable
 {
+ 
     use Notifiable;
     use EntrustUserTrait;
 
@@ -22,7 +23,7 @@ class User extends Authenticatable
      */
     public $timestamps = false;
     protected $fillable = [
-        'name','lastname','user','email', 'password','address','phone','dni','birthday'
+        'name','lastname','user','email', 'password','address','phone','dni','birthday','fecha_registro'
     ];
     
     /**
@@ -36,7 +37,10 @@ class User extends Authenticatable
 
     public function rol()
     {
-        return $this->hasMany('Role')->first();
+        //return $this->hasMany('Role')->first()->display_name;
+        
+        return $this->hasMany('Role');
+        
     }
 
     /**
