@@ -1,0 +1,137 @@
+[33mcommit 7d6ec5230194fb27b464a89183c761f312394c7e[m
+Author: Randy Gil <r.gilcamejo@gmail.com>
+Date:   Wed Sep 13 08:21:48 2017 -0400
+
+    Antes de probar braintree
+
+[33mcommit 4187873a421d96f6b2ea47d8f23c95604b5f760f[m
+Author: Luemapo <luemapo@gmail.com>
+Date:   Fri Sep 8 15:28:44 2017 -0400
+
+    fifams
+
+[33mcommit fd8dfc89f93b1649426c6379740ed918c69288c6[m
+Author: Luemapo <luemapo@gmail.com>
+Date:   Fri Sep 8 11:26:45 2017 -0400
+
+    terminado registro de clientes
+
+[33mcommit 20f9e29306a46dfbfcfac2bb9f8b0ead6e4ecbe7[m
+Author: Randy Gil <r.gilcamejo@gmail.com>
+Date:   Fri Sep 8 00:16:54 2017 -0400
+
+    registro y cambios varios
+
+[33mcommit 22d712db016859c7f2d13e4b98756e79d0b674cd[m
+Author: Randy Gil <r.gilcamejo@gmail.com>
+Date:   Thu Sep 7 23:13:08 2017 -0400
+
+    Terminado lista de usuarios
+
+[33mcommit 3302cbcd0ef94c5b293df6b75115dc68d1ce9e7d[m
+Author: Randy Gil <r.gilcamejo@gmail.com>
+Date:   Thu Sep 7 22:31:24 2017 -0400
+
+    formulario de registro - añadir DNI
+
+[33mcommit 370db93967f50869c78fa573bf87a3572652f697[m
+Author: Randy Gil <r.gilcamejo@gmail.com>
+Date:   Thu Sep 7 21:48:46 2017 -0400
+
+    cambios
+
+[33mcommit ccb8f140dee1668a61023be44b2eb0f1088172c8[m
+Author: Randy Gil <r.gilcamejo@gmail.com>
+Date:   Thu Sep 7 20:26:38 2017 -0400
+
+    cambio a unitedcompany
+
+[33mcommit 9f2788632432ce44daf701d1e11347764bd9a706[m
+Author: Randy Gil <r.gilcamejo@gmail.com>
+Date:   Wed Sep 6 22:47:45 2017 -0400
+
+    cambio a unitedcompany
+
+[33mcommit 3760c252dcb741e7c68e282eabf39da0d34246f5[m
+Author: Randy Gil <randygil@webcoding.cl>
+Date:   Tue Jul 18 23:41:21 2017 -0400
+
+    Subiendo a repo
+
+[33mcommit 336aee89eb215b0fd9bc266e8f9b5bfec415c53f[m
+Author: = <=>
+Date:   Mon Jul 3 11:57:13 2017 -0400
+
+    editando pdfdetalleingreso
+
+[33mcommit 325c32cd9f418f204ce319e682ed3e7b1134a552[m
+Author: = <=>
+Date:   Mon Jul 3 11:37:39 2017 -0400
+
+    pdfobject
+
+[33mcommit 456316b2f8b0bd58b7dc46bc09b34dd283b33a94[m
+Author: = <=>
+Date:   Thu Jun 29 18:27:21 2017 -0400
+
+    pdfdetallegingreso
+
+[33mcommit 587ce06a08e561e79cedfca93c172cd703ba9ead[m
+Author: geaClash <geaclash@gmail.com>
+Date:   Sun Jun 18 21:46:39 2017 -0400
+
+    Inicio relaciones laravel
+
+[33mcommit 8f8585c71fd88f1574cd2f7760493976f8074f7b[m
+Author: geaClash <geaclash@gmail.com>
+Date:   Sun Jun 18 16:30:36 2017 -0400
+
+    laravel notification
+
+[33mcommit 0e88a22f77016d890ef76337d7d00c6fdab9cc49[m
+Author: geaClash <geaclash@gmail.com>
+Date:   Fri Jun 2 20:44:02 2017 -0400
+
+    Vista ingreso crear hecha
+
+[33mcommit 191b07be2fe73da982518305d9b048b4c3cb9989[m
+Author: geaClash <geaclash@gmail.com>
+Date:   Sun May 28 14:44:41 2017 -0400
+
+    Cambio de rama
+
+[33mcommit 7e10111993e72affe277ebd46c6588871e55e3c7[m
+Author: geaClash <geaclash@gmail.com>
+Date:   Sun May 28 14:30:00 2017 -0400
+
+    UsersController terminado
+
+[33mcommit 44d258c067d9ac46c40755b984c4fad194ca5dd5[m
+Author: geaClash <geaclash@gmail.com>
+Date:   Sun May 21 12:05:50 2017 -0400
+
+    Terminado fármacos, 3 vistas de users.
+
+[33mcommit a1f4fca7e73adf71fcfb26bda932926593b618bb[m
+Author: geaClash <geaclash@gmail.com>
+Date:   Sun May 14 12:13:16 2017 -0400
+
+    rama alterna
+
+[33mcommit 753e484e0e0a9c0b2ab91989176263a21c3935a5[m
+Author: geaClash <geaclash@gmail.com>
+Date:   Sun May 14 12:12:15 2017 -0400
+
+    Permisos y roles listos
+
+[33mcommit ba9275a9f0a38ef52e52ca827717ff5a0e3e66a9[m
+Author: geaClash <geaclash@gmail.com>
+Date:   Sun May 14 11:18:27 2017 -0400
+
+    Entrust
+
+[33mcommit 6659fd1155c7684c509151ee918a0f9beb18ccee[m
+Author: geaClash <geaclash@gmail.com>
+Date:   Tue May 9 22:14:30 2017 -0400
+
+    Lanzando a GitHub

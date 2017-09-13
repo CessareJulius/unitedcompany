@@ -1,6 +1,12 @@
 @extends('app.admin')
 
-@section('contenido')
+@section('contenido')   
+
+        @if(Session::has('alert'))
+            <div class="alert alert-{{Session::get('alert')['tipo']}}">
+                <p>{{Session::get('alert')['mensaje']}}</p>
+            </div>
+        @endif
 
         <div class="row">
             {!! Form::open(['url'=>'/clientes','method'=>'GET','autocomplete'=>'off','role'=>'search']); !!}
@@ -23,18 +29,18 @@
     @if(strlen($buscar)>0) <h3>Resultados de la búsqueda de: {{$buscar}}</h3>@endif
     <h1>Lista de Clientes <a href="{{action('clienteController@create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Agregar</a></h1>
 
-    <table class="table table-bordered table-condensed table-striped table-hover">
+    <table class="table table-responsive table-bordered table-condensed table-striped table-hover">
         <thead>
             <th>ID</th>
             <th>Usuario</th>
             <th>Nombres</th>
             <th>Apellidos</th>
-            
             <th>DNI</th>
             <th>Fecha Nac</th>
             <th>Direccion</th>
             <th>Correo</th>
             <th>Telefono</th>
+            <th>Membresía</th>
             <th>Acciones</th>
             
         </thead>
@@ -50,8 +56,8 @@
                     <td>{{$fila->birthday}}</td>
                     <td>{{$fila->address}}</td>    
                     <td>{{$fila->email}}</td>    
-
-                    <td>{{$fila->phone}}</td>     
+                    <td>{{$fila->phone}}</td>    
+                    <td><a href="#" onclick="$('#modal-membresia-{{$fila->id}}').modal('show')">@if (!$fila->membership) Sin suscripción @else {{$membresias[$fila->membership["membership_id"]]}} @endif</a></td> 
                     
                     <td>
                         <a class="btn btn-primary" href="{{action('clienteController@edit',['id'=>$fila->id])}}">Editar</a>

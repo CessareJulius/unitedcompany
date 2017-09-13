@@ -19,13 +19,13 @@ class CreateMembershipsUsersTable extends Migration
                 $table->increments('id');            
                 $table->integer('user_id')->unsigned();
                 $table->integer('membership_id')->unsigned();
-                $table->timestamps('fecha_suscripcion');
+                $table->timestamp('fecha_suscripcion')->nullable();
                 $table->string('status');
-                $table->string('user_id')->unsigned();
-                $table->timestamp('expiration');
+                
+                $table->timestamp('expiration')->nullable();
                 $table->foreign('user_id')->references('id')->on('users');
                 $table->foreign('membership_id')->references('id')->on('memberships');
-                $table->foreign('membership_id')->references('id')->on('memberships');
+                
                 
 
             });

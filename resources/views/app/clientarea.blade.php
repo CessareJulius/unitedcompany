@@ -169,7 +169,7 @@
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Oficina Virtual</h3>
+                  <h3 class="box-title">UnitedCompany - Área de Cliente</h3>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     
@@ -211,7 +211,7 @@
     <!-- AdminLTE App -->
     <script src="{{asset('js/app.min.js')}}"></script>
     
-    <!--Start of Tawk.to Script-->
+    <!--Start of Tawk.to Script
     <script type="text/javascript">
         
         var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -227,7 +227,7 @@
         s1.setAttribute('crossorigin','*');
         s0.parentNode.insertBefore(s1,s0);
         })();
-     </script>
+     </script>-->
     
     @stack('scripts')
 
