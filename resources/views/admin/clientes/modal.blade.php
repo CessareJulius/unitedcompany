@@ -58,6 +58,23 @@ role="dialog" tabindex="-1" id="modal-membresia-{{$fila->id}}">
 							 @endforeach
 						</select>
 					</div>
+					@if ($fila->membership) 
+
+						<div class="">
+							<button id="btn-extender-{{$fila->id}}" class="btn btn-primary" onclick="">Extender Suscripción</button>
+							<div id="extender-{{$fila->id}}" style="display: none;">
+								<div class="form-group">
+									<label for="">Días:</label>
+									<input type="number" name="extender" class="form-control" value="30">
+								</div>
+							</div>
+							<script>
+								$('#btn-extender-{{$fila->id}}')
+								.preventDefault(); $('#extender-{{$fila->id}}').show();
+							</script>
+						</div>
+
+					@endif
 				</fieldset>
 			</div>
 			<div class="modal-footer">
