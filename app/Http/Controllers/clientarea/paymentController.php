@@ -6,6 +6,7 @@ use Session;
 use DB;
 use Auth;
 use App\Payments;
+use App\Paypal;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -39,7 +40,20 @@ class paymentController extends Controller
         }
     }
     public function store($id) {
-      
+        $pago = Payments::findOrFail($id);
+        $paypal = $request->get('cuenta_paypal');
+            if ($paypal) {
+                $pago->status = 2;
+                $paypal = new Paypal();
+                $paypal->payment_id = $pago->id;
+                $paypal->cuenta = $paypal;
+                $paypal->save();
+                $paypal->update();
+                Session::flash('alert',["tipo"=>"primary","mensaje"=>"Pago confirmado, su solicitud debe ser aprobada por un administrador"]);
+                return redirect('clientarea/payments');
+            }
+        
+        
         
     }
 

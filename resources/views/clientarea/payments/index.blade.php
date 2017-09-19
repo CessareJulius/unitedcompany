@@ -32,18 +32,34 @@
                     <td>{{$fila->razon_pago}}</td>
                     <td>{{$fila->fecha_solicitud}}</td>    
                     <td>{{$status[$fila->status]}}</td>
-  
-                    
-                    <td>
-                        
-                    </td>
+                     
+                     <td>
+                        @if($fila->status==1) 
+                            <button class="btn btn-primary" onclick="$('#consignar-{{$fila->id}}').modal('show')">Consignar pago</button>
+                        @endif
 
+                        @if($fila->status==2)
+                            <button class="btn btn-primary" onclick="$('#consignar-{{$fila->id}}').modal('show')">Ver</button>
+                        @endif
+                     </td>
+                     
+                    
+              
                 </tr>
                 
+                @include('clientarea.payments.modal')
             @endforeach
 
         </tbody>
 
     </table>
+    
+    @push('scripts')
 
+        <script>
+            function paypal(id) {
+                $("#paypal-"+id).show().children('input').prop('name','cuenta_paypal');
+            }
+        </script>
+    @endpush
 @endsection
