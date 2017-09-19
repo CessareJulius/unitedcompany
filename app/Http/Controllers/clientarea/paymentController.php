@@ -7,6 +7,7 @@ use DB;
 use Auth;
 use App\Payments;
 use App\Paypal;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -39,17 +40,19 @@ class paymentController extends Controller
             return redirect('clientarea/payments');
         }
     }
-    public function store($id) {
+    public function store(Request $request,$id) {
         $pago = Payments::findOrFail($id);
-        $paypal = $request->get('cuenta_paypal');
-            if ($paypal) {
+        $cuenta_paypal = $request->get('cuenta_paypal');
+            if ($cuenta_paypal) {
                 $pago->status = 2;
+                $pago->fecha_pago = Carbon::now()->toDatetimeString();
                 $paypal = new Paypal();
                 $paypal->payment_id = $pago->id;
-                $paypal->cuenta = $paypal;
+                $paypal->cuenta = $cuenta_paypal;
                 $paypal->save();
-                $paypal->update();
-                Session::flash('alert',["tipo"=>"primary","mensaje"=>"Pago confirmado, su solicitud debe ser aprobada por un administrador"]);
+                
+                $pago->update();
+                Session::flash('alert',["tipo"=>"success","mensaje"=>"Pago confirmado, su solicitud debe ser aprobada por un administrador"]);
                 return redirect('clientarea/payments');
             }
         

@@ -39,7 +39,7 @@
                         @endif
 
                         @if($fila->status==2)
-                            <button class="btn btn-primary" onclick="$('#consignar-{{$fila->id}}').modal('show')">Ver</button>
+                            <button class="btn btn-primary" onclick="$('#info-{{$fila->id}}').modal('show')">Ver</button>
                         @endif
                      </td>
                      
@@ -58,7 +58,8 @@
 
         <script>
             function paypal(id) {
-                $("#paypal-"+id).show().children('input').prop('name','cuenta_paypal');
+                confirm('ATENCIÓN]\nSe redirigirá a una página para procesar el pago vía paypal\nDebe regresar a esta para confirmar la transacción');
+                $("#paypal-"+id).show().find('input').prop('name','cuenta_paypal');
             }
         </script>
     @endpush

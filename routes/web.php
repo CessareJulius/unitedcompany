@@ -31,7 +31,7 @@ Route::get('/clientarea/membership/store/{id}',"clientarea\membershipController@
 
 //Payments
 Route::get('/clientarea/payments/create',"clientarea\paymentController@create")->name('clientarea.payment.create');
-Route::post('/clientarea/payments/store/{id}',"clientarea\paymentController@store")->name('clientarea.payment.store');
+Route::get('/clientarea/payments/store/{id}',"clientarea\paymentController@store")->name('clientarea.payment.store');
 Route::get('/clientarea/payments',"clientarea\paymentController@index")->name('clientarea.payment.index');
 //\App\Helpers\RouteHelper::NamedResourceRoute('clientarea.membership', 'clientarea\membershipController', 'clientarea/membership');
 

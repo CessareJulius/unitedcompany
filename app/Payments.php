@@ -23,8 +23,11 @@ class Payments extends Model
     ];
 
    
+    function paypal() {
+        return $this->hasOne('App\Paypal','payment_id','id');
+    }
     function user() {
-        $this->belongsTo('App\User','id','user_id');
+        return $this->belongsTo('App\User','user_id','id');
     }
     protected $guarded = [];
 
