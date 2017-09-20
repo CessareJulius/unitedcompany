@@ -9,7 +9,7 @@
         @endif
 
         <div class="row">
-            {!! Form::open(['url'=>'/clientes','method'=>'GET','autocomplete'=>'off','role'=>'search']); !!}
+            {!! Form::open(['url'=>'/admin/clientes','method'=>'GET','autocomplete'=>'off','role'=>'search']); !!}
                     <div class="col-sm-12">
                         <div class="form-group">
                             <div class="input-group">
@@ -74,4 +74,10 @@
 
     <div class="col-sm-12">{{$clientes->render()}}</div>
     @endif
+
+    @push('scripts')
+        	<script>
+
+            </script>
+    @endpush
 @endsection

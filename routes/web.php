@@ -17,9 +17,16 @@ Route::resource('/admin/users',"UsersController");
 Route::resource('/admin/espacios',"espacioController");
 Route::resource('/admin/reservas',"reservaController");
 
-
+Route::get('admin/membership/delete/{id}',"membershipController@delete")->name('admin.membership.delete');
+Route::get('admin/membersip/suspend/{id}',"membershipController@suspend")->name('admin.membership.suspend');
+Route::get('admin/membersip/unsuspend/{id}',"membershipController@unsuspend")->name('admin.membership.unsuspend');
+Route::post('admin/membersip/extend/{id}',"membershipController@extend")->name('admin.membership.extend');
+Route::post('admin/membersip/store/{id}',"membershipController@store")->name('admin.membresia.store');
 Route::resource('/admin/clientes',"clienteController");
-Route::post('/admin/clientes/membresia/{id}',"clienteController@membresia")->name('clientes.membresia');
+Route::get('/admin/payments',"paymentController@index")->name('admin.payments.index');
+Route::get('/admin/payments/confirmar/{id}',"paymentController@confirmar")->name('admin.payments.confirmar');
+Route::delete('/admin/payments/confirmar/{id}',"paymentController@destroy")->name('admin.payments.destroy');
+
 //ClientArea
 Route::get('/clientarea',"clientareaController@index")->name('clientarea.index');
 
@@ -28,6 +35,7 @@ Route::get('/clientarea',"clientareaController@index")->name('clientarea.index')
 Route::get('/clientarea/membership',"clientarea\membershipController@index")->name('clientarea.membership.index');
 Route::get('/clientarea/membership/create',"clientarea\membershipController@create")->name('clientarea.membership.create');
 Route::get('/clientarea/membership/store/{id}',"clientarea\membershipController@store")->name('clientarea.membership.store');
+
 
 //Payments
 Route::get('/clientarea/payments/create',"clientarea\paymentController@create")->name('clientarea.payment.create');

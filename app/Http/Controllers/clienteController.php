@@ -30,7 +30,7 @@ class clienteController extends Controller
       $buscar = $request->get('buscar');
    
     
-      $clientes = Role::where('name','cliente')->first()->users()->orderBy('fecha_registro','asc')->paginate(7);
+      $clientes = Role::where('name','cliente')->first()->users()->where('user','LIKE',"%$buscar%")->orderBy('fecha_registro','asc')->paginate(7);
       $membresias = ['','GOLD','SILVER','BRONCE'];
       
       return view('admin.clientes.index',["clientes"=>$clientes,"buscar"=>$buscar,"membresias"=>$membresias,"m"=>Memberships::all()]);
@@ -46,34 +46,7 @@ class clienteController extends Controller
         return view('admin.clientes.create');
     }
 
-    public function membresia(Request $request,$id) {
-        $us = User::find($id);
-        $mid = $request->get('membresia');
-        $mem = $us->membership;
-        if ($mid==$mem->membership_id) {
-            //Session::flash('alert',["tipo"=>"warning","mensaje"=>"La membresá"])
-            return redirect('admin/clientes');
-        }
 
-        if (!$mem) {
-            $u = new Membership();
-            //$u->fecha_suscripcion = DB::
-            //$fecha = Carbon::now()->adddays(31);
-            $u->membership_id = $mid;
-            $u->status = 'Activo';
-            $u->fecha_suscripcion = Carbon::now()->toDatetimeString();
-            $u->expiration = Carbon::now()->addDays(31)->toDatetimeString();
-            $u->user_id = $us->id;
-            $u->save();
-            Session::flash('alert',["tipo"=>"info","mensaje"=>"Se ha suscrito el usuario $us->user a la membresia ".$u->membership["tipo"]]);
-            return redirect('admin/clientes');
-        }else{
-            $mem->membership_id = $mid;
-            $mem->update();
-            Session::flash('alert',["tipo"=>"info","mensaje"=>"Se ha cambiado la membresía del usuario $us->user a ".$mem->membership["tipo"]]);
-            return redirect('admin/clientes');
-        }
-    }
 
     /**
      * Store a newly created resource in storage.

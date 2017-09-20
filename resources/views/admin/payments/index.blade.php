@@ -18,8 +18,11 @@
     <table class="table table-bordered table-condensed table-striped table-hover">
         <thead>
             <th>ID</th>
+            <th>Usuario</th>
             <th>Razón de Pago</th>            
+            <th>Total</th>
             <th>Fecha de Solicitud</th>
+            
             <th>Estado</th>
             <th>Acciones</th>
             
@@ -29,29 +32,33 @@
 
                 <tr>
                     <td>{{$fila->id}}</td>
+                    <td>{{$fila->user->user}}</td>
                     <td>{{$fila->razon_pago}}</td>
-                    <td>{{$fila->fecha_solicitud}}</td>    
+                    <td>{{$fila->total}}$</td>
+                    <td>{{$fila->fecha_solicitud}} ({{\Carbon\Carbon::parse($fila->fecha_solicitud)->diffForHumans()}})</td>    
                     <td>{{$status[$fila->status]}}</td>
                      
                      <td>
                         @if($fila->status==1) 
-                            <button class="btn btn-primary" onclick="$('#consignar-{{$fila->id}}').modal('show')">Consignar pago</button>
+                            
                         @endif
 
                         @if($fila->status==2)
-                            <button class="btn btn-primary" onclick="$('#info-{{$fila->id}}').modal('show')">Ver</button>
+                            <button class="btn btn-primary" onclick="$('#confirmar-{{$fila->id}}').modal('show')">Confirmar Pago</button>
                         @endif
 
                         @if($fila->status==3)
                             <button class="btn btn-primary" onclick="$('#info-{{$fila->id}}').modal('show')">Ver</button>
                         @endif
+                        <button class="btn btn-danger" onclick="$('#eliminar-{{$fila->id}}').modal('show')">Eliminar</button>
                      </td>
+                     
                      
                     
               
                 </tr>
                 
-                @include('clientarea.payments.modal')
+                @include('admin.payments.modal')
             @endforeach
 
         </tbody>

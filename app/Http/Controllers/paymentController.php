@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\clientarea;
+namespace App\Http\Controllers;
 use User;
 use Session;
 use DB;
@@ -13,22 +13,33 @@ use App\Http\Controllers\Controller;
 
 class paymentController extends Controller
 {
+
+    public function __construct() {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index() {
-        
-        //$pagos = Auth::user()->payments;
-        /*$pagos = Auth::user()->whereHas('payments',function($query) {
-             $query->where('status','>',0);
-        })->get(); 
-        */
-        $pagos = Payments::where([['status','>',0],['user_id','=',Auth::user()->id]])->get();
+        $status = ['','Pendiente por consignar','Pendiente por aceptación','Pagado'];
+        $pagos = Payments::where('status', '>', 0)->orderBy('fecha_solicitud','asc')->get();
        
-        $status = ['Eliminado','Pendiente por consignar','Pendiente por aceptación','Pagado'];
-        return view('clientarea.payments.index',["pagos"=>$pagos,"status"=>$status]);
+        
+        return view('admin.payments.index',["pagos"=>$pagos,"status"=>$status]);
+    }
+
+    public function confirmar($id) {
+        $pago = Payments::findOrFail($id);
+        if ($pago->paypal)  {
+            $pago->status=3;
+            $pago->update();
+            Session::flash('alert',["tipo"=>"success","mensaje"=>"Pago confirmado, avisando al usuario por correo"]);
+            return redirect('admin/payments');
+        }
+
     }
     public function create() {
         if (Session::has('pago')) {
@@ -43,7 +54,7 @@ class paymentController extends Controller
             $pago->save();
             Session::forget('pago');
             Session::flash('alert',["tipo"=>"info","mensaje"=>"Pago solicitado, debe consignar para completar su operación"]);
-            return redirect('clientarea/payments');
+            return redirect('admin/payments');
         }
     }
     public function store(Request $request,$id) {
@@ -59,11 +70,20 @@ class paymentController extends Controller
                 
                 $pago->update();
                 Session::flash('alert',["tipo"=>"success","mensaje"=>"Pago confirmado, su solicitud debe ser aprobada por un administrador"]);
-                return redirect('clientarea/payments');
+                return redirect('admin/payments');
             }
         
         
         
+    }
+
+    public function destroy($id) {
+        $pago = Payments::findOrFail($id);
+        $pago->status = 0;
+        $pago->update();
+        Session::flash('alert',["tipo"=>"success","mensaje"=>"Se ha eliminado el pago."]);
+        return redirect('admin/payments');
+
     }
 
     

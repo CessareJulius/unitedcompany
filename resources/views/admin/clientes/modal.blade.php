@@ -25,7 +25,7 @@ role="dialog" tabindex="-1" id="modal-delete-{{$fila->id}}">
 
 <div class="modal fade modal-slide-in-right" aria-hidden="true"
 role="dialog" tabindex="-1" id="modal-membresia-{{$fila->id}}">
-	{{Form::open(['action'=>['clienteController@membresia',$fila->id],'method'=>'post'])}}
+	
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -41,13 +41,14 @@ role="dialog" tabindex="-1" id="modal-membresia-{{$fila->id}}">
 					 @if (!$fila->membership) 
 					 	<p>Membresía actual: <b>Sin suscripción </b></p>
 					 @else 
-					    <p>Membresía actual: <b>{{$membresias[$fila->membership["membership_id"]]}}</b></p>
+					    <p >Membresía actual: <b @if ($fila->membership["status"]=='Suspendido') style="color: red;" @endif>{{$membresias[$fila->membership["membership_id"]]}} ({{$fila->membership["status"]}})</b></p>
 						<p>Fecha de suscripción: <b>{{$fila->membership["fecha_suscripcion"]}} ({{\Carbon\Carbon::parse($fila->membership["fecha_suscripcion"])->diffForHumans()}})</b></p>
 						<p>Expiración: <b>{{$fila->membership["expiration"]}} ({{\Carbon\Carbon::parse($fila->membership["expiration"])->diffForHumans()}})</b></p>
 					@endif
 
 
 					<div class="form-group">
+					{{Form::open(['action'=>['membershipController@store',$fila->id],'method'=>'post'])}}
 						<label for="">Cambiar membresía a:</label>
 						<select name="membresia" id="membresia" class="form-control">
 							<option value="0">NINGUNA</option>
@@ -57,21 +58,41 @@ role="dialog" tabindex="-1" id="modal-membresia-{{$fila->id}}">
 								
 							 @endforeach
 						</select>
+						
+
 					</div>
+
+					<div class="form-group">
+							<div class="pull-right">
+								<button type="submit" class="btn btn-primary">Cambiar Suscripción</button>
+							</div>
+						</div>
+					{{Form::Close()}}
 					@if ($fila->membership) 
 
-						<div class="">
-							<button id="btn-extender-{{$fila->id}}" class="btn btn-primary" onclick="">Extender Suscripción</button>
-							<div id="extender-{{$fila->id}}" style="display: none;">
-								<div class="form-group">
-									<label for="">Días:</label>
-									<input type="number" name="extender" class="form-control" value="30">
-								</div>
+						<div class="" id="">
+							<div class="form-group">
+								<button type="button" onclick=" $('#extender-{{$fila->id}}').toggle();" class="btn btn-primary" >Extender</button> 
+								@if ($fila->membership["status"]=='Activo') 
+									<a onclick="sus({{$fila->id}})"  href="{{action('membershipController@suspend',['id'=>$fila->id])}}" class="btn btn-danger" >Suspender </a>
+								@elseif($fila->membership["status"]=='Suspendido') 
+									<a onclick="sus({{$fila->id}})"  href="{{action('membershipController@unsuspend',['id'=>$fila->id])}}" class="btn btn-danger" >Quitar Suspensión</a>
+								@endif
+								<a onclick="el({{$fila->id}})" href="{{action('membershipController@delete',['id'=>$fila->id])}}" class="btn btn-warning" >Eliminar </a>
 							</div>
-							<script>
-								$('#btn-extender-{{$fila->id}}')
-								.preventDefault(); $('#extender-{{$fila->id}}').show();
-							</script>
+							<div id="extender-{{$fila->id}}" class="col-sm-12" style="display: none;">
+
+								{{Form::open(['action'=>['membershipController@extend',$fila->id],'method'=>'post'])}}
+								<div class="form-group">
+									<div class="input-group">
+                                        
+									    <input type="number" name="dias" class="form-control" value="30" placeholder="Días a extender">
+                                        <span class="input-group-btn"><button class="btn btn-primary" type="submit">Aceptar</button></span>
+                                    </div>
+								</div>
+								{{Form::Close()}}
+							</div>
+						
 						</div>
 
 					@endif
@@ -79,10 +100,10 @@ role="dialog" tabindex="-1" id="modal-membresia-{{$fila->id}}">
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-				<button type="submit" class="btn btn-primary">Confirmar</button>
+				
 			</div>
 		</div>
 	</div>
-	{{Form::Close()}}
+
 
 </div>
