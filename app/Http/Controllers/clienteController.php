@@ -8,9 +8,17 @@ use Auth;
 use App\User;
 use App\Role;
 use Carbon\Carbon;
+use App\Memberships;
+use App\Membership;
+use Session;
 use DB;
 class clienteController extends Controller
 {
+
+
+    public function __construct() {
+        $this->middleware('auth');
+    }
     /**
 
     
@@ -20,18 +28,14 @@ class clienteController extends Controller
      */
     public function index(Request $request)
     {
+
       $buscar = $request->get('buscar');
-      //$clientes = Cliente::where('nombres','LIKE','%'.$buscar.'%') ->orderBy('nombres','asc') ->paginate(7);
-      //$clientes =  User::where('');
-    //   $clientes = User::with(['roles' => function($query) {
-    //        $query->where('id', 3);
-    //      }])->paginate(7);
-    //    $clientes = User::with('roles')->get();
-    //    dd($clientes);
+   
     
-     $clientes = Role::where('name','cliente')->first()->users()->orderBy('fecha_registro','asc')->paginate(7);
-    //$clientes = Role::with('users')->where('name', 'cliente')->paginate(7);
-      return view('admin.clientes.index',["clientes"=>$clientes,"buscar"=>$buscar]);
+      $clientes = Role::where('name','cliente')->first()->users()->where('user','LIKE',"%$buscar%")->orderBy('fecha_registro','asc')->paginate(7);
+      $membresias = ['','GOLD','SILVER','BRONCE'];
+      
+      return view('admin.clientes.index',["clientes"=>$clientes,"buscar"=>$buscar,"membresias"=>$membresias,"m"=>Memberships::all()]);
     }
 
     /**
@@ -43,6 +47,8 @@ class clienteController extends Controller
     {
         return view('admin.clientes.create');
     }
+
+
 
     /**
      * Store a newly created resource in storage.

@@ -16,8 +16,8 @@ class CreatePaymentsTable extends Migration
         if (!Schema::hasTable('payments')) {
             Schema::create('payments',function(Blueprint $table) {
                 $table->increments('id');
-                $table->timestamps('fecha_solicitud');
-                $table->timestamps('fecha_pago');
+                $table->timestamp('fecha_solicitud')->nullable();
+                $table->timestamp('fecha_pago')->nullable();
                 $table->string('razon_pago');
                 $table->string('status');
                 $table->integer('user_id')->unsigned();
