@@ -142,17 +142,7 @@
                             <label for="phone" class="col-md-4 control-label">Teléfono</label>
 
 
-                            <div class="col-md-2">
-                                <input id="phone_code" type="number" class="form-control" name="phone_code" placeholder="EJ. 0414" value="{{old('phone_code')}}" required>
-
-                                @if ($errors->has('phone_code'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('phone_code') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-
-                            <div class="col-md-4">
+                           
                                  <input id="phone" type="number" class="form-control" name="phone" value="{{old('phone')}}" required>
                             
                                 @if ($errors->has('phone'))
@@ -160,7 +150,7 @@
                                         <strong>{{ $errors->first('phone') }}</strong>
                                     </span>
                                 @endif
-                            </div>
+                            
                         </div>
 
 
