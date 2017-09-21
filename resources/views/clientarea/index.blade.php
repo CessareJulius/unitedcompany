@@ -14,7 +14,7 @@
                         <div class="col-sm-3 col-xs-12">
                             <div class="menu-item">
                                 <div class="menu-item-content">
-                                    <a href="{{route('clientarea.index')}}">
+                                    <a href="{{route('clientarea.proyectos.index')}}">
                                         <span class="menu-item-icon"><span class="fa fa-briefcase"></span></span>
                                         <h5>Proyectos</h5>
                                     </a> 

@@ -10,7 +10,7 @@ class Proyectos extends Model
     
     protected $primaryKey='id';
 
-    public $timestamps=false;
+    public $timestamps=true;
 
 
     protected $fillable = [
@@ -19,13 +19,14 @@ class Proyectos extends Model
         'presupuesto',
         'herramientas',
         'ubicacion',
-        'user_id'
+        'user_id',
+        'titulo'
         
     ];
 
    
-    function payment() {
-        $this->belongsTo('App\User','id','user_id');
+    function user() {
+        return $this->belongsTo('App\User','user_id','id');
     }
     protected $guarded = [];
 

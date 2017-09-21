@@ -48,6 +48,10 @@ class User extends Authenticatable
         return $this->hasOne('App\Membership');
     }
     
+    public function proyectos() {
+        return $this->hasOne('App\Proyectos');
+    }
+    
     public function payments() {
         return $this->hasMany('App\Payments');
     }

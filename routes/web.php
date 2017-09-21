@@ -14,8 +14,8 @@
 
 
 Route::resource('/admin/users',"UsersController");
-Route::resource('/admin/espacios',"espacioController");
-Route::resource('/admin/reservas',"reservaController");
+
+Route::resource('/admin/proyectos',"proyectoController");
 
 Route::get('admin/membership/delete/{id}',"membershipController@delete")->name('admin.membership.delete');
 Route::get('admin/membersip/suspend/{id}',"membershipController@suspend")->name('admin.membership.suspend');
@@ -36,7 +36,23 @@ Route::get('/clientarea/membership',"clientarea\membershipController@index")->na
 Route::get('/clientarea/membership/create',"clientarea\membershipController@create")->name('clientarea.membership.create');
 Route::get('/clientarea/membership/store/{id}',"clientarea\membershipController@store")->name('clientarea.membership.store');
 
+//Clientarea proyectos
 
+Route::get('/clientarea/proyectos',"clientarea\proyectoController@index")->name('clientarea.proyectos.index');
+
+
+Route::get('/clientarea/proyectos/create',"clientarea\proyectoController@create")->name('clientarea.proyectos.create');
+
+Route::post('/clientarea/proyectos/',"clientarea\proyectoController@store")->name('clientarea.proyectos.store');
+
+Route::get('/clientarea/proyectos/{id}/edit',"clientarea\proyectoController@edit")->name('clientarea.proyectos.edit');
+
+Route::patch('/clientarea/proyectos/{id}',"clientarea\proyectoController@update")->name('clientarea.proyectos.update');
+
+
+Route::delete('/clientarea/proyectos/{id}/delete',"clientarea\proyectoController@delete")->name('clientarea.proyectos.delete');
+
+Route::get('/clientarea/proyectos/{id}',"clientarea\proyectoController@show")->name('clientarea.proyectos.show');
 //Payments
 Route::get('/clientarea/payments/create',"clientarea\paymentController@create")->name('clientarea.payment.create');
 Route::get('/clientarea/payments/store/{id}',"clientarea\paymentController@store")->name('clientarea.payment.store');

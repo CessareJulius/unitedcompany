@@ -25,7 +25,7 @@
                         <div class="col-sm-3">
                             <div class="menu-item">
                                 <div class="menu-item-content">
-                                    <a href="">
+                                    <a href="{{route('proyectos.index')}}">
                                         <span class="menu-item-icon"><span class="fa fa-briefcase"></span></span>
                                         <h5>Proyectos</h5>
                                     </a> 

@@ -40,6 +40,7 @@ class proyectoController extends Controller
      */
     public function create()
     {
+   
         return view('clientarea.proyectos.create');
     }
 
@@ -59,13 +60,14 @@ class proyectoController extends Controller
             'titulo' => 'required|string|max:255',
             'idea_negocio' => 'required|string|max:500',
             'objetivo' => 'required|string|max:500',
-            'presupuesto'=>'required|integer|max:9999999',
+            'presupuesto'=>'required|integer|max:99999999999',
             'herramientas' => 'required|string|max:500',
             'ubicacion' => 'required|string|max:255',
            
         ]);
         
         $user = Proyectos::create([
+            'titulo'=>$request->get('titulo'),
             'idea_negocio'=>$request->get('idea_negocio'),
             'objetivo'=>$request->get('objetivo'),
             'presupuesto'=>$request->get('presupuesto'),
@@ -75,7 +77,7 @@ class proyectoController extends Controller
         ]);
         
         Session::flash('alert',["tipo"=>'success','mensaje'=>'Se ha envíado correctamente tu proyecto.']);
-        return redirect('admin/proyectos');
+        return redirect('clientarea/proyectos');
     }
 
     /**
@@ -99,7 +101,7 @@ class proyectoController extends Controller
     {
         
         $proyecto = Proyectos::find($id);
-   
+        
         return view('clientarea.proyectos.edit',["proyecto"=>$proyecto]);
     }
 
@@ -119,12 +121,12 @@ class proyectoController extends Controller
             'titulo' => 'required|string|max:255',
             'idea_negocio' => 'required|string|max:500',
             'objetivo' => 'required|string|max:500',
-            'presupuesto'=>'required|integer|max:9999999',
+            'presupuesto'=>'required|integer|max:999999999999',
             'herramientas' => 'required|string|max:500',
             'ubicacion' => 'required|string|max:255',
            
         ]);
-        $proyecto = User::findOrFail($id);
+        $proyecto = Proyectos::findOrFail($id);
         
         $col = ['titulo','idea_negocio','objetivo','presupuesto','herramientas','ubicacion'];       
         foreach($col as $c) {
@@ -151,6 +153,6 @@ class proyectoController extends Controller
         $user = User::findOrFail($id);
         $user->delete();
         
-        return redirect('admin/clientes'); 
+        return redirect('clientarea/clientes'); 
      }
 }
