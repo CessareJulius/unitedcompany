@@ -22,6 +22,8 @@ class clienteController extends Controller
         $this->middleware('role:admin|root');
     }
     /**
+
+    
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
