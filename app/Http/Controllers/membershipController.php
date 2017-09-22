@@ -10,8 +10,10 @@ use App\Membership;
 class membershipController extends Controller
 {
 
-    public function __construct() {
+    
+    public function __construct(){
         $this->middleware('auth');
+        $this->middleware('role:admin|root');
     }
 
     /**

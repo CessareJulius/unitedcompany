@@ -14,8 +14,10 @@ use App\Http\Controllers\Controller;
 class paymentController extends Controller
 {
 
-    public function __construct() {
+ 
+    public function __construct(){
         $this->middleware('auth');
+        $this->middleware('role:admin|root');
     }
 
     /**

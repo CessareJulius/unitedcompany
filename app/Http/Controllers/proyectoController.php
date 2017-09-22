@@ -15,8 +15,9 @@ class proyectoController extends Controller
 {
 
 
-    public function __construct() {
+    public function __construct(){
         $this->middleware('auth');
+        $this->middleware('role:admin|root');
     }
     /**
      * Display a listing of the resource.
@@ -26,7 +27,7 @@ class proyectoController extends Controller
     public function index(Request $request)
     {
 
-    
+     
       $proyectos = Proyectos::orderBy('created_at','asc')->paginate(7);
       
     

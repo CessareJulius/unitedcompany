@@ -12,6 +12,13 @@ use App\Http\Controllers\Controller;
 
 class membershipController extends Controller
 {
+
+
+    
+    public function __construct(){
+        $this->middleware('auth');
+        $this->middleware('role:cliente');
+    }
     /**
      * Display a listing of the resource.
      *

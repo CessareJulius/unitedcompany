@@ -13,9 +13,12 @@ class clientareaController extends Controller
      */
 
 
-    public function __construct() {
+    
+    public function __construct(){
         $this->middleware('auth');
+        $this->middleware('role:cliente');
     }
+    
     public function index()
     {
         return view('clientarea.index');

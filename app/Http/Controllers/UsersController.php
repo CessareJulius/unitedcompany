@@ -15,8 +15,8 @@ class UsersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct() {
-        $this->middleware('auth');
+     public function __construct(){
+        $this->middleware('role:admin|root');
     }
 
     public function index(Request $request) {

@@ -16,7 +16,7 @@
 Route::resource('/admin/users',"UsersController");
 
 Route::resource('/admin/proyectos',"proyectoController");
-
+Route::get('test','EmailController@expiration');
 Route::get('admin/membership/delete/{id}',"membershipController@delete")->name('admin.membership.delete');
 Route::get('admin/membersip/suspend/{id}',"membershipController@suspend")->name('admin.membership.suspend');
 Route::get('admin/membersip/unsuspend/{id}',"membershipController@unsuspend")->name('admin.membership.unsuspend');

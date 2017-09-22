@@ -4,7 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
-
+use App\Membership;
 class Kernel extends ConsoleKernel
 {
     /**
@@ -26,6 +26,28 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+        
+            $schedule->call(function () {
+                
+                //DB::table('recent_users')->delete();
+                $membresias = Membership::all();
+
+                foreach($membresias as $membresia) {
+                    
+                    $diasFaltantes = \Carbon\Carbon::parse($membresia->expiration)->diff(\Carbon\Carbon::now())->days;
+                    if ($diasFaltantes <5) {
+                        
+                        
+
+                    }
+
+
+
+                }
+
+
+            })->daily();
+        
     }
 
     /**
