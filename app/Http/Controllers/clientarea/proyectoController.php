@@ -19,6 +19,7 @@ class proyectoController extends Controller
     public function __construct(){
         $this->middleware('auth');
         $this->middleware('role:cliente');
+        $this->middleware('membership');
     }
     /**
      * Display a listing of the resource.
