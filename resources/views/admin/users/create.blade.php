@@ -25,13 +25,20 @@
                         <label for="name">Nombre</label><input type="text" value="{{old('name')}}" class="form-control" placeholder="Nombre" name="name">
                     </div>
                 </div>
-            
+
+                 <div class="form-group">
+                    <div class="input-group">
+                        <label for="name">Apellido</label><input type="text" value="{{old('lastname')}}" class="form-control" placeholder="Apellido" name="lastname">
+                    </div>
+                </div>
                    
                 <div class="form-group">
                     <div class="input-group">
                         <label for="user">Usuario</label><input type="text" value="{{old('user')}}" class="form-control" placeholder="Usuario" name="user">
                     </div>
                 </div>
+
+
                 
                 <div class="form-group">
                     <div class="input-group">
