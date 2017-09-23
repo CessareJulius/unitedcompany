@@ -16,37 +16,17 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
      public function __construct(){
-        $this->middleware('role:admin|root');
+        $this->middleware('role:root');
     }
 
     public function index(Request $request) {
        
-        
-        if (!Auth::user()->hasRole(['root','admin'])) {
-            return redirect('/');
-        }
+     
         if ($request) {
             $query=trim($request->get('buscar'));
-            /*$users=User::where('user','LIKE','%'.$query.'%')
-            ->orderBy('user','asc')
-            ->paginate(7)->with('roles'=>function($req) {
-            });
-            */
+          
             $users = Role::where('name','!=','cliente')->first()->users()->orderBy('fecha_registro','asc')->paginate(7);
-           /* $roles = [];
-            $i = 0;
-            foreach($users as $us) {
-                $rol = User::getRole($us->id);
-                if ($rol) { 
-                    $roles[$us->id]=$rol;   
-                    if ($rol->name=='cliente') {
-                        $users->forget($i);
-                    }
-                }
-                $i++;
-
-            }*/
-            
+       
             
             
 
@@ -61,18 +41,16 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create() {
-         if (!Auth::user()->hasRole(['root','admin'])) {
-            return redirect('/');
-        }
-            /*if (Auth::user()->hasRole(['root'])) {
-                $roles[3] = Role::find(3);
-                $roles[4] = Role::find(4);
-             }
-            */
-
-             if (Auth::user()->hasRole(['root'])) {
+ 
+            
+            if (Auth::user()->hasRole(['admin'])) {
                 $roles[3] = Role::find(1);
-                $roles[4] = Role::find(3);
+                
+             }
+             if (Auth::user()->hasRole(['root'])) {
+                $roles[1] = Role::find(1);
+                $roles[2] = Role::find(2);
+                $roles[3] = Role::find(3);
              }
             
         return view('admin.users.create',["roles"=>$roles]);
@@ -86,9 +64,8 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request) {
-        if (!Auth::user()->hasRole(['root','admin'])) {
-            return redirect('/');
-        }
+
+    
         $this->validate($request, [
             'name' => 'required|string|max:255',
             'user' => 'required|string|max:20|unique:users',
@@ -127,10 +104,7 @@ class UsersController extends Controller
      */
     public function edit($id) {
         
-        if (!Auth::user()->hasRole(['root','admin'])) {
-            return redirect('/');
-        }
-        
+   
         
         $usuario = User::findOrFail($id);
         
@@ -143,9 +117,11 @@ class UsersController extends Controller
         }
         $roles = [];
 
+
+
         //Si el usuario autenticado es gerente o root le permite crear los siguientes roles
-        if (Auth::user()->hasRole(['gerente','root'])) {
-            $roles = Role::findMany([2,3]);
+        if (Auth::user()->hasRole(['root'])) {
+            $roles = Role::findMany([1,2,3]);
          }
 
         if (Auth::user()->hasRole(['root'])) {
@@ -165,9 +141,7 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id) {
-         if (!Auth::user()->hasRole(['root','admin'])) {
-            return redirect('/');
-         }
+    
 
 
          $this->validate($request, [
@@ -201,9 +175,8 @@ class UsersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id) {
-         if (!Auth::user()->hasRole(['root','admin'])) {
-            return redirect('/');
-        }
+       
+        
         $user = User::findOrFail($id);
         $user->delete();
         return redirect('admin/users');

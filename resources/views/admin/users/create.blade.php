@@ -15,7 +15,7 @@
                 </div>
             @endif
 
-        {!! Form::open(['method'=>'POST','url'=>'users']) !!}
+        {!! Form::open(['method'=>'POST','url'=>'admin/users']) !!}
         {{Form::token()}}
 
                 
