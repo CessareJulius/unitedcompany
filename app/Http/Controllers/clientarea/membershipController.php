@@ -31,6 +31,9 @@ class membershipController extends Controller
             //return $this->create();
             return redirect('clientarea/membership/create');
         }
+        if ($m->status=='Suspendido') {
+            Session::flash('membership','suspendido');
+        }
         return view('clientarea.membership.index',['membership'=>$m]);
     }
     public function create() {
