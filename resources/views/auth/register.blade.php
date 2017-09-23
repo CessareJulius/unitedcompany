@@ -33,6 +33,15 @@
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Ingrese sus datos para el registro</p>
+        @if(count($errors)>1)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors as $error) 
+                        <li>$error</li>
+                    @endforeach 
+                </ul>
+            </div>
+        @endif
         <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
@@ -142,7 +151,7 @@
                             <label for="phone" class="col-md-4 control-label">Teléfono</label>
 
 
-                           
+                            <div class="col-md-6">
                                  <input id="phone" type="number" class="form-control" name="phone" value="{{old('phone')}}" required>
                             
                                 @if ($errors->has('phone'))
@@ -150,6 +159,7 @@
                                         <strong>{{ $errors->first('phone') }}</strong>
                                     </span>
                                 @endif
+                            </div>
                             
                         </div>
 
