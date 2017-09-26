@@ -31,13 +31,13 @@
                                         
                     
                     <td>
-                        <a class="btn btn-primary" href="{{action('clientarea\proyectoController@show',['id'=>$fila->id])}}">Ver</a>
+                        <a class="btn btn-primary"  onclick="$('#modal-show-{{$fila->id}}').modal('show')" >Ver</a>
                         <a class="btn btn-warning" href="{{action('clientarea\proyectoController@edit',['id'=>$fila->id])}}">Editar</a>
                         <a class="btn btn-danger" onclick="$('#modal-delete-{{$fila->id}}').modal('show')">Eliminar</a>
                     </td>
 
                 </tr>
-                @include('admin.proyectos.modal')
+                @include('clientarea.proyectos.modal')
             @endforeach
 
         </tbody>

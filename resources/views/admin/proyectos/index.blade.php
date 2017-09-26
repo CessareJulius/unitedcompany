@@ -31,7 +31,7 @@
                                         
                     
                     <td>
-                        <a class="btn btn-primary" href="{{action('proyectoController@show',['id'=>$fila->id])}}">Ver</a>
+                        <a class="btn btn-primary" onclick="$('#modal-show-{{$fila->id}}').modal('show')">Ver</a>
                         <a class="btn btn-warning" href="{{action('proyectoController@edit',['id'=>$fila->id])}}">Editar</a>
                         <a class="btn btn-danger" onclick="$('#modal-delete-{{$fila->id}}').modal('show')">Eliminar</a>
                     </td>
