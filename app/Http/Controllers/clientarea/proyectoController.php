@@ -91,7 +91,8 @@ class proyectoController extends Controller
      */
     public function show($id)
     {
-        //
+        $proyecto = Proyectos::find($id);
+        return view('clientarea.proyectos.show',["proyecto"=>$proyecto]);
     }
 
     /**
