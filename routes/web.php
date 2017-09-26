@@ -80,4 +80,4 @@ Route::get('/home', 'indexController@index')->name('home');
 Route::get('/', 'indexController@index')->name('index');
 
 
-
+Route::resource('test', 'paypalController');
