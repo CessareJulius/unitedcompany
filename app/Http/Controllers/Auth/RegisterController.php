@@ -77,7 +77,7 @@ class RegisterController extends Controller
             'phone'=> $data['phone'],
             'user' => $data['user'],
             'address' => $data['address'],
-            'birthday'=> $data['birthday'],
+            'birthday'=> \Carbon\Carbon::parse($data['birthday'])->toDateString(),
             'dni' => $data['dni'],
             'password' => bcrypt($data['password'])
             

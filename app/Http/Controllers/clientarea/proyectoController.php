@@ -91,7 +91,8 @@ class proyectoController extends Controller
      */
     public function show($id)
     {
-        //
+        $proyecto = Proyectos::find($id);
+        return view('clientarea.proyectos.show',["proyecto"=>$proyecto]);
     }
 
     /**
@@ -153,9 +154,9 @@ class proyectoController extends Controller
     public function destroy($id)
     {
         
-        $user = User::findOrFail($id);
+        $user = Proyectos::findOrFail($id);
         $user->delete();
         
-        return redirect('clientarea/clientes'); 
+        return redirect('clientarea/proyectos'); 
      }
 }

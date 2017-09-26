@@ -50,7 +50,7 @@ Route::get('/clientarea/proyectos/{id}/edit',"clientarea\proyectoController@edit
 Route::patch('/clientarea/proyectos/{id}',"clientarea\proyectoController@update")->name('clientarea.proyectos.update');
 
 
-Route::delete('/clientarea/proyectos/{id}/delete',"clientarea\proyectoController@delete")->name('clientarea.proyectos.delete');
+Route::delete('/clientarea/proyectos/{id}/destroy',"clientarea\proyectoController@destroy")->name('clientarea.proyectos.destroy');
 
 Route::get('/clientarea/proyectos/{id}',"clientarea\proyectoController@show")->name('clientarea.proyectos.show');
 //Payments
