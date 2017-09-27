@@ -158,4 +158,14 @@ class membershipController extends Controller
         //$u->expiration = Carbon::now()->addDays(31)->toDatetimeString();
 
     }
+    function renovation($id) {
+        $m = User::find($id)->membership;
+        if (!$m ||$m->status != 'Expirado') {
+            return redirect('admin/clientes');
+        }
+        $m->status ='Activo';
+        $m->update();
+        Session::flash('alert',["tipo"=>'success','mensaje'=>"Se ha reactivo la membresía del usuario"]);
+        return redirect('admin/clientes');
+    }
 }

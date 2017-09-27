@@ -72,6 +72,9 @@ role="dialog" tabindex="-1" id="modal-membresia-{{$fila->id}}">
 
 						<div class="" id="">
 							<div class="form-group">
+								@if($fila->membership["status"]=='Expirado')
+									<a href="{{route('admin.membership.renovation',$fila->id)}}" class="btn btn-success" >Renovar</a> 
+								@endif
 								<button type="button" onclick=" $('#extender-{{$fila->id}}').toggle();" class="btn btn-primary" >Extender</button> 
 								@if ($fila->membership["status"]=='Activo') 
 									<a onclick="sus({{$fila->id}})"  href="{{action('membershipController@suspend',['id'=>$fila->id])}}" class="btn btn-danger" >Suspender </a>

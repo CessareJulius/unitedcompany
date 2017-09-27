@@ -19,9 +19,13 @@ Route::resource('/admin/proyectos',"proyectoController");
 Route::get('test','EmailController@expiration');
 Route::get('admin/membership/delete/{id}',"membershipController@delete")->name('admin.membership.delete');
 Route::get('admin/membersip/suspend/{id}',"membershipController@suspend")->name('admin.membership.suspend');
+Route::get('admin/membersip/renovation/{id}',"membershipController@renovation")->name('admin.membership.renovation');
+
 Route::get('admin/membersip/unsuspend/{id}',"membershipController@unsuspend")->name('admin.membership.unsuspend');
+
 Route::post('admin/membersip/extend/{id}',"membershipController@extend")->name('admin.membership.extend');
 Route::post('admin/membersip/store/{id}',"membershipController@store")->name('admin.membresia.store');
+
 Route::resource('/admin/clientes',"clienteController");
 Route::get('/admin/payments',"paymentController@index")->name('admin.payments.index');
 Route::get('/admin/payments/confirmar/{id}',"paymentController@confirmar")->name('admin.payments.confirmar');
@@ -35,7 +39,7 @@ Route::get('/clientarea',"clientareaController@index")->name('clientarea.index')
 Route::get('/clientarea/membership',"clientarea\membershipController@index")->name('clientarea.membership.index');
 Route::get('/clientarea/membership/create',"clientarea\membershipController@create")->name('clientarea.membership.create');
 Route::get('/clientarea/membership/store/{id}',"clientarea\membershipController@store")->name('clientarea.membership.store');
-
+Route::get('/clientarea/membership/renovation',"clientarea\membershipController@renovation")->name('clientarea.membership.renovation');
 //Clientarea proyectos
 
 Route::get('/clientarea/proyectos',"clientarea\proyectoController@index")->name('clientarea.proyectos.index');

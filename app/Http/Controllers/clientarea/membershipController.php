@@ -53,6 +53,21 @@ class membershipController extends Controller
         return view('clientarea.payments.invoice');
    
     }
+    public function renovation() {
+        $m = Auth::user()->membership;
+        if (!$m || $m->status!='Expirado') {
+            return redirect('clientarea');
+        }
+        $total=$m->membership->precio;
+        $tipo=$m->membership->tipo;
+        $pago = [
+            'razon_pago'=>"Renovación de suscripción $tipo",
+            "total"=>$total
+        ];
+        Session::put('pago',$pago);
+           
+        return view('clientarea.payments.invoice');
+    }
 
     
 
