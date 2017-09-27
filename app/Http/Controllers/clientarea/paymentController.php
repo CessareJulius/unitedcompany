@@ -7,6 +7,7 @@ use DB;
 use Auth;
 use App\Payments;
 use App\Paypal;
+use App\Cuenta;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -55,12 +56,25 @@ class paymentController extends Controller
     public function store(Request $request,$id) {
         $pago = Payments::findOrFail($id);
         $cuenta_paypal = $request->get('cuenta_paypal');
+        $referencia_bancaria = $request->get('referencia_bancaria');
             if ($cuenta_paypal) {
                 $pago->status = 2;
                 $pago->fecha_pago = Carbon::now()->toDatetimeString();
                 $paypal = new Paypal();
                 $paypal->payment_id = $pago->id;
                 $paypal->cuenta = $cuenta_paypal;
+                $paypal->save();
+                
+                $pago->update();
+                Session::flash('alert',["tipo"=>"success","mensaje"=>"Pago confirmado, su solicitud debe ser aprobada por un administrador"]);
+                return redirect('clientarea/payments');
+            }
+            if ($referencia_bancaria) {
+                $pago->status = 2;
+                $pago->fecha_pago = Carbon::now()->toDatetimeString();
+                $paypal = new Cuenta();
+                $paypal->payment_id = $pago->id;
+                $paypal->referencia = $referencia_bancaria;
                 $paypal->save();
                 
                 $pago->update();

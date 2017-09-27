@@ -34,6 +34,7 @@ class membershipController extends Controller
         if ($m->status=='Suspendido') {
             Session::flash('membership','suspendido');
         }
+        
         return view('clientarea.membership.index',['membership'=>$m]);
     }
     public function create() {
@@ -55,6 +56,7 @@ class membershipController extends Controller
     }
     public function renovation() {
         $m = Auth::user()->membership;
+        dd($m->status);
         if (!$m || $m->status!='Expirado') {
             return redirect('clientarea');
         }

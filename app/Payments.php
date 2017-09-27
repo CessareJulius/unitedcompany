@@ -26,6 +26,9 @@ class Payments extends Model
     function paypal() {
         return $this->hasOne('App\Paypal','payment_id','id');
     }
+    function cuenta() {
+        return $this->hasOne('App\Cuenta','payment_id','id');
+    }
     function user() {
         return $this->belongsTo('App\User','user_id','id');
     }

@@ -74,7 +74,13 @@ role="dialog" tabindex="-1" id="confirmar-{{$fila->id}}">
                 @if($fila->paypal)
                     <p>Pagado por paypal con la cuenta <strong>{{$fila->paypal["cuenta"]}}</strong></p>
                     <p>el <string>{{$fila->fecha_pago}} ({{\Carbon\Carbon::parse($fila->fecha_pago)->diffForHumans()}})</string></p>
-                    <a href="{{action('paymentController@confirmar',['id'=>$fila->id])}}" class="btn btn-primary">Confirmar Pago</a>
+                    
+                @endif
+				
+				@if($fila->cuenta)
+                    <p>Pagado por Cuenta bancaria, Referencia: <strong>{{$fila->cuenta["referencia"]}}</strong></p>
+                    <p>el <string>{{$fila->fecha_pago}} ({{\Carbon\Carbon::parse($fila->fecha_pago)->diffForHumans()}})</string></p>
+					<a href="{{action('paymentController@confirmar',['id'=>$fila->id])}}" class="btn btn-primary">Confirmar Pago</a>
                 @endif
                 
                 <hr>

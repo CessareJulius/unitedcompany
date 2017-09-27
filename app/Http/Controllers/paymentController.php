@@ -41,6 +41,12 @@ class paymentController extends Controller
             Session::flash('alert',["tipo"=>"success","mensaje"=>"Pago confirmado, avisando al usuario por correo"]);
             return redirect('admin/payments');
         }
+        if ($pago->cuenta)  {
+            $pago->status=3;
+            $pago->update();
+            Session::flash('alert',["tipo"=>"success","mensaje"=>"Pago confirmado, avisando al usuario por correo"]);
+            return redirect('admin/payments');
+        }
 
     }
     public function create() {

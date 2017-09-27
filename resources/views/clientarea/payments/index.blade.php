@@ -62,8 +62,14 @@
 
         <script>
             function paypal(id) {
-                confirm('ATENCIÓN]\nSe redirigirá a una página para procesar el pago vía paypal\nDebe regresar a esta para confirmar la transacción');
+                confirm('[ATENCIÓN]\nSe redirigirá a una página para procesar el pago vía paypal\nDebe regresar a esta para confirmar la transacción');
                 $("#paypal-"+id).show().find('input').prop('name','cuenta_paypal');
+                $("#banco-"+id).hide();
+            }
+            function banco(id) {
+                confirm('[ATENCIÓN]\nEstos son los datos para el depósito bancario, debe realizar el pago y escribir el número de referencia');
+                $("#banco-"+id).show().find('input').prop('name','referencia_bancaria');
+                $("#paypal-"+id).hide();
             }
         </script>
     @endpush

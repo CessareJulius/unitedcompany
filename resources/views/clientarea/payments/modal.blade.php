@@ -21,11 +21,13 @@ role="dialog" tabindex="-1" id="consignar-{{$fila->id}}">
                 <div class="form-group">
                  
                     <a  class="btn btn-primary" target="_blank" href="http://paypal.me/unitedcompany/{{$fila->total}}" onclick="paypal({{$fila->id}})">Pagar con paypal</a>
-                    </div>
-                
-                <div id="paypal-{{$fila->id}}" style="display: none;">
-                    {{Form::open(['action'=>['clientarea\paymentController@store',$fila->id],'method'=>'get'])}}
+                    <a  class="btn btn-success" onclick="banco({{$fila->id}})">Pagar con Cuenta Bancaria</a>
+                </div>
+               
+               {{Form::open(['action'=>['clientarea\paymentController@store',$fila->id],'method'=>'get'])}}
                     
+                <div id="paypal-{{$fila->id}}" style="display: none;">
+                
 
                     
                     <div class="input-group">
@@ -36,8 +38,31 @@ role="dialog" tabindex="-1" id="consignar-{{$fila->id}}">
                         <span class="input-group-btn"><button type="submit" class="btn btn-primary" >Confirmar Pago</button></span>  
                     
                     </div>
-                    {{Form::Close()}}
+                   
                 </div>
+
+                  <div id="banco-{{$fila->id}}" style="display: none;">
+                
+
+                    <div class="form-group">
+                        <p><strong>Nombre:</strong> UnitedCompany</p>
+                        <p><strong>Número de Identificación:</strong> 123456</p>
+                        <p><strong>Número de Cuenta:</strong> 1234-55-6789-12345</p>
+                        
+                    </div>
+                    <div class="input-group">
+                    
+                    
+
+                        <input type="text" class="form-control" placeholder="Introduzca el numero de referencia del depósito">
+                        <span class="input-group-btn"><button type="submit" class="btn btn-primary" >Confirmar Pago</button></span>  
+                    
+                    </div>
+                   
+                </div>
+
+                 {{Form::Close()}}
+                
                 
 
 			</div>
@@ -72,6 +97,11 @@ role="dialog" tabindex="-1" id="info-{{$fila->id}}">
 
                 @if($fila->paypal)
                     <p>Pagado por paypal con la cuenta <strong>{{$fila->paypal["cuenta"]}}</strong></p>
+                    <p>el <string>{{$fila->fecha_pago}} ({{\Carbon\Carbon::parse($fila->fecha_pago)->diffForHumans()}})</string></p>
+                @endif
+
+                @if($fila->cuenta)
+                    <p>Pagado por Cuenta bancaria, Referencia: <strong>{{$fila->cuenta["referencia"]}}</strong></p>
                     <p>el <string>{{$fila->fecha_pago}} ({{\Carbon\Carbon::parse($fila->fecha_pago)->diffForHumans()}})</string></p>
                 @endif
 
