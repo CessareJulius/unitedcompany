@@ -19,6 +19,7 @@ class Membership extends Model {
         "expiration",
         "user_id",
         "membership_id",
+        "notifiable"
     ];
 
     public function user() {

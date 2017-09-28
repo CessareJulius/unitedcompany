@@ -164,6 +164,7 @@ class membershipController extends Controller
             return redirect('admin/clientes');
         }
         $m->status ='Activo';
+        $m->notifiable = 0;
         $m->update();
         Session::flash('alert',["tipo"=>'success','mensaje'=>"Se ha reactivo la membresía del usuario"]);
         return redirect('admin/clientes');

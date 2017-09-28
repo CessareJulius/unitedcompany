@@ -20,6 +20,7 @@ class CreateMembershipsUsersTable extends Migration {
 			$table->dateTime('fecha_suscripcion')->nullable();
 			$table->string('status', 191);
 			$table->dateTime('expiration')->nullable();
+			$table->integer('notifiable')->nullable();
 		});
 	}
 

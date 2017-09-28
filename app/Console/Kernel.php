@@ -5,7 +5,8 @@ namespace App\Console;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use App\Membership;
-use Mail;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\MembresiaExpirada;
 class Kernel extends ConsoleKernel
 {
     /**
@@ -35,26 +36,26 @@ class Kernel extends ConsoleKernel
 
                 foreach($membresias as $membresia) {
                     
+                    $usuario = \App\User::find($membresia->user->id);
+                        
                     $diasFaltantes = \Carbon\Carbon::parse($membresia->expiration)->diff(\Carbon\Carbon::now())->days;
-                    if ($diasFaltantes >5) {
-                        $usuario = \App\User::find($membresia->user->id);
-                        
-                        $title = "Aviso de expiración de membresía ";
-                        $content = 'Le informamos que su membresía '.$usuario->membership->tipo." está pronta a expirar<br>Le recordamos que debe renovar nuestros servicios <br>Un saludo, UnitedCompany.";
-                        Mail::send('email.expiration', ['title' => $title, 'content' => $content], function ($message)
-                        {
-                
-                            $message->from('hola@unitedcompanyweb.com', 'United Company');
-                            $message->subject('Aviso de expiración de membresía - United Company');
-                            $message->to('randygil@webcoding.cl');
-                
-                        });
-                        
-                
-                        return response()->json(['message' => 'Request completed']); 
-
+                    if($diasFaltantes<=2 && $membresia->notifiable==1) {
+                        Mail::to($usuario)->send(new MembresiaExpirada($membresia->membership->tipo,url('cliente/membership/renovation'),'Membresía expirada',2));
+                        $membresia->notifiable = 2;
+                        $membresia->status = 'Expirado';
+                        $membresia->update();
                     }
 
+                    if ($diasFaltantes <5)  {
+                       if ($membresia->notifiable==0 || !$membresia->notifiable)  {
+                        Mail::to($usuario)->send(new MembresiaExpirada($membresia->membership->tipo,url('cliente/membership/renovation'),'Aviso de expiración de membresía',1));
+                        $membresia->notifiable = 1;
+
+                        $membresia->update();
+                        }
+
+                    }
+                
 
 
                 }
