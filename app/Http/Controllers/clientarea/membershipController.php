@@ -56,7 +56,7 @@ class membershipController extends Controller
     }
     public function renovation() {
         $m = Auth::user()->membership;
-        dd($m->status);
+    
         if (!$m || $m->status!='Expirado') {
             return redirect('clientarea');
         }

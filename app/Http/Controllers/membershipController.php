@@ -7,6 +7,8 @@ use App\User;
 use Session;
 use Carbon\Carbon;
 use App\Membership;
+use Mail;
+use App\Mail\MembresiaActivada;
 class membershipController extends Controller
 {
 
@@ -43,6 +45,7 @@ class membershipController extends Controller
      */
     public function store(Request $request,$id)
     {
+        
         $us = User::find($id);
         $mid = $request->get('membresia');
         $mem = $us->membership;
@@ -63,6 +66,8 @@ class membershipController extends Controller
             $u->expiration = Carbon::now()->addDays(31)->toDatetimeString();
             $u->user_id = $us->id;
             $u->save();
+
+            Mail::to($us)->send(new MembresiaActivada($u->membership["tipo"],$us));
             Session::flash('alert',["tipo"=>"info","mensaje"=>"Se ha suscrito el usuario $us->user a la membresia ".$u->membership["tipo"]]);
             return redirect('admin/clientes');
         }else{
@@ -166,7 +171,7 @@ class membershipController extends Controller
         $m->status ='Activo';
         $m->notifiable = 0;
         $m->update();
-        Session::flash('alert',["tipo"=>'success','mensaje'=>"Se ha reactivo la membresía del usuario"]);
+        Session::flash('alert',["tipo"=>'success','mensaje'=>"Se ha reactivado la membresía del usuario"]);
         return redirect('admin/clientes');
     }
 }
