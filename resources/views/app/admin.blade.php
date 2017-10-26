@@ -100,35 +100,35 @@
                 
               </ul>
             </li>
-            
-            <!--li class="treeview">
+
+            <li class="treeview">
               <a href="#">
-                <i class="fa fa-th"></i>
-                <span>Contratos</span>
-                 <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-briefcase"></i>
+                <span>Proyectos</span>
+                <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href=""><i class="fa fa-circle-o"></i> Lista</a></li>
-                <li><a href=""><i class="fa fa-circle-o"></i> Reservas</a></li>
-                
+                <li><a href="{{route('proyectos.index')}}"><i class="fa fa-circle-o"></i> Proyectos</a></li>
                 
               </ul>
             </li>
+
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-building-o"></i>
-                <span>Espacios</span>
-                 <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-dollar"></i>
+                <span>Pagos</span>
+                <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{route('espacios.index')}}"><i class="fa fa-circle-o"></i> Lista</a></li>
-                <li><a href="ventas/cliente"><i class="fa fa-circle-o"></i> Clientes</a></li>
+                <li><a href="{{route('admin.payments.index')}}"><i class="fa fa-circle-o"></i> Pagos</a></li>
+                
               </ul>
             </li>
-                       
+
             <li class="treeview">
               <a href="#">
-                <i class="fa fa-folder"></i> <span>Usuarios</span>
+                <i class="fa fa-user"></i>
+                <span>Usuarios</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
@@ -136,18 +136,7 @@
                 
               </ul>
             </li>
-             <li>
-              <a href="#">
-                <i class="fa fa-plus-square"></i> <span>Ayuda</span>
-                <small class="label pull-right bg-red">PDF</small>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-info-circle"></i> <span>Acerca De...</span>
-                <small class="label pull-right bg-yellow">IT</small>
-              </a>
-            </li-->
+            
                         
           </ul>
         </section>

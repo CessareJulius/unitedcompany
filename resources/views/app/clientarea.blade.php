@@ -100,53 +100,7 @@
                 
               </ul>
             </li>
-            
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-th"></i>
-                <span>Contratos</span>
-                 <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href=""><i class="fa fa-circle-o"></i> Lista</a></li>
-                <li><a href=""><i class="fa fa-circle-o"></i> Reservas</a></li>
-                
-                
-              </ul>
-            </li>
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-building-o"></i>
-                <span>Espacios</span>
-                 <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="{{route('espacios.index')}}"><i class="fa fa-circle-o"></i> Lista</a></li>
-                <!--li><a href="ventas/cliente"><i class="fa fa-circle-o"></i> Clientes</a></li-->
-              </ul>
-            </li>
-                       
-            <li class="treeview">
-              <a href="#">
-                <i class="fa fa-folder"></i> <span>Usuarios</span>
-                <i class="fa fa-angle-left pull-right"></i>
-              </a>
-              <ul class="treeview-menu">
-                <li><a href="{{route('users.index')}}"><i class="fa fa-circle-o"></i> Usuarios</a></li>
-                
-              </ul>
-            </li>
-             <li>
-              <a href="#">
-                <i class="fa fa-plus-square"></i> <span>Ayuda</span>
-                <small class="label pull-right bg-red">PDF</small>
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                <i class="fa fa-info-circle"></i> <span>Acerca De...</span>
-                <small class="label pull-right bg-yellow">IT</small>
-              </a>
+           
             </li>
                         
           </ul>
@@ -169,7 +123,7 @@
             <div class="col-md-12">
               <div class="box">
                 <div class="box-header with-border">
-                  <h3 class="box-title">Oficina Virtual</h3>
+                  <h3 class="box-title">UnitedCompany - Área de Cliente</h3>
                   <div class="box-tools pull-right">
                     <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     
@@ -211,7 +165,7 @@
     <!-- AdminLTE App -->
     <script src="{{asset('js/app.min.js')}}"></script>
     
-    <!--Start of Tawk.to Script-->
+    <!--Start of Tawk.to Script
     <script type="text/javascript">
         
         var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -227,7 +181,7 @@
         s1.setAttribute('crossorigin','*');
         s0.parentNode.insertBefore(s1,s0);
         })();
-     </script>
+     </script>-->
     
     @stack('scripts')
 

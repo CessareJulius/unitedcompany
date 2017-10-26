@@ -33,10 +33,10 @@
         <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">                
          {{ csrf_field() }}
           <div class="form-group has-feedback">
-            <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-            @if ($errors->has('email'))
+            <input id="login" type="login" class="form-control" name="login" value="{{ old('login') }}" required autofocus>
+            @if ($errors->has('login'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('email') }}</strong>
+                    <strong>{{ $errors->first('login') }}</strong>
                 </span>
             @endif
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -61,6 +61,8 @@
             <div class="col-xs-4">
               <button type="submit" class="btn btn-primary btn-block btn-flat">Ingresar</button>
             </div><!-- /.col -->
+            <p class="text-center">Aún no es nuevo miembro? <a href="{{url('register')}}">Registrese</a></p>
+            
           </div>
         </form>
 

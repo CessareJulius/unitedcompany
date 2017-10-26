@@ -10,6 +10,8 @@ use DB;
 use Auth;
 use Redirect;
 use App\Role;
+use App\Membership;
+use App\Memberships;
 class User extends Authenticatable
 {
  
@@ -42,6 +44,19 @@ class User extends Authenticatable
         return $this->hasMany('Role');
         
     }
+    public function membership() {
+        return $this->hasOne('App\Membership');
+    }
+    
+    public function proyectos() {
+        return $this->hasOne('App\Proyectos');
+    }
+    
+    public function payments() {
+        return $this->hasMany('App\Payments');
+    }
+
+
 
     /**
      * Función que permite mostrar el rol del usuario

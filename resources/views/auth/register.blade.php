@@ -33,6 +33,15 @@
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Ingrese sus datos para el registro</p>
+        @if(count($errors)>1)
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach($errors as $error) 
+                        <li>$error</li>
+                    @endforeach 
+                </ul>
+            </div>
+        @endif
         <form class="form-horizontal" role="form" method="POST" action="{{ route('register') }}">
                         {{ csrf_field() }}
 
@@ -142,17 +151,7 @@
                             <label for="phone" class="col-md-4 control-label">Teléfono</label>
 
 
-                            <div class="col-md-2">
-                                <input id="phone_code" type="number" class="form-control" name="phone_code" placeholder="EJ. 0414" value="{{old('phone_code')}}" required>
-
-                                @if ($errors->has('phone_code'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('phone_code') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                  <input id="phone" type="number" class="form-control" name="phone" value="{{old('phone')}}" required>
                             
                                 @if ($errors->has('phone'))
@@ -161,6 +160,7 @@
                                     </span>
                                 @endif
                             </div>
+                            
                         </div>
 
 
@@ -208,7 +208,7 @@
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
     <!-- iCheck -->
     <script src="{{asset('js/icheck.min.js')}}"></script>
-    <link rel="stylesheet" href="{{asset('js/bootstrap-datepicker3.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrap-datepicker3.min.css')}}">
     <script src="{{asset('front/js/bootstrap-datepicker.js')}}"></script>
     <script>
       $(function () {

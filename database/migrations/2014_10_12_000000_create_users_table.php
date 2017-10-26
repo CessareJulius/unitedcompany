@@ -13,22 +13,22 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-
-        if (!Schema::hasTable('users')) {
-         
-        
-            Schema::create('users', function (Blueprint $table) {
-                $table->increments('id');
-                $table->string('name');
-                $table->string('user')->unique();
-                $table->string('email')->unique();
-                $table->string('password');
-
-                $table->rememberToken();
-                $table->timestamps();
-            });
-           
-        }
+        Schema::create('users', function(Blueprint $table)
+		{
+			$table->increments('id');
+			$table->string('name', 191);
+			$table->string('user', 191)->unique();
+			$table->string('email', 191)->unique();
+			$table->string('password', 191);
+			$table->string('remember_token', 100)->nullable();
+			$table->timestamps();
+			$table->string('lastname', 191)->nullable();
+			$table->string('phone', 191)->nullable();
+			$table->string('address', 191)->nullable();
+			$table->string('dni', 20)->nullable();
+			$table->date('birthday')->nullable();
+			$table->timestamp('fecha_registro')->nullable()->default(DB::raw('CURRENT_TIMESTAMP'));
+		});
     }
 
     /**

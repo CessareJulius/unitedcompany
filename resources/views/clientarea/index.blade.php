@@ -14,9 +14,9 @@
                         <div class="col-sm-3 col-xs-12">
                             <div class="menu-item">
                                 <div class="menu-item-content">
-                                    <a href="{{route('clientarea.index')}}">
-                                        <span class="menu-item-icon"><span class="fa fa-phone"></span></span>
-                                        <h5>Clientes</h5>
+                                    <a href="{{route('clientarea.proyectos.index')}}">
+                                        <span class="menu-item-icon"><span class="fa fa-briefcase"></span></span>
+                                        <h5>Proyectos</h5>
                                     </a> 
                                 </div>
                             </div>
@@ -25,31 +25,21 @@
                         <div class="col-sm-3">
                             <div class="menu-item">
                                 <div class="menu-item-content">
-                                    <a href="{{route('reservas.index')}}">
-                                        <span class="menu-item-icon"><span class="fa fa-calendar"></span></span>
-                                        <h5>Reservas</h5>
+                                    <a href="{{route('clientarea.payment.index')}}">
+                                        <span class="menu-item-icon"><span class="fa fa-dollar"></span></span>
+                                        <h5>Pagos</h5>
                                     </a> 
                                 </div>
                             </div>
                         </div>
                         
-                        <div class="col-sm-3">
-                            <div class="menu-item">
-                                <div class="menu-item-content">
-                                    <a href="">
-                                        <span class="menu-item-icon"><span class="fa fa-briefcase"></span></span>
-                                        <h5>Contratos</h5>
-                                    </a> 
-                                </div>
-                            </div>
-                        </div>
 
                         <div class="col-sm-3">
                             <div class="menu-item">
                                 <div class="menu-item-content">
-                                    <a href="{{route('users.index')}}">
+                                    <a href="{{route('clientarea.membership.index')}}">
                                         <span class="menu-item-icon"><span class="fa fa-user"></span></span>
-                                        <h5>Usuarios</h5>
+                                        <h5>Membresías</h5>
                                     </a> 
                                 </div>
                             </div>

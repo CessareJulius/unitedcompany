@@ -3,27 +3,7 @@
 @section('contenido')
 
 
-    <div class="container">
-        <div class="row">
-            {!! Form::open(['url'=>'/admin/users','method'=>'GET','autocomplete'=>'off','role'=>'search']); !!}
-                    <div class="col-sm-11">
-                        <div class="form-group">
-                            <div class="input-group">
-                                <input type="text" name="buscar" class="form-control" placeholder="Buscar..." value="{{$buscar}}">
-                                <span class="input-group-btn"><button class="btn btn-primary">Buscar</button></span>
-                            </div>
-                        </div>
-                    </div>
-
-                
-            {!! Form::close() !!}
-        </div>
-    </div>
-    
-    @if(count($users) <1 && strlen($buscar)>0)
-    <h3>No se encontraron usuarios para {{$buscar}}</h3>
-    @else
-    @if(strlen($buscar)>0) <h3>Resultados de la búsqueda de: {{$buscar}}</h3>@endif
+  
     <h1>Lista de Usuarios <a href="{{action('UsersController@create')}}" class="btn btn-primary"><i class="fa fa-plus"></i> Agregar</a></h1>
 
     <table class="table table-bordered table-condensed table-striped table-hover">
@@ -58,5 +38,5 @@
     </table>
 
     <div class="col-sm-12">{{$users->render()}}</div>
-    @endif
+ 
 @endsection

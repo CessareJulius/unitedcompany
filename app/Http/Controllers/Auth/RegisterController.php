@@ -29,6 +29,7 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/login';
+    
 
     /**
      * Create a new controller instance.
@@ -54,7 +55,7 @@ class RegisterController extends Controller
             'address' => 'required|string|max:500',
             'user' => 'required|string|max:20|unique:users',
             'phone' => 'required|numeric',
-            'phone_code' => 'required|numeric',
+            
             'dni' => 'required|numeric|max:99999999',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
@@ -73,10 +74,10 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'lastname' => $data['lastname'],
             'email' => $data['email'],
-            'phone'=> $data['phone_code'].''.$data['phone'],
+            'phone'=> $data['phone'],
             'user' => $data['user'],
             'address' => $data['address'],
-            'birthday'=> $data['birthday'],
+            'birthday'=> \Carbon\Carbon::parse($data['birthday'])->toDateString(),
             'dni' => $data['dni'],
             'password' => bcrypt($data['password'])
             

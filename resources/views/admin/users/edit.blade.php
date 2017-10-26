@@ -23,6 +23,12 @@
                         <label for="name">Nombre</label><input type="text" value="{{$usuario->name}}" class="form-control" placeholder="Nombre" name="name">
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <label for="name">Usuario</label><input type="text" value="{{$usuario->user}}" class="form-control" placeholder="Usuario" name="user">
+                    </div>
+                </div>
+            
             
                    
                 {{-- <div class="form-group">
