@@ -25,10 +25,7 @@ Route::post('/contrato','indexController@contrato');
 Route::resource('/admin',"adminController");
 
 
-Route::get('/', function () {
-    return view('welcome');
-  
-});
+
 
 
 

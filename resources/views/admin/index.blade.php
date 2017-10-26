@@ -26,8 +26,8 @@
                             <div class="menu-item">
                                 <div class="menu-item-content">
                                     <a href="">
-                                        <span class="menu-item-icon"><span class="fa fa-calendar"></span></span>
-                                        <h5>Reservas</h5>
+                                        <span class="menu-item-icon"><span class="fa fa-briefcase"></span></span>
+                                        <h5>Proyectos</h5>
                                     </a> 
                                 </div>
                             </div>
@@ -36,9 +36,9 @@
                         <div class="col-sm-3">
                             <div class="menu-item">
                                 <div class="menu-item-content">
-                                    <a href="">
-                                        <span class="menu-item-icon"><span class="fa fa-briefcase"></span></span>
-                                        <h5>Contratos</h5>
+                                    <a href="{{route('payment.index')}}">
+                                        <span class="menu-item-icon"><span class="fa fa-dollar"></span></span>
+                                        <h5>Pagos</h5>
                                     </a> 
                                 </div>
                             </div>

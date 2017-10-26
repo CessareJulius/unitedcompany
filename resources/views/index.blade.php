@@ -19,6 +19,14 @@
     <!-- Theme CSS -->
     <link href="{{asset('front/css/agency.css')}}" rel="stylesheet">
 
+
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -33,7 +41,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">United Company</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="img/logo2.png" width="80px" height="60px" alt="">United Company</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -41,7 +49,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#quienes-somos">¿Quienes Somos?</a>
+              <a class="nav-link js-scroll-trigger" href="#quienes-somos">Quienes Somos</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="#conocenos">Conocenos</a>
@@ -81,6 +89,7 @@
     <header class="masthead">
       <div class="container">
         <div class="intro-text">
+          
           <div class="intro-lead-in">¿Quieres iniciar un negocio y no tienes recursos como?</div>
           <div class="intro-heading">¡Se parte de United Company!</div>
           <a class="btn btn-xl js-scroll-trigger" href="#services">Saber más</a>
@@ -173,7 +182,7 @@
         </div>
       </div>
     </section>
->
+
 
     <!-- Contact -->
     <section id="contacto">
@@ -181,42 +190,11 @@
         <div class="row">
           <div class="col-lg-12 text-center">
             <h2 class="section-heading">Registrate!</h2>
-            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+            <h3 class="section-subheading text-muted">¡Se parte de nosotros!</h3>
+             <a href="{{route('register')}}" class="btn btn-xl section-heading" >Empieza Ya</a href="{{route('register')}}">
           </div>
-        </div>
-        <div class="row">
-          <div class="col-lg-12">
-            <form id="contactForm" name="sentMessage" novalidate>
-              <div class="row">
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <input class="form-control" id="name" type="text" placeholder="Your Name *" required data-validation-required-message="Please enter your name.">
-                    <p class="help-block text-danger"></p>
-                  </div>
-                  <div class="form-group">
-                    <input class="form-control" id="email" type="email" placeholder="Your Email *" required data-validation-required-message="Please enter your email address.">
-                    <p class="help-block text-danger"></p>
-                  </div>
-                  <div class="form-group">
-                    <input class="form-control" id="phone" type="tel" placeholder="Your Phone *" required data-validation-required-message="Please enter your phone number.">
-                    <p class="help-block text-danger"></p>
-                  </div>
-                </div>
-                <div class="col-md-6">
-                  <div class="form-group">
-                    <textarea class="form-control" id="message" placeholder="Your Message *" required data-validation-required-message="Please enter a message."></textarea>
-                    <p class="help-block text-danger"></p>
-                  </div>
-                </div>
-                <div class="clearfix"></div>
-                <div class="col-lg-12 text-center">
-                  <div id="success"></div>
-                  <button id="sendMessageButton" class="btn btn-xl" type="submit">Send Message</button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </div>
+        </div> 
+       
       </div>
     </section>
 
@@ -225,7 +203,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-4">
-            <span class="copyright">Copyright &copy; Your Website 2017</span>
+            <span class="copyright">Sitio Web Desarrollado por <a href="http://randygil.com.ve">Randy Gil</a> &copy 2017</span>
           </div>
           <div class="col-md-4">
             <ul class="list-inline social-buttons">
