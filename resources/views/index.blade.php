@@ -41,7 +41,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="img/logo2.png" width="80px" height="60px" alt="">United Company</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="{{asset('img/logo2.png')}}" width="80px" height="60px" alt="">United Company</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
