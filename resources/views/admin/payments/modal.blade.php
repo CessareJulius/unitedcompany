@@ -12,7 +12,7 @@ role="dialog" tabindex="-1" id="consignar-{{$fila->id}}">
 			</div>
 			<div class="modal-body">
 				<p>Razón de pago: <strong>{{$fila->razon_pago}}</strong></p>
-                <p>Total: <strong>{{$fila->total}}$</strong></p>
+                <p>Total: <strong>{{$fila->total}}S/.</strong></p>
                 <p>Fecha de solicitud: <strong>{{$fila->fecha_solicitud}} ({{\Carbon\Carbon::parse($fila->fecha_solicitud)->diffForHumans()}})</strong></p>
 
                 
@@ -66,7 +66,7 @@ role="dialog" tabindex="-1" id="confirmar-{{$fila->id}}">
 			</div>
 			<div class="modal-body">
                 <p>Razón de pago: <strong>{{$fila->razon_pago}}</strong></p>
-                <p>Total: <strong>{{$fila->total}}$</strong></p>
+                <p>Total: <strong>{{$fila->total}}S/.</strong></p>
                 <p>Fecha de solicitud: <strong>{{$fila->fecha_solicitud}} ({{\Carbon\Carbon::parse($fila->fecha_solicitud)->diffForHumans()}})</strong></p>
                 <p>Estado: <strong>{{$status[$fila->status]}}</strong> </p>
 
@@ -83,8 +83,8 @@ role="dialog" tabindex="-1" id="confirmar-{{$fila->id}}">
 					<a href="{{action('paymentController@confirmar',['id'=>$fila->id])}}" class="btn btn-primary">Confirmar Pago</a>
                 @endif
                 
-                <hr>
                 
+                <a href="{{action('paymentController@confirmar',['id'=>$fila->id])}}" class="btn btn-primary">Confirmar Pago</a>
                 
 			</div>
 			<div class="modal-footer">
@@ -110,7 +110,7 @@ role="dialog" tabindex="-1" id="info-{{$fila->id}}">
 			</div>
 			<div class="modal-body">
                 <p>Razón de pago: <strong>{{$fila->razon_pago}}</strong></p>
-                <p>Total: <strong>{{$fila->total}}$</strong></p>
+                <p>Total: <strong>{{$fila->total}}S/.</strong></p>
                 <p>Fecha de solicitud: <strong>{{$fila->fecha_solicitud}} ({{\Carbon\Carbon::parse($fila->fecha_solicitud)->diffForHumans()}})</strong></p>
                 <p>Estado: <strong>{{$status[$fila->status]}}</strong> </p>
 

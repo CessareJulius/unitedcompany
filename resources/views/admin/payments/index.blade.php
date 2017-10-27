@@ -34,7 +34,7 @@
                     <td>{{$fila->id}}</td>
                     <td>{{$fila->user->user}}</td>
                     <td>{{$fila->razon_pago}}</td>
-                    <td>{{$fila->total}}$</td>
+                    <td>{{$fila->total}}S/. </td>
                     <td>{{$fila->fecha_solicitud}} ({{\Carbon\Carbon::parse($fila->fecha_solicitud)->diffForHumans()}})</td>    
                     <td>{{$status[$fila->status]}}</td>
                      
