@@ -15,7 +15,7 @@
                 </tr>
                 <tr>
                     <td>Total:</td>
-                    <td>{{session('pago')['total']}}$</td>
+                    <td>{{session('pago')['total']}}S/.</td>
                 </tr>
             </tbody>
 

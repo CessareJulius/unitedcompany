@@ -25,11 +25,7 @@
                         <div class="col-sm-3">
                             <div class="menu-item">
                                 <div class="menu-item-content">
-<<<<<<< HEAD
-                                    <a href="">
-=======
                                     <a href="{{route('proyectos.index')}}">
->>>>>>> ffbc9ce166de2d404d9b78c76abc800226c4c03a
                                         <span class="menu-item-icon"><span class="fa fa-briefcase"></span></span>
                                         <h5>Proyectos</h5>
                                     </a> 
@@ -40,11 +36,10 @@
                         <div class="col-sm-3">
                             <div class="menu-item">
                                 <div class="menu-item-content">
-<<<<<<< HEAD
-                                    <a href="{{route('payment.index')}}">
-=======
+
+                                
                                     <a href="{{route('admin.payments.index')}}">
->>>>>>> ffbc9ce166de2d404d9b78c76abc800226c4c03a
+
                                         <span class="menu-item-icon"><span class="fa fa-dollar"></span></span>
                                         <h5>Pagos</h5>
                                     </a> 

@@ -67,6 +67,7 @@ class membershipController extends Controller
             "total"=>$total
         ];
         Session::put('pago',$pago);
+        
            
         return view('clientarea.payments.invoice');
     }

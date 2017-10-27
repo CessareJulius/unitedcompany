@@ -45,9 +45,10 @@ role="dialog" tabindex="-1" id="consignar-{{$fila->id}}">
                 
 
                     <div class="form-group">
+                        <p><strong>Páguese a:</strong> <img width="150px" height="100px" src="{{asset('img/LogoBCP.png')}}" alt=""></p>
                         <p><strong>Nombre:</strong> UnitedCompany</p>
-                        <p><strong>Número de Identificación:</strong> 123456</p>
-                        <p><strong>Número de Cuenta:</strong> 1234-55-6789-12345</p>
+                        <!--p><strong>Número de Identificación:</strong> 123456</p-->
+                        <p><strong>Número de Cuenta:</strong>191-38964190-0-65</p>
                         
                     </div>
                     <div class="input-group">
@@ -94,7 +95,15 @@ role="dialog" tabindex="-1" id="info-{{$fila->id}}">
                 <p>Total: <strong>{{$fila->total}}$</strong></p>
                 <p>Fecha de solicitud: <strong>{{$fila->fecha_solicitud}} ({{\Carbon\Carbon::parse($fila->fecha_solicitud)->diffForHumans()}})</strong></p>
                 <p>Estado: <strong>{{$status[$fila->status]}}</strong> </p>
-
+                    <div class="form-group">
+                        <p><strong>Páguese a:</strong> </p>
+                        <img width="150px" height="50px" src="{{asset('img/LogoBCP.png')}}" alt="">
+                        <hr>
+                        <p><strong>Nombre:</strong> UnitedCompany</p>
+                        <!--p><strong>Número de Identificación:</strong> 123456</p-->
+                        <p><strong>Número de Cuenta:</strong> 191-38964190-0-65</p>
+                        
+                    </div>
                 @if($fila->paypal)
                     <p>Pagado por paypal con la cuenta <strong>{{$fila->paypal["cuenta"]}}</strong></p>
                     <p>el <string>{{$fila->fecha_pago}} ({{\Carbon\Carbon::parse($fila->fecha_pago)->diffForHumans()}})</string></p>

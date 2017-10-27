@@ -26,17 +26,28 @@
   <body class="hold-transition login-page">
     <div class="login-box">
       <div class="login-logo">
-        <a href=""><b>UnitedCompany</b></a>
+       
+      <a href=""><b>UnitedCompany</b></a>
+          
       </div><!-- /.login-logo -->
       <div class="login-box-body">
+       @if(count($errors->all())>0)
+                <div class="alert alert-danger">
+                    
+                    @foreach($errors->all() as $error) 
+                        <p>{{$error}}</p>
+                    @endforeach
+                
+                </div>
+            @endif
         <p class="login-box-msg">Ingrese sus datos de Acceso</p>
         <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">                
          {{ csrf_field() }}
           <div class="form-group has-feedback">
-            <input id="login" type="login" class="form-control" name="login" value="{{ old('login') }}" required autofocus>
-            @if ($errors->has('login'))
+            <input id="login" type="login" class="form-control" name="email" value="{{ old("email") }}" required autofocus>
+            @if ($errors->has("email"))
                 <span class="help-block">
-                    <strong>{{ $errors->first('login') }}</strong>
+                    <strong>{{ $errors->first("email") }}</strong>
                 </span>
             @endif
             <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -84,7 +95,7 @@
         $('input').iCheck({
           checkboxClass: 'icheckbox_square-blue',
           radioClass: 'iradio_square-blue',
-          increaseArea: '20%' // optional
+          //increaseArea: '20%' // optional
         });
       });
     </script>
