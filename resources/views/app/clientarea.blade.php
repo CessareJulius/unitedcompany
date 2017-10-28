@@ -29,9 +29,9 @@
         <!-- Logo -->
         <a href="{{route('admin.index')}}" class="logo">
           <!-- mini logo for sidebar mini 50x50 pixels -->
-          <span class="logo-mini"><b>O</b>V</span>
+          <span class="logo-mini"><b>U</b>C</span>
           <!-- logo for regular state and mobile devices -->
-          <span class="logo-lg"><b>OfVir</b></span>
+          <span class="logo-lg"><b>UnitedCompany</b></span>
         </a>
 
         <!-- Header Navbar: style can be found in header.less -->
@@ -90,17 +90,43 @@
             <li class="header"></li>
             
             <li class="treeview">
+      
               <a href="#">
-                <i class="fa fa-laptop"></i>
-                <span>Clientes</span>
+                <i class="fa fa-user"></i>
+                <span>Proyectos</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="{{route('clientes.index')}}"><i class="fa fa-circle-o"></i> Lista</a></li>
+                <li><a href="{{route('clientarea.proyectos.index')}}"><i class="fa fa-circle-o"></i> Lista</a></li>
                 
               </ul>
             </li>
            
+           
+
+            <li class="treeview">
+              <a href="#">
+                <i class="fa fa-dollar"></i>
+                <span>Pagos</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{route('clientarea.payment.index')}}"><i class="fa fa-circle-o"></i> Lista</a></li>
+                
+              </ul>
+              
+            </li>
+
+              <li class="treeview">
+              <a href="#">
+                <i class="fa fa-user"></i>
+                <span>Membresías</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="{{route('clientarea.membership.index')}}"><i class="fa fa-circle-o"></i> Lista</a></li>
+                
+              </ul>
             </li>
                         
           </ul>
