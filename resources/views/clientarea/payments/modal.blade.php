@@ -20,7 +20,7 @@ role="dialog" tabindex="-1" id="consignar-{{$fila->id}}">
 
                 <div class="form-group">
                  
-                    <a  class="btn btn-primary" target="_blank" href="http://paypal.me/unitedcompany/{{$fila->total}}" onclick="paypal({{$fila->id}})">Pagar con paypal</a>
+                    <!--a  class="btn btn-primary" target="_blank" href="http://paypal.me/unitedcompany/{{$fila->total}}" onclick="paypal({{$fila->id}})">Pagar con paypal</a-->
                     <a  class="btn btn-success" onclick="banco({{$fila->id}})">Pagar con Cuenta Bancaria</a>
                 </div>
                
@@ -45,9 +45,12 @@ role="dialog" tabindex="-1" id="consignar-{{$fila->id}}">
                 
 
                     <div class="form-group">
-                        <p><strong>Nombre:</strong> UnitedCompany</p>
+                        <img src="{{asset('img/LogoBCP.png')}}" width="150px" height="50px" alt="">
+                        <p><strong>Páguese a nombre de:</strong></p>
+                        <p><strong>Nombre:</strong> ROJAS JOEL -Y-PERALTA ROMEL-Y-PAIPAY JES</p>
+                        <p><strong>Cuenta: </strong>Mancomunada Conjunta</p>
                         <p><strong>Número de Identificación:</strong> 123456</p>
-                        <p><strong>Número de Cuenta:</strong> 1234-55-6789-12345</p>
+                        <p><strong>Número de Cuenta:</strong> 191-38964190-0-65</p>
                         
                     </div>
                     <div class="input-group">
@@ -116,3 +119,4 @@ role="dialog" tabindex="-1" id="info-{{$fila->id}}">
 		</div>
 	</div>
 </div>
+
