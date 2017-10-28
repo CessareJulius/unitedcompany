@@ -41,7 +41,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="{{asset('img/logo2.png')}}" width="80px" height="60px" alt="">United Company</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="{{asset('img/logo2.png')}}" width="100px" height="80px" alt="">United Company</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -149,6 +149,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12">
+            <p class="text-center"><img src="{{asset('img/logo2.png')}}" width="200px" height="160px" alt=""></p>
             <h2 class="section-heading text-center">Misión y Visión</h2>
             <h3 class="section-subheading text-muted"></h3>
           </div>
