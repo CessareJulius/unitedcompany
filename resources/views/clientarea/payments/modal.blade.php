@@ -46,8 +46,9 @@ role="dialog" tabindex="-1" id="consignar-{{$fila->id}}">
 
                     <div class="form-group">
                         <img src="{{asset('img/LogoBCP.png')}}" width="150px" height="50px" alt="">
+                        <img src="{{asset('img/logo2.png')}}" width="150px" height="100px" alt="">
                         <p><strong>Páguese a nombre de:</strong></p>
-                        <p><strong>Nombre:</strong> ROJAS JOEL -Y-PERALTA ROMEL-Y-PAIPAY JES</p>
+                        <p><strong>Nombre:</strong> PAIPAY JESUS -Y- ROJAS JOEL -Y- PERALTA ROMEL</p>
                         <p><strong>Cuenta: </strong>Mancomunada Conjunta</p>
                         <!--p><strong>Número de Identificación:</strong> 123456</p-->
                         <p><strong>Número de Cuenta:</strong> 191-38964190-0-65</p>
@@ -97,11 +98,12 @@ role="dialog" tabindex="-1" id="info-{{$fila->id}}">
                 <p>Total: <strong>{{$fila->total}}S/.</strong></p>
                 <p>Fecha de solicitud: <strong>{{$fila->fecha_solicitud}} ({{\Carbon\Carbon::parse($fila->fecha_solicitud)->diffForHumans()}})</strong></p>
                 <p>Estado: <strong>{{$status[$fila->status]}}</strong> </p>
-                    <div class="form-group">
-                        <p><strong>Páguese a:</strong> </p>
-                        <img width="150px" height="50px" src="{{asset('img/LogoBCP.png')}}" alt="">
-                        <hr>
-                        <p><strong>Nombre:</strong> UnitedCompany</p>
+                     <div class="form-group">
+                        <img src="{{asset('img/LogoBCP.png')}}" width="150px" height="50px" alt="">
+                        <img src="{{asset('img/logo2.png')}}" width="150px" height="100px" alt="">
+                        <p><strong>Páguese a nombre de:</strong></p>
+                        <p><strong>Nombre:</strong> PAIPAY JESUS -Y- ROJAS JOEL -Y- PERALTA ROMEL-Y</p>
+                        <p><strong>Cuenta: </strong>Mancomunada Conjunta</p>
                         <!--p><strong>Número de Identificación:</strong> 123456</p-->
                         <p><strong>Número de Cuenta:</strong> 191-38964190-0-65</p>
                         
