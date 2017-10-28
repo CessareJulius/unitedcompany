@@ -12,7 +12,7 @@ role="dialog" tabindex="-1" id="consignar-{{$fila->id}}">
 			</div>
 			<div class="modal-body">
 				<p>Razón de pago: <strong>{{$fila->razon_pago}}</strong></p>
-                <p>Total: <strong>{{$fila->total}}$</strong></p>
+                <p>Total: <strong>{{$fila->total}}S/.</strong></p>
                 <p>Fecha de solicitud: <strong>{{$fila->fecha_solicitud}} ({{\Carbon\Carbon::parse($fila->fecha_solicitud)->diffForHumans()}})</strong></p>
 
                 
@@ -20,7 +20,7 @@ role="dialog" tabindex="-1" id="consignar-{{$fila->id}}">
 
                 <div class="form-group">
                  
-                    <a  class="btn btn-primary" target="_blank" href="http://paypal.me/unitedcompany/{{$fila->total}}" onclick="paypal({{$fila->id}})">Pagar con paypal</a>
+                    <!--a  class="btn btn-primary" target="_blank" href="http://paypal.me/unitedcompany/{{$fila->total}}" onclick="paypal({{$fila->id}})">Pagar con paypal</a-->
                     <a  class="btn btn-success" onclick="banco({{$fila->id}})">Pagar con Cuenta Bancaria</a>
                 </div>
                
@@ -45,10 +45,19 @@ role="dialog" tabindex="-1" id="consignar-{{$fila->id}}">
                 
 
                     <div class="form-group">
+<<<<<<< HEAD
                         <p><strong>Páguese a:</strong> <img width="150px" height="100px" src="{{asset('img/LogoBCP.png')}}" alt=""></p>
                         <p><strong>Nombre:</strong> UnitedCompany</p>
                         <!--p><strong>Número de Identificación:</strong> 123456</p-->
                         <p><strong>Número de Cuenta:</strong>191-38964190-0-65</p>
+=======
+                        <img src="{{asset('img/LogoBCP.png')}}" width="150px" height="50px" alt="">
+                        <p><strong>Páguese a nombre de:</strong></p>
+                        <p><strong>Nombre:</strong> ROJAS JOEL -Y-PERALTA ROMEL-Y-PAIPAY JES</p>
+                        <p><strong>Cuenta: </strong>Mancomunada Conjunta</p>
+                        <p><strong>Número de Identificación:</strong> 123456</p>
+                        <p><strong>Número de Cuenta:</strong> 191-38964190-0-65</p>
+>>>>>>> regreso
                         
                     </div>
                     <div class="input-group">
@@ -92,7 +101,7 @@ role="dialog" tabindex="-1" id="info-{{$fila->id}}">
 			</div>
 			<div class="modal-body">
                 <p>Razón de pago: <strong>{{$fila->razon_pago}}</strong></p>
-                <p>Total: <strong>{{$fila->total}}$</strong></p>
+                <p>Total: <strong>{{$fila->total}}S/.</strong></p>
                 <p>Fecha de solicitud: <strong>{{$fila->fecha_solicitud}} ({{\Carbon\Carbon::parse($fila->fecha_solicitud)->diffForHumans()}})</strong></p>
                 <p>Estado: <strong>{{$status[$fila->status]}}</strong> </p>
                     <div class="form-group">
@@ -125,3 +134,4 @@ role="dialog" tabindex="-1" id="info-{{$fila->id}}">
 		</div>
 	</div>
 </div>
+
