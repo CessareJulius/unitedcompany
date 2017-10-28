@@ -46,7 +46,7 @@ class paymentController extends Controller
             $pago->razon_pago = session('pago')['razon_pago'];
             $pago->total = session('pago')['total'];
             $pago->user_id=Auth::user()->id;
-            $pago->status=2;
+            $pago->status=1;
             $pago->save();
             Session::forget('pago');
             Session::flash('alert',["tipo"=>"info","mensaje"=>"Pago solicitado, debe consignar para completar su operación"]);
