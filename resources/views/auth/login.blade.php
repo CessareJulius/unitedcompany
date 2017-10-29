@@ -25,21 +25,13 @@
   </head>
   <body class="hold-transition login-page">
     <div class="login-box">
-      <div class="login-logo">
+      <div class="login-logo" style=" border-radius:5px;">
        
-      <a href=""><b>UnitedCompany</b></a>
+      <a href="{{url('/')}}"><img style="margin-top: 25px" width="200px" height="150px" src="{{asset('img/logo2.png')}}" alt=""></a>
           
       </div><!-- /.login-logo -->
       <div class="login-box-body">
-       @if(count($errors->all())>0)
-                <div class="alert alert-danger">
-                    
-                    @foreach($errors->all() as $error) 
-                        <p>{{$error}}</p>
-                    @endforeach
-                
-                </div>
-            @endif
+      
         <p class="login-box-msg">Ingrese sus datos de Acceso</p>
         <form class="form-horizontal" role="form" method="POST" action="{{ route('login') }}">                
          {{ csrf_field() }}

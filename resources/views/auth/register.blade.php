@@ -27,9 +27,11 @@
     <![endif]-->
   </head>
   <body class="hold-transition login-page">
-    <div class="login-box" style="    width: 750px;">
+    <div class="login-box" style="    width: 750px; border-radius:5px;">
       <div class="login-logo">
-        <a href=""><b>UnitedCompany</b></a>
+         
+      <a href="{{url('/')}}"><img style="margin-top: 25px" width="200px" height="150px" src="{{asset('img/logo2.png')}}" alt=""></a>
+        
       </div><!-- /.login-logo -->
       <div class="login-box-body">
         <p class="login-box-msg">Ingrese sus datos para el registro</p>

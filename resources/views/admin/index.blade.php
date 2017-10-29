@@ -36,14 +36,10 @@
                         <div class="col-sm-3">
                             <div class="menu-item">
                                 <div class="menu-item-content">
-<<<<<<< HEAD
 
                                 
                                     <a href="{{route('admin.payments.index')}}">
 
-=======
-                                    <a href="{{route('admin.payments.index')}}">
->>>>>>> regreso
                                         <span class="menu-item-icon"><span class="fa fa-dollar"></span></span>
                                         <h5>Pagos</h5>
                                     </a> 
