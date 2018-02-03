@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use Barryvdh\DomPDF\Facade as PDF;
 
 class adminController extends Controller
 {
@@ -24,7 +26,6 @@ class adminController extends Controller
      */
     public function index()
     {
-
         
     if (Auth::user()->hasRole(['cliente'])) {
         return redirect('/clientarea');
@@ -36,6 +37,15 @@ class adminController extends Controller
         return view('admin.index');
 
 
+    }
+
+    public function pdf() 
+    {
+        $users = User::all(); 
+        //dd($users);
+        $pdf = PDF::loadView('pdf.users', compact('users'));
+        
+        return $pdf->download('users_list.pdf');    
     }
 
     /**

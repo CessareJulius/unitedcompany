@@ -205,8 +205,8 @@ return [
     'aliases' => [
         'FCM'      => LaravelFCM\Facades\FCM::class,
 	    'FCMGroup' => LaravelFCM\Facades\FCMGroup::class, // Optional
-        'PDF2' => Barryvdh\DomPDF\Facade::class,
-        'PDF' => Barryvdh\Snappy\Facades\SnappyPdf::class,
+        'PDF' => \Barryvdh\DomPDF\Facade::class,
+        'PDF2' => \Barryvdh\Snappy\Facades\SnappyPdf::class,
         'SnappyImage' => Barryvdh\Snappy\Facades\SnappyImage::class,
         'Entrust'   => Zizaco\Entrust\EntrustFacade::class,
 

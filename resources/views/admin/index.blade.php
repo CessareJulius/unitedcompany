@@ -60,6 +60,12 @@
                     </div>
                 </div> 
             </div>
+            <hr>
+            <p>
+                <a href="{{ route('users.pdf') }}" class="btn btn-sm btn-primary">
+                    Descargar Usuarios en PDF
+                </a>
+            </p>
      
     </div>
 

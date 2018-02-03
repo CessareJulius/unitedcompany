@@ -82,3 +82,18 @@ Route::get('/', 'indexController@index')->name('index');
 
 
 Route::resource('test', 'paypalController');
+
+Route::get('prueba', function () {
+    // este si funciona
+    /* $pdf = App::make('dompdf.wrapper');
+    $pdf->loadHTML('<h1>Test</h1>');
+    return $pdf->stream(); */
+    $data = ['header' => 'Hola Mundo'];
+    $pdf = PDF::loadView('pdf.users', $data);
+    return $pdf->download('users_list.pdf');
+
+    /* $pdf = PDF::loadView('pdf.users');
+    return $pdf->download('users_list.pdf'); */
+});
+
+Route::get('descargar-usuarios', 'adminController@pdf')->name('users.pdf');
